@@ -1,7 +1,6 @@
-﻿namespace EventService.Application
-{
-    public class Class1
-    {
+﻿namespace EventService.Application;
 
-    }
+public class Class1
+{
+
 }

@@ -1,7 +1,6 @@
-﻿namespace EventService.Domain
-{
-    public class Class1
-    {
+﻿namespace EventService.Domain;
 
-    }
+public class Class1
+{
+
 }

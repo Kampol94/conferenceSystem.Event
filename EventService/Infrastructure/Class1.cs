@@ -1,7 +1,6 @@
-﻿namespace EventService.Infrastructure
-{
-    public class Class1
-    {
+﻿namespace EventService.Infrastructure;
 
-    }
+public class Class1
+{
+
 }
