@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 
-namespace EventService.Controllers
+namespace EventService.API.Controllers
 {
     [ApiController]
     [Route("[controller]")]

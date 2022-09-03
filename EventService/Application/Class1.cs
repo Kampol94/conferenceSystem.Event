@@ -1,4 +1,4 @@
-﻿namespace EventService.EventService
+﻿namespace EventService.Application
 {
     public class Class1
     {
