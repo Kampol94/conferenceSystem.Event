@@ -1,6 +1,6 @@
 ﻿namespace EventService.Domain.Contracts;
 
-public interface IBaseDomainAction
+public interface IBaseDomainEvent
 {
     Guid Id { get; }
 

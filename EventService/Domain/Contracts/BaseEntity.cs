@@ -1,26 +1,26 @@
-﻿using EventService.Domain.Exceptions;
+﻿using EventService.Domain.Contracts.Exceptions;
 
 namespace EventService.Domain.Contracts;
 
 public abstract class BaseEntity
 {
-    private List<IBaseDomainAction> _domainActions;
+    private List<IBaseDomainEvent>? _domainDomainEvents;
 
-    public IReadOnlyCollection<IBaseDomainAction> DomainActions => _domainActions?.AsReadOnly();
+    public IReadOnlyCollection<IBaseDomainEvent>? DomainEvents => _domainDomainEvents?.AsReadOnly();
 
-    public void ClearDomainActions()
+    public void ClearDomainEvents()
     {
-        _domainActions?.Clear();
+        _domainDomainEvents?.Clear();
     }
 
-    protected void AddDomainActions(IBaseDomainAction domainAction)
+    protected void AddDomainEvent(IBaseDomainEvent domainDomainEvent)
     {
-        _domainActions ??= new List<IBaseDomainAction>();
+        _domainDomainEvents ??= new List<IBaseDomainEvent>();
 
-        this._domainActions.Add(domainAction);
+        this._domainDomainEvents.Add(domainDomainEvent);
     }
 
-    protected void CheckRule(IBaseBusinessRule rule)
+    protected static void CheckRule(IBaseBusinessRule rule)
     {
         if (rule.IsBroken())
         {
