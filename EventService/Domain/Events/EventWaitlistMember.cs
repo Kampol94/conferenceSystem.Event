@@ -1,8 +1,8 @@
-﻿using EventService.Domain.Events;
+﻿using EventService.Domain.Contracts;
 using EventService.Domain.Events.DomainEvent;
 using EventService.Domain.Members;
 
-namespace EventService.Domain.Contracts.Events;
+namespace EventService.Domain.Events;
 
 public class EventWaitlistMember : BaseEntity
 {
@@ -34,7 +34,7 @@ public class EventWaitlistMember : BaseEntity
         SignUpDate = DateTime.Now; //TODO: add time provider for test proposes 
         _isMovedToParticipants = false;
 
-        this.AddDomainEvent(new EventWaitlistMemberAddedDomainEvent(EventId, MemberId));
+        AddDomainEvent(new EventWaitlistMemberAddedDomainEvent(EventId, MemberId));
     }
 
     internal static EventWaitlistMember CreateNew(EventId eventId, MemberId memberId)
@@ -63,6 +63,6 @@ public class EventWaitlistMember : BaseEntity
         _isSignedOff = true;
         _signOffDate = DateTime.Now; //TODO: add time provider for test proposes 
 
-        this.AddDomainEvent(new MemberSignedOffFromEventWaitlistDomainEvent(EventId, MemberId));
+        AddDomainEvent(new MemberSignedOffFromEventWaitlistDomainEvent(EventId, MemberId));
     }
 }

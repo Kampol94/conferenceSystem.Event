@@ -1,6 +1,7 @@
-﻿using EventService.Domain.Members;
+﻿using EventService.Domain.Contracts;
+using EventService.Domain.Members;
 
-namespace EventService.Domain.Contracts.Events.Rules;
+namespace EventService.Domain.Events.Rules;
 
 public class NotActiveMemberOfWaitlistCannotBeSignedOffRule : IBaseBusinessRule
 {

@@ -6,11 +6,11 @@ namespace EventService.Domain.Events.Rules;
 
 public class MemberOnWaitlistMustBeAMemberOfGroupRule : IBaseBusinessRule
 {
-    private readonly EventGroup _eventGroup;
+    private readonly ConferenceGroups _eventGroup;
 
     private readonly MemberId _memberId;
 
-    internal MemberOnWaitlistMustBeAMemberOfGroupRule(EventGroup eventGroup, MemberId memberId)
+    internal MemberOnWaitlistMustBeAMemberOfGroupRule(ConferenceGroups eventGroup, MemberId memberId)
         : base()
     {
         _eventGroup = eventGroup;

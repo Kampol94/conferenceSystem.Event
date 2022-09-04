@@ -1,7 +1,5 @@
-﻿using EventService.Domain.Contracts;
-using EventService.Domain.Contracts.Events;
-using EventService.Domain.Contracts.Events.Rules;
-using EventService.Domain.EventGroups;
+﻿using EventService.Domain.ConferenceGroups;
+using EventService.Domain.Contracts;
 using EventService.Domain.EventReviews;
 using EventService.Domain.Events.DomainEvent;
 using EventService.Domain.Events.Rules;
@@ -13,7 +11,7 @@ public class Event : BaseEntity
 {
     public EventId Id { get; private set; }
 
-    private EventGroupId _eventGroupId;
+    private ConferenceGroupsId _eventGroupId;
 
     private string _title;
 
@@ -57,7 +55,7 @@ public class Event : BaseEntity
     }
 
     internal static Event CreateNew(
-        EventGroupId eventGroupId,
+        ConferenceGroupsId eventGroupId,
         string title,
         EventTime time,
         string description,
@@ -82,7 +80,7 @@ public class Event : BaseEntity
     }
 
     private Event(
-        EventGroupId eventGroupId,
+        ConferenceGroupsId eventGroupId,
         string title,
         EventTime term,
         string description,
@@ -152,7 +150,7 @@ public class Event : BaseEntity
         this.AddDomainEvent(new EventMainAttributesChangedDomainEvent(Id));
     }
 
-    public void AddParticipant(EventGroup eventGroup, MemberId participanId)
+    public void AddParticipant(ConferenceGroups eventGroup, MemberId participanId)
     {
         CheckRule(new EventCannotBeChangedAfterStartRule(_time));
 
@@ -172,7 +170,7 @@ public class Event : BaseEntity
             _eventFee));
     }
 
-    public void SignUpMemberToWaitlist(EventGroup eventGroup, MemberId memberId)
+    public void SignUpMemberToWaitlist(ConferenceGroups eventGroup, MemberId memberId)
     {
         CheckRule(new EventCannotBeChangedAfterStartRule(_time));
 
@@ -196,7 +194,7 @@ public class Event : BaseEntity
         memberOnWaitlist.SignOff();
     }
 
-    public void SetHostRole(EventGroup eventGroup, MemberId settingMemberId, MemberId newOrganizerId)
+    public void SetHostRole(ConferenceGroups eventGroup, MemberId settingMemberId, MemberId newOrganizerId)
     {
         CheckRule(new EventCannotBeChangedAfterStartRule(_time));
 
@@ -209,7 +207,7 @@ public class Event : BaseEntity
         participant.SetAsHost();
     }
 
-    public void SetParticipantRole(EventGroup eventGroup, MemberId settingMemberId, MemberId newOrganizerId)
+    public void SetParticipantRole(ConferenceGroups eventGroup, MemberId settingMemberId, MemberId newOrganizerId)
     {
         CheckRule(new EventCannotBeChangedAfterStartRule(_time));
 
@@ -226,7 +224,7 @@ public class Event : BaseEntity
         CheckRule(new EventMustHaveAtLeastOneHostRule(eventHostNumber));
     }
 
-    internal EventGroupId GetEventGroupId() => _eventGroupId;
+    internal ConferenceGroupsId GetEventGroupId() => _eventGroupId;
 
     public void Cancel(MemberId cancelMemberId)
     {
@@ -259,7 +257,7 @@ public class Event : BaseEntity
         participant.MarkFeeAsPayed();
     }
 
-    public EventReview AddReview(MemberId authorId, string comment, EventGroup eventGroup)
+    public EventReview AddReview(MemberId authorId, string comment, ConferenceGroups eventGroup)
     {
         return EventReview.Create(
                 Id,

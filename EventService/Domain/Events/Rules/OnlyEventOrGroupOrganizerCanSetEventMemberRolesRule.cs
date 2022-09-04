@@ -7,10 +7,10 @@ namespace EventService.Domain.Events.Rules;
 public class OnlyEventOrGroupOrganizerCanSetEventMemberRolesRule : IBaseBusinessRule
 {
     private readonly MemberId _settingMemberId;
-    private readonly EventGroup _eventGroup;
+    private readonly ConferenceGroups _eventGroup;
     private readonly List<EventParticipant> _participants;
 
-    public OnlyEventOrGroupOrganizerCanSetEventMemberRolesRule(MemberId settingMemberId, EventGroup eventGroup, List<EventParticipant> participants)
+    public OnlyEventOrGroupOrganizerCanSetEventMemberRolesRule(MemberId settingMemberId, ConferenceGroups eventGroup, List<EventParticipant> participants)
     {
         _settingMemberId = settingMemberId;
         _eventGroup = eventGroup;

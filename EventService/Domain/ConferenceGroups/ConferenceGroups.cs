@@ -1,8 +1,8 @@
 ﻿using EventService.Domain.Members;
 
-namespace EventService.Domain.EventGroups;
+namespace EventService.Domain.ConferenceGroups;
 
-public class EventGroup
+public class ConferenceGroup
 {
     internal bool IsMemberOfGroup(MemberId participantId)
     {

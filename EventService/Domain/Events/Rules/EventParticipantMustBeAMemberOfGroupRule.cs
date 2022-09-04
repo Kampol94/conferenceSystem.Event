@@ -6,11 +6,11 @@ namespace EventService.Domain.Events.Rules;
 
 public class EventParticipantMustBeAMemberOfGroupRule : IBaseBusinessRule
 {
-    private readonly EventGroup _eventGroup;
+    private readonly ConferenceGroups _eventGroup;
 
     private readonly MemberId _participantId;
 
-    internal EventParticipantMustBeAMemberOfGroupRule(MemberId participantId, EventGroup eventGroup)
+    internal EventParticipantMustBeAMemberOfGroupRule(MemberId participantId, ConferenceGroups eventGroup)
     {
         _participantId = participantId;
         _eventGroup = eventGroup;

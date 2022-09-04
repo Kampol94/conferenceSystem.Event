@@ -1,5 +1,4 @@
 ﻿using EventService.Domain.Contracts;
-using EventService.Domain.Contracts.Events;
 using EventService.Domain.Members;
 
 namespace EventService.Domain.Events.Rules;
