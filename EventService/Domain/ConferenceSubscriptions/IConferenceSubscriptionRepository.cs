@@ -1,6 +1,4 @@
-﻿using System.Threading.Tasks;
-
-namespace EventService.Domain.ConferenceSubscriptions;
+﻿namespace EventService.Domain.ConferenceSubscriptions;
 
 public interface IConferenceSubscriptionRepository
 {

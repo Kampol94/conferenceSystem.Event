@@ -1,25 +1,25 @@
 ﻿using EventService.Domain.Contracts;
-using EventService.Domain.EventGroups;
+using EventService.Domain.Exhibitions;
 using EventService.Domain.Members;
 
 namespace EventService.Domain.Events.Rules;
 
-public class EventParticipantMustBeAMemberOfGroupRule : IBaseBusinessRule
+public class EventParticipantMustBeAMemberOfExhibitionRule : IBaseBusinessRule
 {
-    private readonly ConferenceGroups _eventGroup;
+    private readonly Exhibition _exhibition;
 
     private readonly MemberId _participantId;
 
-    internal EventParticipantMustBeAMemberOfGroupRule(MemberId participantId, ConferenceGroups eventGroup)
+    internal EventParticipantMustBeAMemberOfExhibitionRule(MemberId participantId, Exhibition exhibition)
     {
         _participantId = participantId;
-        _eventGroup = eventGroup;
+        _exhibition = exhibition;
     }
 
     public bool IsBroken()
     {
-        return !_eventGroup.IsMemberOfGroup(_participantId);
+        return !_exhibition.IsMemberOfGroup(_participantId);
     }
 
-    public string Message => "Event participant must be a member of group";
+    public string Message => "Event participant must be a member of exhibition";
 }

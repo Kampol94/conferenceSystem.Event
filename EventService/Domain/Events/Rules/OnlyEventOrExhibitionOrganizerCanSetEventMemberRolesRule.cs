@@ -1,19 +1,19 @@
 ﻿using EventService.Domain.Contracts;
-using EventService.Domain.EventGroups;
+using EventService.Domain.Exhibitions;
 using EventService.Domain.Members;
 
 namespace EventService.Domain.Events.Rules;
 
-public class OnlyEventOrGroupOrganizerCanSetEventMemberRolesRule : IBaseBusinessRule
+public class OnlyEventOrExhibitionOrganizerCanSetEventMemberRolesRule : IBaseBusinessRule
 {
     private readonly MemberId _settingMemberId;
-    private readonly ConferenceGroups _eventGroup;
+    private readonly Exhibition _exhibition;
     private readonly List<EventParticipant> _participants;
 
-    public OnlyEventOrGroupOrganizerCanSetEventMemberRolesRule(MemberId settingMemberId, ConferenceGroups eventGroup, List<EventParticipant> participants)
+    public OnlyEventOrExhibitionOrganizerCanSetEventMemberRolesRule(MemberId settingMemberId, Exhibition exhibition, List<EventParticipant> participants)
     {
         _settingMemberId = settingMemberId;
-        _eventGroup = eventGroup;
+        _exhibition = exhibition;
         _participants = participants;
     }
 
@@ -22,10 +22,10 @@ public class OnlyEventOrGroupOrganizerCanSetEventMemberRolesRule : IBaseBusiness
         var settingMember = _participants.SingleOrDefault(x => x.IsActiveParticipant(_settingMemberId));
 
         var isHost = settingMember != null && settingMember.IsActiveHost();
-        var isOrganizer = _eventGroup.IsOrganizer(_settingMemberId);
+        var isOrganizer = _exhibition.IsOrganizer(_settingMemberId);
 
         return !isHost && !isOrganizer;
     }
 
-    public string Message => "Only event host or group organizer can set event member roles";
+    public string Message => "Only event host or exhibition organizer can set event member roles";
 }

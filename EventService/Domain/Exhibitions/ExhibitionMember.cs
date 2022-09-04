@@ -1,0 +1,66 @@
+﻿using EventService.Domain.Contracts;
+using EventService.Domain.Exhibitions.Events;
+using EventService.Domain.Members;
+
+namespace EventService.Domain.Exhibitions;
+
+public class ExhibitionMember : BaseEntity
+{
+    internal ExhibitionId ExhibitionId { get; private set; }
+
+    internal MemberId MemberId { get; private set; }
+
+    private ExhibitionMemberRole _role;
+
+    internal DateTime JoinedDate { get; private set; }
+
+    private bool _isActive;
+
+    private DateTime? _leaveDate;
+
+#pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
+    private ExhibitionMember()
+#pragma warning restore CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
+    {
+    }
+
+    private ExhibitionMember(
+        ExhibitionId exhibitionId,
+        MemberId memberId,
+        ExhibitionMemberRole role)
+    {
+        ExhibitionId = exhibitionId;
+        MemberId = memberId;
+        _role = role;
+        JoinedDate = DateTime.Now;
+        _isActive = true;
+
+        this.AddDomainEvent(new NewExhibitionMemberJoinedDomainEvent(ExhibitionId, MemberId, _role));
+    }
+
+    internal static ExhibitionMember CreateNew(
+        ExhibitionId exhibitionId,
+        MemberId memberId,
+        ExhibitionMemberRole role)
+    {
+        return new ExhibitionMember(exhibitionId, memberId, role);
+    }
+
+    internal void Leave()
+    {
+        _isActive = false;
+        _leaveDate = DateTime.Now;
+
+        this.AddDomainEvent(new ExhibitionMemberLeftGroupDomainEvent(ExhibitionId, MemberId));
+    }
+
+    internal bool IsMember(MemberId memberId)
+    {
+        return _isActive && MemberId == memberId;
+    }
+
+    internal bool IsOrganizer(MemberId memberId)
+    {
+        return IsMember(memberId) && _role == ExhibitionMemberRole.Organizer;
+    }
+}

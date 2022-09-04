@@ -1,8 +1,8 @@
-﻿using EventService.Domain.ConferenceGroups;
-using EventService.Domain.Contracts;
+﻿using EventService.Domain.Contracts;
 using EventService.Domain.EventReviews;
 using EventService.Domain.Events.DomainEvent;
 using EventService.Domain.Events.Rules;
+using EventService.Domain.Exhibitions;
 using EventService.Domain.Members;
 
 namespace EventService.Domain.Events;
@@ -11,15 +11,13 @@ public class Event : BaseEntity
 {
     public EventId Id { get; private set; }
 
-    private ConferenceGroupsId _eventGroupId;
+    private ExhibitionId _exhibitionId;
 
     private string _title;
 
     private EventTime _time;
 
     private string _description;
-
-    private EventLocation _location;
 
     private List<EventParticipant> _participants;
 
@@ -55,11 +53,10 @@ public class Event : BaseEntity
     }
 
     internal static Event CreateNew(
-        ConferenceGroupsId eventGroupId,
+        ExhibitionId exhibitionId,
         string title,
         EventTime time,
         string description,
-        EventLocation location,
         EventLimits eventLimits,
         RsvpTime rsvpTime,
         Money eventFee,
@@ -67,11 +64,10 @@ public class Event : BaseEntity
         MemberId creatorId)
     {
         return new Event(
-            eventGroupId,
+            exhibitionId,
             title,
             time,
             description,
-            location,
             eventLimits,
             rsvpTime,
             eventFee,
@@ -80,11 +76,10 @@ public class Event : BaseEntity
     }
 
     private Event(
-        ConferenceGroupsId eventGroupId,
+        ExhibitionId exhibitionId,
         string title,
         EventTime term,
         string description,
-        EventLocation location,
         EventLimits eventLimits,
         RsvpTime rsvpTerm,
         Money eventFee,
@@ -92,11 +87,10 @@ public class Event : BaseEntity
         MemberId creatorId)
     {
         Id = new EventId(Guid.NewGuid());
-        _eventGroupId = eventGroupId;
+        _exhibitionId = exhibitionId;
         _title = title;
         _time = term;
         _description = description;
-        _location = location;
         _eventLimits = eventLimits;
 
         _rsvpTime = rsvpTerm;
@@ -139,7 +133,6 @@ public class Event : BaseEntity
         _title = title;
         _time = time;
         _description = description;
-        _location = location;
         _eventLimits = eventLimits;
         _rsvpTime = rsvpTerm;
         _eventFee = eventFee;
@@ -150,13 +143,13 @@ public class Event : BaseEntity
         this.AddDomainEvent(new EventMainAttributesChangedDomainEvent(Id));
     }
 
-    public void AddParticipant(ConferenceGroups eventGroup, MemberId participanId)
+    public void AddParticipant(Exhibition exhibition, MemberId participanId)
     {
         CheckRule(new EventCannotBeChangedAfterStartRule(_time));
 
         CheckRule(new ParticipantCanBeAddedOnlyInRsvpTimeRule(_rsvpTime));
 
-        CheckRule(new EventParticipantMustBeAMemberOfGroupRule(participanId, eventGroup));
+        CheckRule(new EventParticipantMustBeAMemberOfExhibitionRule(participanId, exhibition));
 
         CheckRule(new CannotAddParticipantMoreThenOnce(participanId, _participants));
 
@@ -170,13 +163,13 @@ public class Event : BaseEntity
             _eventFee));
     }
 
-    public void SignUpMemberToWaitlist(ConferenceGroups eventGroup, MemberId memberId)
+    public void SignUpMemberToWaitlist(Exhibition exhibition, MemberId memberId)
     {
         CheckRule(new EventCannotBeChangedAfterStartRule(_time));
 
         CheckRule(new ParticipantCanBeAddedOnlyInRsvpTimeRule(_rsvpTime));
 
-        CheckRule(new MemberOnWaitlistMustBeAMemberOfGroupRule(eventGroup, memberId));
+        CheckRule(new MemberOnWaitlistMustBeAMemberOfExhibitionRule(exhibition, memberId));
 
         CheckRule(new MemberCannotBeMoreThanOnceOnEventWaitlistRule(_waitlistMembers, memberId));
 
@@ -194,11 +187,11 @@ public class Event : BaseEntity
         memberOnWaitlist.SignOff();
     }
 
-    public void SetHostRole(ConferenceGroups eventGroup, MemberId settingMemberId, MemberId newOrganizerId)
+    public void SetHostRole(Exhibition exhibition, MemberId settingMemberId, MemberId newOrganizerId)
     {
         CheckRule(new EventCannotBeChangedAfterStartRule(_time));
 
-        CheckRule(new OnlyEventOrGroupOrganizerCanSetEventMemberRolesRule(settingMemberId, eventGroup, _participants));
+        CheckRule(new OnlyEventOrExhibitionOrganizerCanSetEventMemberRolesRule(settingMemberId, exhibition, _participants));
 
         CheckRule(new OnlyEventParticipantCanHaveChangedRoleRule(_participants, newOrganizerId));
 
@@ -207,11 +200,11 @@ public class Event : BaseEntity
         participant.SetAsHost();
     }
 
-    public void SetParticipantRole(ConferenceGroups eventGroup, MemberId settingMemberId, MemberId newOrganizerId)
+    public void SetParticipantRole(Exhibition exhibition, MemberId settingMemberId, MemberId newOrganizerId)
     {
         CheckRule(new EventCannotBeChangedAfterStartRule(_time));
 
-        CheckRule(new OnlyEventOrGroupOrganizerCanSetEventMemberRolesRule(settingMemberId, eventGroup, _participants));
+        CheckRule(new OnlyEventOrExhibitionOrganizerCanSetEventMemberRolesRule(settingMemberId, exhibition, _participants));
 
         CheckRule(new OnlyEventParticipantCanHaveChangedRoleRule(_participants, newOrganizerId));
 
@@ -224,7 +217,7 @@ public class Event : BaseEntity
         CheckRule(new EventMustHaveAtLeastOneHostRule(eventHostNumber));
     }
 
-    internal ConferenceGroupsId GetEventGroupId() => _eventGroupId;
+    internal ExhibitionId GetExhibitionId() => _exhibitionId;
 
     public void Cancel(MemberId cancelMemberId)
     {
@@ -257,13 +250,13 @@ public class Event : BaseEntity
         participant.MarkFeeAsPayed();
     }
 
-    public EventReview AddReview(MemberId authorId, string comment, ConferenceGroups eventGroup)
+    public EventReview AddReview(MemberId authorId, string comment, Exhibition exhibition)
     {
         return EventReview.Create(
                 Id,
                 authorId,
                 comment,
-                eventGroup);
+                exhibition);
     }
 
     private EventWaitlistMember GetActiveMemberOnWaitlist(MemberId memberId)

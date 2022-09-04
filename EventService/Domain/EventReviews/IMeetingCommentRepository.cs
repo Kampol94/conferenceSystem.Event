@@ -1,11 +1,8 @@
-﻿using System.Threading.Tasks;
-using CompanyName.MyMeetings.Modules.Meetings.Domain.Comments;
+﻿namespace EventService.Domain.EventReviews;
 
-namespace EventService.Domain.EventReviews;
-
-public interface IMeetingCommentRepository
+public interface IEventReviewRepository
 {
-    Task AddAsync(MeetingComment meetingComment);
+    Task AddAsync(EventReview eventReview);
 
-    Task<MeetingComment> GetByIdAsync(MeetingCommentId meetingCommentId);
+    Task<EventReview> GetByIdAsync(EventReviewId eventReviewId);
 }

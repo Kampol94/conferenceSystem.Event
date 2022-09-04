@@ -1,23 +1,23 @@
-﻿using EventService.Domain.ConferenceGroups;
-using EventService.Domain.Contracts;
+﻿using EventService.Domain.Contracts;
+using EventService.Domain.Exhibitions;
 using EventService.Domain.Members;
 
 namespace EventService.Domain.EventReviews.Rules;
 
-public class EventReviewCanBeRemovedOnlyByAuthorOrGroupOrganizerRule : IBaseBusinessRule
+public class EventReviewCanBeRemovedOnlyByAuthorOrExhibitionOrganizerRule : IBaseBusinessRule
 {
-    private readonly ConferenceGroup _conferenceGroup;
+    private readonly Exhibition _exhibition;
     private readonly MemberId _authorId;
     private readonly MemberId _removingMemberId;
 
-    public EventReviewCanBeRemovedOnlyByAuthorOrGroupOrganizerRule(ConferenceGroup conferenceGroup, MemberId authorId, MemberId removingMemberId)
+    public EventReviewCanBeRemovedOnlyByAuthorOrExhibitionOrganizerRule(Exhibition exhibition, MemberId authorId, MemberId removingMemberId)
     {
-        _conferenceGroup = conferenceGroup;
+        _exhibition = exhibition;
         _authorId = authorId;
         _removingMemberId = removingMemberId;
     }
 
-    public bool IsBroken() => _removingMemberId != _authorId && !_conferenceGroup.IsOrganizer(_removingMemberId);
+    public bool IsBroken() => _removingMemberId != _authorId && !_exhibition.IsOrganizer(_removingMemberId);
 
-    public string Message => "Only author of comment or group organizer can remove meeting comment.";
+    public string Message => "Only author of comment or exhibition organizer can remove meeting comment.";
 }
