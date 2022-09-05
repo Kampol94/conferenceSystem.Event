@@ -120,7 +120,6 @@ public class Event : BaseEntity
         string title,
         EventTime time,
         string description,
-        EventLocation location,
         EventLimits eventLimits,
         RsvpTime rsvpTerm,
         Money eventFee,
@@ -217,7 +216,7 @@ public class Event : BaseEntity
         CheckRule(new EventMustHaveAtLeastOneHostRule(eventHostNumber));
     }
 
-    internal ExhibitionId GetExhibitionId() => _exhibitionId;
+    public ExhibitionId GetExhibitionId() => _exhibitionId;
 
     public void Cancel(MemberId cancelMemberId)
     {
