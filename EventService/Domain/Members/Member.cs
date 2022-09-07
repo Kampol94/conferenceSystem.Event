@@ -7,17 +7,17 @@ public class Member : BaseEntity
 {
     public MemberId Id { get; private set; }
 
-    private string _login;
+    private readonly string _login;
 
-    private string _email;
+    public string Email { get; private set; }
 
-    private string _firstName;
+    private readonly string _firstName;
 
-    private string _lastName;
+    private readonly string _lastName;
 
-    private string _name;
+    private readonly string _name;
 
-    private DateTime _createDate;
+    private readonly DateTime _createDate;
 
 #pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
     private Member()
@@ -34,7 +34,7 @@ public class Member : BaseEntity
     {
         Id = new MemberId(id);
         _login = login;
-        _email = email;
+        Email = email;
         _firstName = firstName;
         _lastName = lastName;
         _name = name;

@@ -6,13 +6,13 @@ public class GetEventDetailsRespone
 
     public Guid ExhibitionId { get; set; }
 
-    public string Title { get; set; }
+    public string? Title { get; set; }
 
     public DateTime TermStartDate { get; set; }
 
     public DateTime TermEndDate { get; set; }
 
-    public string Description { get; set; }
+    public string? Description { get; set; }
 
     public int? ParticipantsLimit { get; set; }
 
@@ -22,5 +22,5 @@ public class GetEventDetailsRespone
 
     public decimal? EventFeeValue { get; set; }
 
-    public string EventFeeCurrency { get; set; }
+    public string? EventFeeCurrency { get; set; }
 }

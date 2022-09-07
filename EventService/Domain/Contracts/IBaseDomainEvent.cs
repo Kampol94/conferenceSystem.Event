@@ -1,6 +1,8 @@
-﻿namespace EventService.Domain.Contracts;
+﻿using MediatR;
 
-public interface IBaseDomainEvent
+namespace EventService.Domain.Contracts;
+
+public interface IBaseDomainEvent : INotification
 {
     Guid Id { get; }
 

@@ -11,17 +11,17 @@ public class Event : BaseEntity
 {
     public EventId Id { get; private set; }
 
-    private ExhibitionId _exhibitionId;
+    private readonly ExhibitionId _exhibitionId;
 
-    private string _title;
+    public string Title { get; private set; }
 
-    private EventTime _time;
+    public EventTime Time { get; private set; }
 
     private string _description;
 
-    private List<EventParticipant> _participants;
+    private readonly List<EventParticipant> _participants;
 
-    private List<EventWaitlistMember> _waitlistMembers;
+    private readonly List<EventWaitlistMember> _waitlistMembers;
 
     private EventLimits _eventLimits;
 
@@ -29,9 +29,9 @@ public class Event : BaseEntity
 
     private Money _eventFee;
 
-    private MemberId _creatorId;
+    private readonly MemberId _creatorId;
 
-    private DateTime _createDate;
+    private readonly DateTime _createDate;
 
     private MemberId? _changeMemberId;
 
@@ -88,8 +88,8 @@ public class Event : BaseEntity
     {
         Id = new EventId(Guid.NewGuid());
         _exhibitionId = exhibitionId;
-        _title = title;
-        _time = term;
+        Title = title;
+        Time = term;
         _description = description;
         _eventLimits = eventLimits;
 
@@ -129,8 +129,8 @@ public class Event : BaseEntity
             eventLimits,
             GetAllActiveParticipansNumber()));
 
-        _title = title;
-        _time = time;
+        Title = title;
+        Time = time;
         _description = description;
         _eventLimits = eventLimits;
         _rsvpTime = rsvpTerm;
@@ -144,7 +144,7 @@ public class Event : BaseEntity
 
     public void AddParticipant(Exhibition exhibition, MemberId participanId)
     {
-        CheckRule(new EventCannotBeChangedAfterStartRule(_time));
+        CheckRule(new EventCannotBeChangedAfterStartRule(Time));
 
         CheckRule(new ParticipantCanBeAddedOnlyInRsvpTimeRule(_rsvpTime));
 
@@ -164,7 +164,7 @@ public class Event : BaseEntity
 
     public void SignUpMemberToWaitlist(Exhibition exhibition, MemberId memberId)
     {
-        CheckRule(new EventCannotBeChangedAfterStartRule(_time));
+        CheckRule(new EventCannotBeChangedAfterStartRule(Time));
 
         CheckRule(new ParticipantCanBeAddedOnlyInRsvpTimeRule(_rsvpTime));
 
@@ -177,7 +177,7 @@ public class Event : BaseEntity
 
     public void SignOffMemberFromWaitlist(MemberId memberId)
     {
-        CheckRule(new EventCannotBeChangedAfterStartRule(_time));
+        CheckRule(new EventCannotBeChangedAfterStartRule(Time));
 
         CheckRule(new NotActiveMemberOfWaitlistCannotBeSignedOffRule(_waitlistMembers, memberId));
 
@@ -188,7 +188,7 @@ public class Event : BaseEntity
 
     public void SetHostRole(Exhibition exhibition, MemberId settingMemberId, MemberId newOrganizerId)
     {
-        CheckRule(new EventCannotBeChangedAfterStartRule(_time));
+        CheckRule(new EventCannotBeChangedAfterStartRule(Time));
 
         CheckRule(new OnlyEventOrExhibitionOrganizerCanSetEventMemberRolesRule(settingMemberId, exhibition, _participants));
 
@@ -201,7 +201,7 @@ public class Event : BaseEntity
 
     public void SetParticipantRole(Exhibition exhibition, MemberId settingMemberId, MemberId newOrganizerId)
     {
-        CheckRule(new EventCannotBeChangedAfterStartRule(_time));
+        CheckRule(new EventCannotBeChangedAfterStartRule(Time));
 
         CheckRule(new OnlyEventOrExhibitionOrganizerCanSetEventMemberRolesRule(settingMemberId, exhibition, _participants));
 
@@ -220,7 +220,7 @@ public class Event : BaseEntity
 
     public void Cancel(MemberId cancelMemberId)
     {
-        CheckRule(new EventCannotBeChangedAfterStartRule(_time));
+        CheckRule(new EventCannotBeChangedAfterStartRule(Time));
 
         if (!_isCanceled)
         {
@@ -234,7 +234,7 @@ public class Event : BaseEntity
 
     public void RemoveParticipant(MemberId participantId, MemberId removingPersonId, string reason)
     {
-        CheckRule(new EventCannotBeChangedAfterStartRule(_time));
+        CheckRule(new EventCannotBeChangedAfterStartRule(Time));
         CheckRule(new OnlyActiveParticipantCanBeRemovedFromEventRule(_participants, participantId));
 
         var participant = GetActiveParicipant(participantId);

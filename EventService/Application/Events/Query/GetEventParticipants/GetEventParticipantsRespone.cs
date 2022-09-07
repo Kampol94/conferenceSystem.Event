@@ -4,13 +4,13 @@ namespace CompanyName.MyEvents.Modules.Events.Application.Events.GetEventPartici
 
 public class GetEventParticipantsRespone
 {
-    public string FirstName { get; set; }
+    public string? FirstName { get; set; }
 
-    public string LastName { get; set; }
+    public string? LastName { get; set; }
 
     public Guid ParticipantId { get; set; }
 
-    public string RoleCode { get; set; }
+    public string? RoleCode { get; set; }
 
     public DateTime DecisionDate { get; set; }
 }
