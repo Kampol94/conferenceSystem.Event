@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace EventService.Application.Contracts.Commands;
+﻿namespace EventService.Application.Contracts.Commands;
 
 public abstract class CommandBase : ICommand
 {

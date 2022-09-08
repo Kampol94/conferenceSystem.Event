@@ -1,13 +1,8 @@
-﻿using System.Collections.Generic;
-using System.Threading;
-using System.Threading.Tasks;
-using CompanyName.MyMeetings.BuildingBlocks.Application.Data;
-using CompanyName.MyMeetings.BuildingBlocks.Infrastructure;
-using CompanyName.MyMeetings.Modules.Meetings.Application.Configuration.Queries;
-using Dapper;
-using MediatR;
+﻿using Dapper;
+using EventService.Application.Contracts;
+using EventService.Application.Contracts.Queries;
 
-namespace CompanyName.MyMeetings.Modules.Meetings.Application.Exhibitions.GetAllExhibitions;
+namespace EventService.Application.Exhibition.Queries.GetAllMeetingGroups;
 
 internal class GetAllExhibitionsQueryHandler : IQueryHandler<GetAllExhibitionsQuery, List<ExhibitionDto>>
 {
@@ -29,8 +24,8 @@ internal class GetAllExhibitionsQueryHandler : IQueryHandler<GetAllExhibitionsQu
                            "[Exhibition].[LocationCountryCode], " +
                            "[Exhibition].[LocationCity]" +
                            "FROM [meetings].[v_Exhibitions] AS [Exhibition]";
-        var Exhibitions = await connection.QueryAsync<ExhibitionDto>(sql);
+        var exhibitions = await connection.QueryAsync<ExhibitionDto>(sql);
 
-        return Exhibitions.AsList();
+        return exhibitions.AsList();
     }
 }

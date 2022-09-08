@@ -1,12 +1,9 @@
-﻿using System;
-using System.Data;
-using System.Threading;
-using System.Threading.Tasks;
-using CompanyName.MyMeetings.BuildingBlocks.Application.Data;
-using CompanyName.MyMeetings.Modules.Meetings.Application.Configuration.Queries;
+﻿using System.Data;
 using Dapper;
+using EventService.Application.Contracts;
+using EventService.Application.Contracts.Queries;
 
-namespace CompanyName.MyMeetings.Modules.Meetings.Application.Exhibitions.GetExhibitionDetails;
+namespace EventService.Application.Exhibition.Queries.GetMeetingGroupDetails;
 
 internal class GetExhibitionDetailsQueryHandler : IQueryHandler<GetExhibitionDetailsQuery, ExhibitionDetailsDto>
 {
@@ -21,7 +18,7 @@ internal class GetExhibitionDetailsQueryHandler : IQueryHandler<GetExhibitionDet
     {
         using var connection = _sqlConnectionFactory.GetOpenConnection();
 
-        var Exhibition = await connection.QuerySingleAsync<ExhibitionDetailsDto>(
+        var exhibitionDetail = await connection.QuerySingleAsync<ExhibitionDetailsDto>(
             "SELECT " +
             $"[Exhibition].[Id] AS [{nameof(ExhibitionDetailsDto.Id)}], " +
             $"[Exhibition].[Name] AS [{nameof(ExhibitionDetailsDto.Name)}], " +
@@ -35,9 +32,9 @@ internal class GetExhibitionDetailsQueryHandler : IQueryHandler<GetExhibitionDet
                 query.ExhibitionId
             });
 
-        Exhibition.MembersCount = await GetMembersCount(query.ExhibitionId, connection);
+        exhibitionDetail.MembersCount = await GetMembersCount(query.ExhibitionId, connection);
 
-        return Exhibition;
+        return exhibitionDetail;
     }
 
     private static async Task<int> GetMembersCount(Guid ExhibitionId, IDbConnection connection)

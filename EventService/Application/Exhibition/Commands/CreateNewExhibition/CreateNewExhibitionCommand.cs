@@ -1,7 +1,7 @@
 ﻿using EventService.Application.Contracts.Commands;
 using EventService.Domain.ExhibitionProposals;
 
-namespace CompanyName.MyMeetings.Modules.Meetings.Application.Exhibitions.CreateNewExhibition;
+namespace EventService.Application.Exhibition.Commands.CreateNewExhibition;
 
 public class CreateNewExhibitionCommand : CommandBase
 {

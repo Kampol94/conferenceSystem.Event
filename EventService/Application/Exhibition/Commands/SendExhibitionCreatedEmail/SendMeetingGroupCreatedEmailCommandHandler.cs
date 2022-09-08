@@ -1,51 +1,34 @@
-﻿using System.Threading;
-using System.Threading.Tasks;
-using CompanyName.MyMeetings.BuildingBlocks.Application.Data;
-using CompanyName.MyMeetings.BuildingBlocks.Application.Emails;
-using CompanyName.MyMeetings.BuildingBlocks.Infrastructure;
-using CompanyName.MyMeetings.BuildingBlocks.Infrastructure.Emails;
-using CompanyName.MyMeetings.Modules.Meetings.Application.Configuration.Commands;
-using CompanyName.MyMeetings.Modules.Meetings.Application.Exhibitions.GetAllExhibitions;
-using CompanyName.MyMeetings.Modules.Meetings.Application.Members;
-using Dapper;
+﻿using EventService.Application.Contracts.Commands;
+using EventService.Application.Emails;
+using EventService.Domain.Exhibitions;
+using EventService.Domain.Members;
 using MediatR;
 
-namespace CompanyName.MyMeetings.Modules.Meetings.Application.Exhibitions.SendExhibitionCreatedEmail;
+namespace EventService.Application.Exhibition.Commands.SendExhibitionCreatedEmail;
 
-internal class SendExhibitionCreatedEmailCommandHandler : ICommandHandler<SendExhibitionCreatedEmailCommand>
+public class SendExhibitionCreatedEmailCommandHandler : ICommandHandler<SendExhibitionCreatedEmailCommand>
 {
-    private readonly ISqlConnectionFactory _sqlConnectionFactory;
     private readonly IEmailSender _emailSender;
+    private readonly IExhibitionRepository _exhibitionRepository;
+    private readonly IMemberRepository _memberRepository;
 
-    public SendExhibitionCreatedEmailCommandHandler(
-        ISqlConnectionFactory sqlConnectionFactory,
-        IEmailSender emailSender)
+    public SendExhibitionCreatedEmailCommandHandler(IEmailSender emailSender, IExhibitionRepository exhibitionRepository, IMemberRepository memberRepository)
     {
-        _sqlConnectionFactory = sqlConnectionFactory;
         _emailSender = emailSender;
+        _exhibitionRepository = exhibitionRepository;
+        _memberRepository = memberRepository;
     }
 
     public async Task<Unit> Handle(SendExhibitionCreatedEmailCommand request, CancellationToken cancellationToken)
     {
-        var connection = _sqlConnectionFactory.GetOpenConnection();
+        var exhibition = await _exhibitionRepository.GetByIdAsync(request.ExhibitionId);
 
-        var Exhibition = await connection.QuerySingleAsync<ExhibitionDto>(
-            "SELECT " +
-                              "[Exhibition].[Name], " +
-                              "[Exhibition].[LocationCountryCode], " +
-                              "[Exhibition].[LocationCity] " +
-                              "FROM [meetings].[v_Exhibitions] AS [Exhibition] " +
-                              "WHERE [Exhibition].[Id] = @Id", new
-                              {
-                                  Id = request.ExhibitionId.Value
-                              });
-
-        var member = await MembersQueryHelper.GetMember(request.CreatorId, connection);
+        var member = await _memberRepository.GetByIdAsync(request.CreatorId);
 
         var email = new EmailMessage(
             member.Email,
-            $"{Exhibition.Name} created",
-            $"{Exhibition.Name} created at {Exhibition.LocationCity}, {Exhibition.LocationCountryCode}");
+            $"{exhibition.Name} created",
+            $"We are happy to inform that {exhibition.Name} is created ");
 
         _emailSender.SendEmail(email);
 

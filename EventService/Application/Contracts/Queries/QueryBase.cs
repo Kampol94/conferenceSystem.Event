@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace EventService.Application.Contracts.Queries;
+﻿namespace EventService.Application.Contracts.Queries;
 
 public abstract class QueryBase<TResult> : IQuery<TResult>
 {

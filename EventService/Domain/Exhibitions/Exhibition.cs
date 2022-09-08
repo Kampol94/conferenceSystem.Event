@@ -11,7 +11,7 @@ public class Exhibition : BaseEntity
 {
     public ExhibitionId Id { get; private set; }
 
-    private string _name;
+    public string Name { get; private set; }
 
     private string _description;
 
@@ -41,7 +41,7 @@ public class Exhibition : BaseEntity
     private Exhibition(ExhibitionProposalId exhibitionProposalId, string name, string description, MemberId creatorId)
     {
         Id = new ExhibitionId(exhibitionProposalId.Value);
-        _name = name;
+        Name = name;
         _description = description;
         CreatorId = creatorId;
         _createDate = DateTime.Now;
@@ -54,10 +54,10 @@ public class Exhibition : BaseEntity
 
     public void EditGeneralAttributes(string name, string description)
     {
-        _name = name;
+        Name = name;
         _description = description;
 
-        this.AddDomainEvent(new ExhibitionGeneralAttributesEditedDomainEvent(_name, _description));
+        this.AddDomainEvent(new ExhibitionGeneralAttributesEditedDomainEvent(Name, _description));
     }
 
     public void AddMember(MemberId memberId)

@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace EventService.Application.Events.Query.GetEventParticipants;
+﻿namespace EventService.Application.Events.Query.GetEventParticipants;
 
 public class GetEventParticipantsRespone
 {

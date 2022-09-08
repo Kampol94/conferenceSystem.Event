@@ -1,9 +1,6 @@
-﻿using Dapper;
-using EventService.Application.Exhibition.Commands;
-using EventService.Domain.ConferenceSubscriptions.Events;
+﻿using EventService.Domain.ConferenceSubscriptions.Events;
 using EventService.Domain.Exhibitions;
 using MediatR;
-using System.Linq;
 
 namespace EventService.Application.ConferenceSubscriptions.DomainEventHandlers;
 

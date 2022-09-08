@@ -1,14 +1,12 @@
-﻿using System;
-using CompanyName.MyMeetings.Modules.Meetings.Application.Contracts;
-using MediatR;
+﻿using EventService.Application.Contracts.Commands;
 
-namespace CompanyName.MyMeetings.Modules.Meetings.Application.Exhibitions.EditExhibitionGeneralAttributes;
+namespace EventService.Application.Exhibition.Commands.EditExhibitionGeneralAttributes;
 
 public class EditExhibitionGeneralAttributesCommand : CommandBase
 {
-    public EditExhibitionGeneralAttributesCommand(Guid ExhibitionId, string name, string description, string locationCity, string locationCountry)
+    public EditExhibitionGeneralAttributesCommand(Guid exhibitionId, string name, string description, string locationCity, string locationCountry)
     {
-        ExhibitionId = ExhibitionId;
+        ExhibitionId = exhibitionId;
         Name = name;
         Description = description;
         LocationCity = locationCity;

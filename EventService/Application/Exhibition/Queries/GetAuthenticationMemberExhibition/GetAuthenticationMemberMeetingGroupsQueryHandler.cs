@@ -1,13 +1,8 @@
-﻿using System.Collections.Generic;
-using System.Threading;
-using System.Threading.Tasks;
-using CompanyName.MyMeetings.BuildingBlocks.Application;
-using CompanyName.MyMeetings.BuildingBlocks.Application.Data;
-using CompanyName.MyMeetings.Modules.Meetings.Application.Configuration.Queries;
-using CompanyName.MyMeetings.Modules.Meetings.Application.Exhibitions.GetAllExhibitions;
-using Dapper;
+﻿using Dapper;
+using EventService.Application.Contracts;
+using EventService.Application.Contracts.Queries;
 
-namespace CompanyName.MyMeetings.Modules.Meetings.Application.Exhibitions.GetAuthenticationMemberExhibitions;
+namespace EventService.Application.Exhibition.Queries.GetAuthenticationMemberMeetingGroups;
 
 internal class GetAuthenticationMemberExhibitionsQueryHandler :
     IQueryHandler<GetAuthenticationMemberExhibitionsQuery, List<MemberExhibitionDto>>
@@ -41,13 +36,13 @@ internal class GetAuthenticationMemberExhibitionsQueryHandler :
                   "FROM [meetings].[v_MemberExhibitions] AS [MemberExhibition] " +
                   "WHERE [MemberExhibition].MemberId = @MemberId AND [MemberExhibition].[IsActive] = 1";
 
-        var Exhibitions = await connection.QueryAsync<MemberExhibitionDto>(
+        var exhibitions = await connection.QueryAsync<MemberExhibitionDto>(
             sql,
             new
             {
                 MemberId = _executionContextAccessor.UserId
             });
 
-        return Exhibitions.AsList();
+        return exhibitions.AsList();
     }
 }

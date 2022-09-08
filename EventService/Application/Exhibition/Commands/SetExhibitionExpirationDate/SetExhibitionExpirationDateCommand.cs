@@ -1,17 +1,17 @@
-using EventService.Domain.Exhibitions;
-using MediatR;
+﻿using EventService.Application.Contracts.Commands;
 
-namespace EventService.Application.Exhibition.Commands.SetMeetingGroupExpirationDate;
-internal class SetExhibitionExpirationDateCommand : IRequest<object>
+namespace EventService.Application.Exhibition.Commands.SetExhibitionExpirationDate;
+
+public class SetExhibitionExpirationDateCommand : CommandBase
 {
-    private Guid _guid;
-    private ExhibitionId _id;
-    private DateTime _expirationDate;
-
-    public SetExhibitionExpirationDateCommand(Guid guid, ExhibitionId id, DateTime expirationDate)
+    public SetExhibitionExpirationDateCommand(Guid id, Guid exhibitionId, DateTime dateTo)
+        : base(id)
     {
-        _guid = guid;
-        _id = id;
-        _expirationDate = expirationDate;
+        ExhibitionId = exhibitionId;
+        DateTo = dateTo;
     }
+
+    internal Guid ExhibitionId { get; }
+
+    internal DateTime DateTo { get; }
 }
