@@ -19,7 +19,7 @@ public class ConferenceSubscriptionExpirationDateChangedNotificationHandler :
 
     public async Task Handle(ConferenceSubscriptionExpirationDateChangedDomainEvent notification, CancellationToken cancellationToken)
     {
-        var exhibitionsCoveredByConferenceSubscription = (await _exhibitionRepository.GatAllAsync()).Where(x => x.CreatorId == notification.MemberId);
+        var exhibitionsCoveredByConferenceSubscription = (_exhibitionRepository.GatAllAsync()).Where(x => x.CreatorId == notification.MemberId);
 
         foreach (var exhibition in exhibitionsCoveredByConferenceSubscription)
         {

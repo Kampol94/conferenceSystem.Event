@@ -2,7 +2,7 @@
 
 public interface IConferenceSubscriptionRepository
 {
-    Task<ConferenceSubscription> GetByIdOptionalAsync(ConferenceSubscriptionId conferenceSubscriptionId);
+    Task<ConferenceSubscription?> GetByIdOptionalAsync(ConferenceSubscriptionId conferenceSubscriptionId);
 
     Task AddAsync(ConferenceSubscription conferenceSubscriptionId);
 }

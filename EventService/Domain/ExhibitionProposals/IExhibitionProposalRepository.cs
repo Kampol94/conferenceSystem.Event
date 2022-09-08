@@ -4,5 +4,5 @@ public interface IExhibitionProposalRepository
 {
     Task AddAsync(ExhibitionProposal exhibitionProposal);
 
-    Task<ExhibitionProposal> GetByIdAsync(ExhibitionProposalId exhibitionProposalId);
+    Task<ExhibitionProposal?> GetByIdAsync(ExhibitionProposalId exhibitionProposalId);
 }

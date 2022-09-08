@@ -4,5 +4,5 @@ public interface IMemberRepository
 {
     Task AddAsync(Member member);
 
-    Task<Member> GetByIdAsync(MemberId memberId);
+    Task<Member?> GetByIdAsync(MemberId memberId);
 }

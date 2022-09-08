@@ -4,5 +4,5 @@ public interface IEventReviewRepository
 {
     Task AddAsync(EventReview eventReview);
 
-    Task<EventReview> GetByIdAsync(EventReviewId eventReviewId);
+    Task<EventReview?> GetByIdAsync(EventReviewId eventReviewId);
 }

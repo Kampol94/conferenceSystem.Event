@@ -1,0 +1,24 @@
+﻿using EventService.Domain.EventReviews;
+using EventService.Infrastructure;
+
+namespace CompanyName.MyMeetings.Modules.Meetings.Infrastructure.Domain.MeetingComments;
+
+public class EventReviewRepository : IEventReviewRepository
+{
+    private readonly EventsContext _eventsContext;
+
+    public EventReviewRepository(EventsContext eventsContext)
+    {
+        _eventsContext = eventsContext;
+    }
+
+    public async Task AddAsync(EventReview eventReview)
+    {
+        await _eventsContext.EventReviews.AddAsync(eventReview);
+    }
+
+    public async Task<EventReview?> GetByIdAsync(EventReviewId eventReviewId)
+    {
+        return await _eventsContext.EventReviews.FindAsync(eventReviewId);
+    }
+}
