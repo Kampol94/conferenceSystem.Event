@@ -1,4 +1,5 @@
-﻿using EventService.Domain.ConferenceSubscriptions.Events;
+﻿using EventService.Application.Exhibition.Commands.SetExhibitionExpirationDate;
+using EventService.Domain.ConferenceSubscriptions.Events;
 using EventService.Domain.Exhibitions;
 using MediatR;
 

@@ -1,6 +1,6 @@
 ﻿using EventService.Application.Contracts.Queries;
 
-namespace EventService.Application.Exhibition.Queries.GetMeetingGroupDetails;
+namespace EventService.Application.Exhibition.Queries.GetExhibitionDetails;
 
 public class GetExhibitionDetailsQuery : QueryBase<ExhibitionDetailsDto>
 {

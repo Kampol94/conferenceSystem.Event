@@ -2,7 +2,7 @@
 using EventService.Domain.Exhibitions.Events;
 using MediatR;
 
-namespace EventService.Application.Exhibition;
+namespace EventService.Application.Exhibition.DomainEventHandlers;
 
 internal class ExhibitionCreatedSendEmailHandler : INotificationHandler<ExhibitionCreatedDomainEvent>
 {

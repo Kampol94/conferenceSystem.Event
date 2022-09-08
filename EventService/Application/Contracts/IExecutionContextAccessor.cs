@@ -1,6 +1,10 @@
 ﻿namespace EventService.Application.Contracts;
 
-internal interface IExecutionContextAccessor
+public interface IExecutionContextAccessor
 {
-    object UserId { get; set; }
+    Guid UserId { get; }
+
+    Guid CorrelationId { get; }
+
+    bool IsAvailable { get; }
 }

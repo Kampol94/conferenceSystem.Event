@@ -2,7 +2,7 @@
 using EventService.Application.Contracts;
 using EventService.Application.Contracts.Queries;
 
-namespace EventService.Application.Exhibition.Queries.GetAuthenticationMemberMeetingGroups;
+namespace EventService.Application.Exhibition.Queries.GetAuthenticationMemberExhibition;
 
 internal class GetAuthenticationMemberExhibitionsQueryHandler :
     IQueryHandler<GetAuthenticationMemberExhibitionsQuery, List<MemberExhibitionDto>>

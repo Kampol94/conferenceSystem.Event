@@ -1,4 +1,4 @@
-﻿namespace EventService.Application.Exhibition.Queries.GetAuthenticationMemberMeetingGroups;
+﻿namespace EventService.Application.Exhibition.Queries.GetAuthenticationMemberExhibition;
 
 public class MemberExhibitionDto
 {

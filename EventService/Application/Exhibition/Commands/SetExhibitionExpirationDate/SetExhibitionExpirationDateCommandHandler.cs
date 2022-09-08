@@ -15,7 +15,7 @@ public class SetExhibitionExpirationDateCommandHandler : ICommandHandler<SetExhi
 
     public async Task<Unit> Handle(SetExhibitionExpirationDateCommand request, CancellationToken cancellationToken)
     {
-        var exhibition = await _exhibitionRepository.GetByIdAsync(new ExhibitionId(request.ExhibitionId));
+        var exhibition = await _exhibitionRepository.GetByIdAsync(request.ExhibitionId);
 
         exhibition.SetExpirationDate(request.DateTo);
 

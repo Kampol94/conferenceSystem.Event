@@ -1,4 +1,4 @@
-﻿namespace EventService.Application.Exhibition.Queries.GetMeetingGroupDetails;
+﻿namespace EventService.Application.Exhibition.Queries.GetExhibitionDetails;
 
 public class ExhibitionDetailsDto
 {

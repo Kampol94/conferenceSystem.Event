@@ -3,7 +3,7 @@ using Dapper;
 using EventService.Application.Contracts;
 using EventService.Application.Contracts.Queries;
 
-namespace EventService.Application.Exhibition.Queries.GetMeetingGroupDetails;
+namespace EventService.Application.Exhibition.Queries.GetExhibitionDetails;
 
 internal class GetExhibitionDetailsQueryHandler : IQueryHandler<GetExhibitionDetailsQuery, ExhibitionDetailsDto>
 {
