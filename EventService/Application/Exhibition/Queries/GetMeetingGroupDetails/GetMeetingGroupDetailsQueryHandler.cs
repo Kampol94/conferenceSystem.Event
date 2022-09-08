@@ -1,0 +1,56 @@
+﻿using System;
+using System.Data;
+using System.Threading;
+using System.Threading.Tasks;
+using CompanyName.MyMeetings.BuildingBlocks.Application.Data;
+using CompanyName.MyMeetings.Modules.Meetings.Application.Configuration.Queries;
+using Dapper;
+
+namespace CompanyName.MyMeetings.Modules.Meetings.Application.Exhibitions.GetExhibitionDetails;
+
+internal class GetExhibitionDetailsQueryHandler : IQueryHandler<GetExhibitionDetailsQuery, ExhibitionDetailsDto>
+{
+    private readonly ISqlConnectionFactory _sqlConnectionFactory;
+
+    public GetExhibitionDetailsQueryHandler(ISqlConnectionFactory sqlConnectionFactory)
+    {
+        _sqlConnectionFactory = sqlConnectionFactory;
+    }
+
+    public async Task<ExhibitionDetailsDto> Handle(GetExhibitionDetailsQuery query, CancellationToken cancellationToken)
+    {
+        using var connection = _sqlConnectionFactory.GetOpenConnection();
+
+        var Exhibition = await connection.QuerySingleAsync<ExhibitionDetailsDto>(
+            "SELECT " +
+            $"[Exhibition].[Id] AS [{nameof(ExhibitionDetailsDto.Id)}], " +
+            $"[Exhibition].[Name] AS [{nameof(ExhibitionDetailsDto.Name)}], " +
+            $"[Exhibition].[Description] AS [{nameof(ExhibitionDetailsDto.Description)}], " +
+            $"[Exhibition].[LocationCity] AS [{nameof(ExhibitionDetailsDto.LocationCity)}], " +
+            $"[Exhibition].[LocationCountryCode] AS [{nameof(ExhibitionDetailsDto.LocationCountryCode)}] " +
+            "FROM [meetings].[v_Exhibitions] AS [Exhibition] " +
+            "WHERE [Exhibition].[Id] = @ExhibitionId",
+            new
+            {
+                query.ExhibitionId
+            });
+
+        Exhibition.MembersCount = await GetMembersCount(query.ExhibitionId, connection);
+
+        return Exhibition;
+    }
+
+    private static async Task<int> GetMembersCount(Guid ExhibitionId, IDbConnection connection)
+    {
+        return await connection.ExecuteScalarAsync<int>(
+            "SELECT " +
+            "COUNT(*) " +
+            "FROM [meetings].[v_MemberExhibitions] AS [MemberExhibition] " +
+            "WHERE [MemberExhibition].[Id] = @ExhibitionId AND " +
+            "[MemberExhibition].[IsActive] = 1",
+            new
+            {
+                ExhibitionId
+            });
+    }
+}
