@@ -15,7 +15,7 @@ public class Exhibition : BaseEntity
 
     private string _description;
 
-    private MemberId _creatorId;
+    public MemberId CreatorId { get; private set; }
 
     private List<ExhibitionMember> _members;
 
@@ -43,13 +43,13 @@ public class Exhibition : BaseEntity
         Id = new ExhibitionId(exhibitionProposalId.Value);
         _name = name;
         _description = description;
-        _creatorId = creatorId;
+        CreatorId = creatorId;
         _createDate = DateTime.Now;
 
         this.AddDomainEvent(new ExhibitionCreatedDomainEvent(Id, creatorId));
 
         _members = new List<ExhibitionMember>();
-        _members.Add(ExhibitionMember.CreateNew(Id, _creatorId, ExhibitionMemberRole.Organizer));
+        _members.Add(ExhibitionMember.CreateNew(Id, CreatorId, ExhibitionMemberRole.Organizer));
     }
 
     public void EditGeneralAttributes(string name, string description)

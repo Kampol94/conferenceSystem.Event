@@ -7,4 +7,6 @@ public interface IExhibitionRepository
     Task<int> Commit();
 
     Task<Exhibition> GetByIdAsync(ExhibitionId id);
+
+    Task<IEnumerable<Exhibition>> GatAllAsync();
 }

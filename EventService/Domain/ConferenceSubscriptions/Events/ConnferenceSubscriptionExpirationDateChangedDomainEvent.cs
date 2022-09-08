@@ -3,9 +3,9 @@ using EventService.Domain.Members;
 
 namespace EventService.Domain.ConferenceSubscriptions.Events;
 
-public class ConnferenceSubscriptionExpirationDateChangedDomainEvent : DomainEventBase
+public class ConferenceSubscriptionExpirationDateChangedDomainEvent : DomainEventBase
 {
-    public ConnferenceSubscriptionExpirationDateChangedDomainEvent(MemberId memberId, DateTime expirationDate)
+    public ConferenceSubscriptionExpirationDateChangedDomainEvent(MemberId memberId, DateTime expirationDate)
     {
         MemberId = memberId;
         ExpirationDate = expirationDate;
