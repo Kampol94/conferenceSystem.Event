@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace CompanyName.MyEvents.Modules.Events.Application.Events.GetEventParticipants;
+namespace EventService.Application.Events.Query.GetEventParticipants;
 
 public class GetEventParticipantsRespone
 {

@@ -1,6 +1,6 @@
 ﻿using EventService.Application.Contracts.Commands;
 
-namespace CompanyName.MyEvents.Modules.Events.Application.Events.SetEventHostRole;
+namespace EventService.Application.Events.Commands.SetEventHostRole;
 
 public class SetEventHostRoleCommand : CommandBase
 {

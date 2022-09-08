@@ -1,6 +1,6 @@
 ﻿using EventService.Application.Contracts.Commands;
 
-namespace EventService.Application.Events.RemoveMeetingAttendee;
+namespace EventService.Application.Events.Commands.RemoveEventParticipant;
 
 public class RemoveEventParticipantCommand : CommandBase
 {

@@ -1,9 +1,8 @@
-﻿using CompanyName.MyEvents.Modules.Events.Application.Events.GetEventParticipants;
-using Dapper;
+﻿using Dapper;
 using EventService.Application.Contracts;
 using EventService.Application.Contracts.Queries;
 
-namespace EventService.Application.Events.GetEventParticipants;
+namespace EventService.Application.Events.Query.GetEventParticipants;
 
 internal class GetEventParticipantsQueryHandler : IQueryHandler<GetEventParticipantsQuery, List<GetEventParticipantsRespone>>
 {

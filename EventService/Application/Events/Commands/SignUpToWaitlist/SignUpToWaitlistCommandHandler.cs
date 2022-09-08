@@ -4,7 +4,7 @@ using EventService.Domain.Members;
 using EventService.Domain.Events;
 using EventService.Domain.Exhibitions;
 
-namespace CompanyName.MyEvents.Modules.Events.Application.Events.SignUpMemberToWaitlist;
+namespace EventService.Application.Events.Commands.SignUpToWaitlist;
 
 internal class SignUpToWaitlistCommandHandler : ICommandHandler<SignUpToWaitlistCommand>
 {

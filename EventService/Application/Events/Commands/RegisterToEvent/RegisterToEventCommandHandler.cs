@@ -1,11 +1,10 @@
 ﻿using EventService.Application.Contracts.Commands;
-using EventService.Application.Events.Commands.RegisterToEvent;
 using EventService.Domain.Events;
 using EventService.Domain.Exhibitions;
 using EventService.Domain.Members;
 using MediatR;
 
-namespace EventService.Application.Events.Commands.AddEventParticipant;
+namespace EventService.Application.Events.Commands.RegisterToEvent;
 
 internal class RegisterToEventCommandHandler : ICommandHandler<RegisterToEventCommand>
 {

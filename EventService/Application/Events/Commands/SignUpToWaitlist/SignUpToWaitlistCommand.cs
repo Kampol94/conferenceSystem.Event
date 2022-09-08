@@ -1,6 +1,6 @@
 ﻿using EventService.Application.Contracts.Commands;
 
-namespace CompanyName.MyEvents.Modules.Events.Application.Events.SignUpMemberToWaitlist;
+namespace EventService.Application.Events.Commands.SignUpToWaitlist;
 
 public class SignUpToWaitlistCommand : CommandBase
 {

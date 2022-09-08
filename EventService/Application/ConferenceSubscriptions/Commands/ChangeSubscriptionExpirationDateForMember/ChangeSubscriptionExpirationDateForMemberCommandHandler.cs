@@ -2,7 +2,7 @@
 using EventService.Domain.ConferenceSubscriptions;
 using MediatR;
 
-namespace EventService.Application.ConferenceSubscriptions.ChangeSubscriptionExpirationDateForMember;
+namespace EventService.Application.ConferenceSubscriptions.Commands.ChangeSubscriptionExpirationDateForMember;
 
 internal class ChangeSubscriptionExpirationDateForMemberCommandHandler : ICommandHandler<ChangeSubscriptionExpirationDateForMemberCommand>
 {

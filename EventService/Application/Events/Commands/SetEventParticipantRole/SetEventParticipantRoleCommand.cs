@@ -1,6 +1,6 @@
 ﻿using EventService.Application.Contracts.Commands;
 
-namespace CompanyName.MyEvents.Modules.Events.Application.Events.SetEventParticipantRole;
+namespace EventService.Application.Events.Commands.SetEventParticipantRole;
 
 public class SetEventParticipantRoleCommand : CommandBase
 {

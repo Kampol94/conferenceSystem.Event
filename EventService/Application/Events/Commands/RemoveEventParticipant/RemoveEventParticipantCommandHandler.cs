@@ -3,7 +3,7 @@ using EventService.Domain.Events;
 using EventService.Domain.Members;
 using MediatR;
 
-namespace EventService.Application.Events.RemoveMeetingAttendee;
+namespace EventService.Application.Events.Commands.RemoveEventParticipant;
 
 internal class RemoveEventParticipantCommandHandler : ICommandHandler<RemoveEventParticipantCommand>
 {

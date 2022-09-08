@@ -1,7 +1,7 @@
 ﻿using EventService.Application.Contracts.Commands;
 using EventService.Domain.Members;
 
-namespace EventService.Application.ConferenceSubscriptions.ChangeSubscriptionExpirationDateForMember;
+namespace EventService.Application.ConferenceSubscriptions.Commands.ChangeSubscriptionExpirationDateForMember;
 
 public class ChangeSubscriptionExpirationDateForMemberCommand : CommandBase
 {

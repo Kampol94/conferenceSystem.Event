@@ -1,6 +1,6 @@
 ﻿using EventService.Application.Contracts.Commands;
 
-namespace CompanyName.MyEvents.Modules.Events.Application.Events.CancelEvent;
+namespace EventService.Application.Events.Commands.CancelEvent;
 
 public class CancelEventCommand : CommandBase
 {

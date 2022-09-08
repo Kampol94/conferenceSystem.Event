@@ -1,7 +1,6 @@
-﻿using CompanyName.MyEvents.Modules.Events.Application.Events.GetEventParticipants;
-using EventService.Application.Contracts.Queries;
+﻿using EventService.Application.Contracts.Queries;
 
-namespace EventService.Application.Events.GetEventParticipants;
+namespace EventService.Application.Events.Query.GetEventParticipants;
 
 public class GetEventParticipantsQuery : QueryBase<List<GetEventParticipantsRespone>>
 {

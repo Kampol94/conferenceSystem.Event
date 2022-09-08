@@ -1,5 +1,4 @@
-﻿using CompanyName.MyEvents.Modules.Events.Application.Events.CancelEvent;
-using EventService.Application.Contracts.Commands;
+﻿using EventService.Application.Contracts.Commands;
 using EventService.Domain.Events;
 using EventService.Domain.Members;
 using MediatR;

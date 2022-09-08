@@ -4,7 +4,7 @@ using EventService.Domain.Exhibitions;
 using EventService.Domain.Members;
 using MediatR;
 
-namespace CompanyName.MyEvents.Modules.Events.Application.Events.SetEventHostRole;
+namespace EventService.Application.Events.Commands.SetEventHostRole;
 
 internal class SetEventHostRoleCommandHandler : ICommandHandler<SetEventHostRoleCommand>
 {

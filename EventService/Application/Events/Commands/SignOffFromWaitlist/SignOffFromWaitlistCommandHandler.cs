@@ -3,7 +3,7 @@ using EventService.Domain.Events;
 using EventService.Domain.Members;
 using MediatR;
 
-namespace CompanyName.MyEvents.Modules.Events.Application.Events.SignOffMemberFromWaitlist;
+namespace EventService.Application.Events.Commands.SignOffFromWaitlist;
 
 internal class SignOffFromWaitlistCommandHandler : ICommandHandler<SignOffFromWaitlistCommand>
 {
