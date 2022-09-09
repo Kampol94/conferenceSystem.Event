@@ -4,11 +4,11 @@ using MediatR;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Infrastructure;
+namespace EventService.Application;
 
 public static class ServiceExtensions
 {
-    public static IServiceCollection AddApplication(this IServiceCollection services, IConfiguration configuration)
+    public static IServiceCollection AddApplication(this IServiceCollection services)
     {
         services.AddMediatR(Assembly.GetExecutingAssembly());
         services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());

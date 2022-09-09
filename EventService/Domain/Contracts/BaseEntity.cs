@@ -1,17 +1,13 @@
 ﻿using EventService.Domain.Contracts.Exceptions;
 using MediatR;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace EventService.Domain.Contracts;
 
 public abstract class BaseEntity
 {
-    private readonly IMediator mediator;
+    private readonly IMediator mediator = (new ServiceCollection()).BuildServiceProvider().GetRequiredService<IMediator>(); //TODO: fix this anti pattern 
 
-    public BaseEntity(IMediator mediator)
-    {
-            this.mediator = mediator;
-        
-    }
     protected void AddDomainEvent(IBaseDomainEvent domainDomainEvent)
     {
         mediator.Send(domainDomainEvent);

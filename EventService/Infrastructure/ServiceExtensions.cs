@@ -9,12 +9,11 @@ using EventService.Domain.Events;
 using EventService.Domain.ExhibitionProposals;
 using EventService.Domain.Exhibitions;
 using EventService.Domain.Members;
-using EventService.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Infrastructure;
+namespace EventService.Infrastructure;
 
 public static class ServiceExtensions
 {
