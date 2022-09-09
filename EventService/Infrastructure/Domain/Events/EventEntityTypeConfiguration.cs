@@ -14,16 +14,16 @@ internal class EventEntityTypeConfiguration : IEntityTypeConfiguration<Event>
 
         builder.HasKey(x => x.Id);
 
-        builder.Property<ExhibitionId>("_exhibitionId").HasColumnName("ExhibitionId");
+        builder.Property<ExhibitionId>("_exhibitionId").HasColumnName("ExhibitionId").HasConversion(v => v.Value, c => new ExhibitionId(c));;
         builder.Property(x => x.Title).HasColumnName("Title");
         builder.Property<string>("_description").HasColumnName("Description");
-        builder.Property<MemberId>("_creatorId").HasColumnName("CreatorId");
-        builder.Property<MemberId>("_changeMemberId").HasColumnName("ChangeMemberId");
+        builder.Property<MemberId>("_creatorId").HasColumnName("CreatorId").HasConversion(v => v.Value, c => new MemberId(c));;
+        builder.Property<MemberId>("_changeMemberId").HasColumnName("ChangeMemberId").HasConversion(v => v.Value, c => new MemberId(c));;;
         builder.Property<DateTime>("_createDate").HasColumnName("CreateDate");
         builder.Property<DateTime?>("_changeDate").HasColumnName("ChangeDate");
         builder.Property<DateTime?>("_cancelDate").HasColumnName("CancelDate");
         builder.Property<bool>("_isCanceled").HasColumnName("IsCanceled");
-        builder.Property<MemberId>("_cancelMemberId").HasColumnName("CancelMemberId");
+        builder.Property<MemberId>("_cancelMemberId").HasColumnName("CancelMemberId").HasConversion(v => v.Value, c => new MemberId(c));;;
 
         builder.OwnsOne(x => x.Time, b =>
         {
@@ -48,14 +48,14 @@ internal class EventEntityTypeConfiguration : IEntityTypeConfiguration<Event>
             y.WithOwner().HasForeignKey("EventId");
             y.ToTable("EventParticipants", "events");
             y.Property<MemberId>("ParticipantId");
-            y.Property<EventId>("EventId");
+            y.Property<EventId>("EventId").HasConversion(v => v.Value, c => new EventId(c));
             y.Property<DateTime>("_decisionDate").HasColumnName("DecisionDate");
             y.HasKey("ParticipantId", "EventId", "_decisionDate");
             y.Property<bool>("_decisionChanged").HasColumnName("DecisionChanged");
             y.Property<DateTime?>("_decisionChangeDate").HasColumnName("DecisionChangeDate");
             y.Property<bool>("_isRemoved").HasColumnName("IsRemoved");
             y.Property<string>("_removingReason").HasColumnName("RemovingReason");
-            y.Property<MemberId>("_removingMemberId").HasColumnName("RemovingMemberId");
+            y.Property<MemberId>("_removingMemberId").HasColumnName("RemovingMemberId").HasConversion(v => v.Value, c => new MemberId(c));
             y.Property<DateTime?>("_removedDate").HasColumnName("RemovedDate");
             y.Property<bool>("_isFeePaid").HasColumnName("IsFeePaid");
 
@@ -75,8 +75,8 @@ internal class EventEntityTypeConfiguration : IEntityTypeConfiguration<Event>
         {
             y.WithOwner().HasForeignKey("EventId");
             y.ToTable("EventWaitlistMembers", "events");
-            y.Property<MemberId>("MemberId");
-            y.Property<EventId>("EventId");
+            y.Property<MemberId>("MemberId").HasConversion(v => v.Value, c => new MemberId(c));
+            y.Property<EventId>("EventId").HasConversion(v => v.Value, c => new EventId(c));
             y.Property<DateTime>("SignUpDate").HasColumnName("SignUpDate");
             y.HasKey("MemberId", "MeetingId", "SignUpDate");
             y.Property<bool>("_isSignedOff").HasColumnName("IsSignedOff");

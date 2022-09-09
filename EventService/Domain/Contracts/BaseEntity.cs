@@ -1,23 +1,20 @@
 ﻿using EventService.Domain.Contracts.Exceptions;
+using MediatR;
 
 namespace EventService.Domain.Contracts;
 
 public abstract class BaseEntity
 {
-    private List<IBaseDomainEvent>? _domainDomainEvents;
+    private readonly IMediator mediator;
 
-    public IReadOnlyCollection<IBaseDomainEvent>? DomainEvents => _domainDomainEvents?.AsReadOnly();
-
-    public void ClearDomainEvents()
+    public BaseEntity(IMediator mediator)
     {
-        _domainDomainEvents?.Clear();
+            this.mediator = mediator;
+        
     }
-
     protected void AddDomainEvent(IBaseDomainEvent domainDomainEvent)
     {
-        _domainDomainEvents ??= new List<IBaseDomainEvent>();
-
-        this._domainDomainEvents.Add(domainDomainEvent);
+        mediator.Send(domainDomainEvent);
     }
 
     protected static void CheckRule(IBaseBusinessRule rule)

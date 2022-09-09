@@ -15,7 +15,7 @@ internal class ExhibitionsEntityTypeConfiguration : IEntityTypeConfiguration<Exh
 
         builder.Property(x => x.Name).HasColumnName("Name");
         builder.Property<string>("_description").HasColumnName("Description");
-        builder.Property(x => x.CreatorId).HasColumnName("CreatorId");
+        builder.Property(x => x.CreatorId).HasColumnName("CreatorId").HasConversion(v => v.Value, c => new MemberId(c));
         builder.Property<DateTime>("_createDate").HasColumnName("CreateDate");
         builder.Property<DateTime?>("_paymentDateTo").HasColumnName("PaymentDateTo");
 
@@ -23,8 +23,8 @@ internal class ExhibitionsEntityTypeConfiguration : IEntityTypeConfiguration<Exh
         {
             y.WithOwner().HasForeignKey("ExhibitionId");
             y.ToTable("ExhibitionMembers", "events");
-            y.Property<MemberId>("MemberId");
-            y.Property<ExhibitionId>("ExhibitionId");
+            y.Property<MemberId>("MemberId").HasConversion(v => v.Value, c => new MemberId(c));
+            y.Property<ExhibitionId>("ExhibitionId").HasConversion(v => v.Value, c => new ExhibitionId(c));
             y.Property<DateTime>("JoinedDate").HasColumnName("JoinedDate");
             y.HasKey("MemberId", "ExhibitionId", "JoinedDate");
 

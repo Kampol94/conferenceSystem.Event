@@ -18,21 +18,20 @@ namespace Infrastructure;
 
 public static class ServiceExtensions
 {
-    public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration configuration) //, IWebHostEnvironment environment)
+    public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
+    {
+        if (configuration != null)
         {
-            if (configuration != null)
-            {
-                services.AddDbContext<EventsContext>(options =>
-                    options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
-            }
-
-            services.AddTransient<IEventRepository, EventRepository>();
-            services.AddTransient<IConferenceSubscriptionRepository, ConferenceSubscriptionRepository>();
-            services.AddTransient<IEventReviewRepository, EventReviewRepository>();
-            services.AddTransient<IExhibitionProposalRepository, ExhibitionProposalRepository>();
-            services.AddTransient<IMemberRepository, MemberRepository>();
-
-            return services;
+            services.AddDbContext<EventsContext>(options =>
+                options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
         }
+
+        services.AddTransient<IEventRepository, EventRepository>();
+        services.AddTransient<IConferenceSubscriptionRepository, ConferenceSubscriptionRepository>();
+        services.AddTransient<IEventReviewRepository, EventReviewRepository>();
+        services.AddTransient<IExhibitionProposalRepository, ExhibitionProposalRepository>();
+        services.AddTransient<IMemberRepository, MemberRepository>();
+
+        return services;
     }
 }
