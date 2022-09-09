@@ -4,7 +4,7 @@ using EventService.Domain.Members;
 
 namespace EventService.Domain.Events;
 
-public class EventWaitlistMember : BaseEntity
+public class EventWaiteListMember : BaseEntity
 {
     internal MemberId MemberId { get; private set; }
 
@@ -22,12 +22,12 @@ public class EventWaitlistMember : BaseEntity
 
     //EF
 #pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
-    private EventWaitlistMember()
+    private EventWaiteListMember()
 #pragma warning restore CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
     {
     }
 
-    private EventWaitlistMember(EventId eventId, MemberId memberId)
+    private EventWaiteListMember(EventId eventId, MemberId memberId)
     {
         MemberId = memberId;
         EventId = eventId;
@@ -37,9 +37,9 @@ public class EventWaitlistMember : BaseEntity
         AddDomainEvent(new EventWaitlistMemberAddedDomainEvent(EventId, MemberId));
     }
 
-    internal static EventWaitlistMember CreateNew(EventId eventId, MemberId memberId)
+    internal static EventWaiteListMember CreateNew(EventId eventId, MemberId memberId)
     {
-        return new EventWaitlistMember(eventId, memberId);
+        return new EventWaiteListMember(eventId, memberId);
     }
 
     internal void MarkIsMovedToParticipants()

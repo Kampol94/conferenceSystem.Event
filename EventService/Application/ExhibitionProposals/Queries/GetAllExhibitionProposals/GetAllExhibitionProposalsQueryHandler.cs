@@ -22,12 +22,10 @@ internal class GetAllExhibitionProposalsQueryHandler : IQueryHandler<GetAllExhib
                      $"[ExhibitionProposal].[Id] AS [{nameof(ExhibitionProposalDto.Id)}], " +
                      $"[ExhibitionProposal].[Name] AS [{nameof(ExhibitionProposalDto.Name)}], " +
                      $"[ExhibitionProposal].[ProposalUserId] AS [{nameof(ExhibitionProposalDto.ProposalUserId)}], " +
-                     $"[ExhibitionProposal].[LocationCity] AS [{nameof(ExhibitionProposalDto.LocationCity)}], " +
-                     $"[ExhibitionProposal].[LocationCountryCode] AS [{nameof(ExhibitionProposalDto.LocationCountryCode)}], " +
                      $"[ExhibitionProposal].[Description] AS [{nameof(ExhibitionProposalDto.Description)}], " +
                      $"[ExhibitionProposal].[ProposalDate] AS [{nameof(ExhibitionProposalDto.ProposalDate)}], " +
                      $"[ExhibitionProposal].[StatusCode] AS [{nameof(ExhibitionProposalDto.StatusCode)}] " +
-                     "FROM [meetings].[v_ExhibitionProposals] AS [ExhibitionProposal] " +
+                     "FROM [events].[v_ExhibitionProposals] AS [ExhibitionProposal] " +
                      "ORDER BY [ExhibitionProposal].[Name]";
 
         var exhibitionProposals = await connection.QueryAsync<ExhibitionProposalDto>(sql);

@@ -28,12 +28,10 @@ internal class GetMemberExhibitionProposalsQueryHandler : IQueryHandler<GetMembe
                      $"[ExhibitionProposal].[Id] AS [{nameof(ExhibitionProposalDto.Id)}], " +
                      $"[ExhibitionProposal].[Name] AS [{nameof(ExhibitionProposalDto.Name)}], " +
                      $"[ExhibitionProposal].[ProposalUserId] AS [{nameof(ExhibitionProposalDto.ProposalUserId)}], " +
-                     $"[ExhibitionProposal].[LocationCity] AS [{nameof(ExhibitionProposalDto.LocationCity)}], " +
-                     $"[ExhibitionProposal].[LocationCountryCode] AS [{nameof(ExhibitionProposalDto.LocationCountryCode)}], " +
                      $"[ExhibitionProposal].[Description] AS [{nameof(ExhibitionProposalDto.Description)}], " +
                      $"[ExhibitionProposal].[ProposalDate] AS [{nameof(ExhibitionProposalDto.ProposalDate)}], " +
                      $"[ExhibitionProposal].[StatusCode] AS [{nameof(ExhibitionProposalDto.StatusCode)}] " +
-                     "FROM [meetings].[v_ExhibitionProposals] AS [ExhibitionProposal] " +
+                     "FROM [events].[v_ExhibitionProposals] AS [ExhibitionProposal] " +
                      "WHERE [ExhibitionProposal].ProposalUserId = @MemberId " +
                      "ORDER BY [ExhibitionProposal].[Name]";
 

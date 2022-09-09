@@ -1,6 +1,6 @@
 ﻿namespace EventService.Application.Events.Query.GetEventParticipants;
 
-public class GetEventParticipantsRespone
+public class GetEventParticipantsResponse
 {
     public string? FirstName { get; set; }
 

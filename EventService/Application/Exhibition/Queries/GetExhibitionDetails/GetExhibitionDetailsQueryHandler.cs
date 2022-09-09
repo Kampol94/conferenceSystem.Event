@@ -23,9 +23,7 @@ internal class GetExhibitionDetailsQueryHandler : IQueryHandler<GetExhibitionDet
             $"[Exhibition].[Id] AS [{nameof(ExhibitionDetailsDto.Id)}], " +
             $"[Exhibition].[Name] AS [{nameof(ExhibitionDetailsDto.Name)}], " +
             $"[Exhibition].[Description] AS [{nameof(ExhibitionDetailsDto.Description)}], " +
-            $"[Exhibition].[LocationCity] AS [{nameof(ExhibitionDetailsDto.LocationCity)}], " +
-            $"[Exhibition].[LocationCountryCode] AS [{nameof(ExhibitionDetailsDto.LocationCountryCode)}] " +
-            "FROM [meetings].[v_Exhibitions] AS [Exhibition] " +
+            "FROM [events].[v_Exhibitions] AS [Exhibition] " +
             "WHERE [Exhibition].[Id] = @ExhibitionId",
             new
             {
@@ -42,9 +40,9 @@ internal class GetExhibitionDetailsQueryHandler : IQueryHandler<GetExhibitionDet
         return await connection.ExecuteScalarAsync<int>(
             "SELECT " +
             "COUNT(*) " +
-            "FROM [meetings].[v_MemberExhibitions] AS [MemberExhibition] " +
-            "WHERE [MemberExhibition].[Id] = @ExhibitionId AND " +
-            "[MemberExhibition].[IsActive] = 1",
+            "FROM [events].[v_ExhibitionMembers] AS [ExhibitionMembers] " +
+            "WHERE [ExhibitionMembers].[ExhibitionId] = @ExhibitionId AND " +
+            "[ExhibitionMembers].[IsActive] = 1",
             new
             {
                 ExhibitionId

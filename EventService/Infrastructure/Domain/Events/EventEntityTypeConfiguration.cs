@@ -71,7 +71,7 @@ internal class EventEntityTypeConfiguration : IEntityTypeConfiguration<Event>
             });
         });
 
-        builder.OwnsMany<EventWaitlistMember>("_waitlistMembers", y =>
+         builder.OwnsMany<EventWaiteListMember>("_waitlistMembers", y =>
         {
             y.WithOwner().HasForeignKey("EventId");
             y.ToTable("EventWaitlistMembers", "events");

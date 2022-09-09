@@ -1,6 +1,6 @@
 ﻿namespace EventService.Application.Events.Query.GetParticipantEventsInWhichTakesPart;
 
-public class GetParticipantEventsInWhichTakesPartRespone
+public class GetParticipantEventsInWhichTakesPartResponse
 {
     public Guid EventId { get; set; }
 

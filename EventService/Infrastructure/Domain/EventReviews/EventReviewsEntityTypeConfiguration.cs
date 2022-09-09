@@ -10,14 +10,14 @@ public class EventReviewsEntityTypeConfiguration : IEntityTypeConfiguration<Even
 {
     public void Configure(EntityTypeBuilder<EventReview> builder)
     {
-        builder.ToTable("EventReview", "events");
+        builder.ToTable("EventReviews", "events");
 
         builder.HasKey(c => c.Id);
 
         builder.Property<string>("_text").HasColumnName("Text");
         builder.Property<EventId>("_eventId").HasColumnName("EventId");
         builder.Property<MemberId>("_authorId").HasColumnName("AuthorId");
-        builder.Property<EventReviewId>("_inReplyToCommentId").HasColumnName("InReplyToCommentId");
+        builder.Property<EventReviewId>("_inReplyToReviewId").HasColumnName("InReplyToReviewId");
         builder.Property<bool>("_isRemoved").HasColumnName("IsRemoved");
         builder.Property<string>("_removedByReason").HasColumnName("RemovedByReason");
         builder.Property<DateTime>("_createDate").HasColumnName("CreateDate");

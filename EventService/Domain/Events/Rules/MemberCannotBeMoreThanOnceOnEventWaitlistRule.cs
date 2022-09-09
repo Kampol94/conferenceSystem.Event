@@ -5,11 +5,11 @@ namespace EventService.Domain.Events.Rules;
 
 public class MemberCannotBeMoreThanOnceOnEventWaitlistRule : IBaseBusinessRule
 {
-    private readonly List<EventWaitlistMember> _waitListMembers;
+    private readonly List<EventWaiteListMember> _waitListMembers;
 
     private readonly MemberId _memberId;
 
-    internal MemberCannotBeMoreThanOnceOnEventWaitlistRule(List<EventWaitlistMember> waitListMembers, MemberId memberId)
+    internal MemberCannotBeMoreThanOnceOnEventWaitlistRule(List<EventWaiteListMember> waitListMembers, MemberId memberId)
     {
         _waitListMembers = waitListMembers;
         _memberId = memberId;

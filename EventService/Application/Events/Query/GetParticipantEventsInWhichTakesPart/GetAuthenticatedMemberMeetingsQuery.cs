@@ -2,6 +2,6 @@
 
 namespace EventService.Application.Events.Query.GetParticipantEventsInWhichTakesPart;
 
-public class GetParticipantEventsInWhichTakesPartQuery : QueryBase<List<GetParticipantEventsInWhichTakesPartRespone>>
+public class GetParticipantEventsInWhichTakesPartQuery : QueryBase<List<GetParticipantEventsInWhichTakesPartResponse>>
 {
 }

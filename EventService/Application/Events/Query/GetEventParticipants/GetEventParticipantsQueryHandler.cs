@@ -4,7 +4,7 @@ using EventService.Application.Contracts.Queries;
 
 namespace EventService.Application.Events.Query.GetEventParticipants;
 
-internal class GetEventParticipantsQueryHandler : IQueryHandler<GetEventParticipantsQuery, List<GetEventParticipantsRespone>>
+internal class GetEventParticipantsQueryHandler : IQueryHandler<GetEventParticipantsQuery, List<GetEventParticipantsResponse>>
 {
     private readonly ISqlConnectionFactory _sqlConnectionFactory;
 
@@ -13,17 +13,17 @@ internal class GetEventParticipantsQueryHandler : IQueryHandler<GetEventParticip
         _sqlConnectionFactory = sqlConnectionFactory;
     }
 
-    public async Task<List<GetEventParticipantsRespone>> Handle(GetEventParticipantsQuery query, CancellationToken cancellationToken)
+    public async Task<List<GetEventParticipantsResponse>> Handle(GetEventParticipantsQuery query, CancellationToken cancellationToken)
     {
         var connection = _sqlConnectionFactory.GetOpenConnection();
 
-        return (await connection.QueryAsync<GetEventParticipantsRespone>(
+        return (await connection.QueryAsync<GetEventParticipantsResponse>(
             "SELECT " +
-            $"[EventParticipant].[FirstName] AS [{nameof(GetEventParticipantsRespone.FirstName)}], " +
-            $"[EventParticipant].[LastName] AS [{nameof(GetEventParticipantsRespone.LastName)}], " +
-            $"[EventParticipant].[RoleCode] AS [{nameof(GetEventParticipantsRespone.RoleCode)}], " +
-            $"[EventParticipant].[DecisionDate] AS [{nameof(GetEventParticipantsRespone.DecisionDate)}], " +
-            $"[EventParticipant].[ParticipantId] AS [{nameof(GetEventParticipantsRespone.ParticipantId)}] " +
+            $"[EventParticipant].[FirstName] AS [{nameof(GetEventParticipantsResponse.FirstName)}], " +
+            $"[EventParticipant].[LastName] AS [{nameof(GetEventParticipantsResponse.LastName)}], " +
+            $"[EventParticipant].[RoleCode] AS [{nameof(GetEventParticipantsResponse.RoleCode)}], " +
+            $"[EventParticipant].[DecisionDate] AS [{nameof(GetEventParticipantsResponse.DecisionDate)}], " +
+            $"[EventParticipant].[ParticipantId] AS [{nameof(GetEventParticipantsResponse.ParticipantId)}] " +
             "FROM [events].[v_EventParticipants] AS [EventParticipant] " +
             "WHERE [EventParticipant].[EventId] = @EventId",
             new

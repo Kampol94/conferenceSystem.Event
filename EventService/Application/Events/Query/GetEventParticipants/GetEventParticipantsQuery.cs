@@ -2,7 +2,7 @@
 
 namespace EventService.Application.Events.Query.GetEventParticipants;
 
-public class GetEventParticipantsQuery : QueryBase<List<GetEventParticipantsRespone>>
+public class GetEventParticipantsQuery : QueryBase<List<GetEventParticipantsResponse>>
 {
     public GetEventParticipantsQuery(Guid eventId)
     {

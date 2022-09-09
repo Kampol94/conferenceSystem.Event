@@ -19,16 +19,15 @@ internal class GetEventReviewsQueryHandler : IQueryHandler<GetEventReviewsQuery,
 
         string sql = "SELECT " +
                      $"[EventReviews].[Id] AS [{nameof(EventReviewsDto.Id)}], " +
-                     $"[EventReviews].[InReplyToCommentId] AS [{nameof(EventReviewsDto.InReplyToCommentId)}], " +
+                     $"[EventReviews].[InReplyToReviewId] AS [{nameof(EventReviewsDto.InReplyToReviewId)}], " +
                      $"[EventReviews].[AuthorId] AS [{nameof(EventReviewsDto.AuthorId)}], " +
-                     $"[EventReviews].[Comment] AS [{nameof(EventReviewsDto.Comment)}], " +
+                     $"[EventReviews].[Text] AS [{nameof(EventReviewsDto.Text)}], " +
                      $"[EventReviews].[CreateDate] AS [{nameof(EventReviewsDto.CreateDate)}], " +
                      $"[EventReviews].[EditDate] AS [{nameof(EventReviewsDto.EditDate)}], " +
-                     $"[EventReviews].[LikesCount] AS [{nameof(EventReviewsDto.LikesCount)}]" +
-                     "FROM [meetings].[v_EventReviewss] AS [EventReviews] " +
-                     "WHERE [EventReviews].[MeetingId] = @MeetingId";
-        var eventReviewss = await connection.QueryAsync<EventReviewsDto>(sql, new { query.EventId });
+                     "FROM [events].[v_EventReviews] AS [EventReviews] " +
+                     "WHERE [EventReviews].[EventId] = @EventId";
+        var eventReviews = await connection.QueryAsync<EventReviewsDto>(sql, new { query.EventId });
 
-        return eventReviewss.AsList();
+        return eventReviews.AsList();
     }
 }

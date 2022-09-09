@@ -1,6 +1,6 @@
 ﻿namespace EventService.Application.Events.Query.GetEventDetails;
 
-public class GetEventDetailsRespone
+public class GetEventDetailsResponse
 {
     public Guid Id { get; set; }
 

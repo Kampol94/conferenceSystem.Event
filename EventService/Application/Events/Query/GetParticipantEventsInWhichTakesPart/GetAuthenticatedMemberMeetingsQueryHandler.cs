@@ -4,7 +4,7 @@ using EventService.Application.Contracts.Queries;
 
 namespace EventService.Application.Events.Query.GetParticipantEventsInWhichTakesPart;
 
-internal class GetParticipantEventsInWhichTakesPartQueryHandler : IQueryHandler<GetParticipantEventsInWhichTakesPartQuery, List<GetParticipantEventsInWhichTakesPartRespone>>
+internal class GetParticipantEventsInWhichTakesPartQueryHandler : IQueryHandler<GetParticipantEventsInWhichTakesPartQuery, List<GetParticipantEventsInWhichTakesPartResponse>>
 {
     private readonly ISqlConnectionFactory _sqlConnectionFactory;
 
@@ -18,22 +18,22 @@ internal class GetParticipantEventsInWhichTakesPartQueryHandler : IQueryHandler<
         _executionContextAccessor = executionContextAccessor;
     }
 
-    public async Task<List<GetParticipantEventsInWhichTakesPartRespone>> Handle(GetParticipantEventsInWhichTakesPartQuery request, CancellationToken cancellationToken)
+    public async Task<List<GetParticipantEventsInWhichTakesPartResponse>> Handle(GetParticipantEventsInWhichTakesPartQuery request, CancellationToken cancellationToken)
     {
         var connection = _sqlConnectionFactory.GetOpenConnection();
 
-        return (await connection.QueryAsync<GetParticipantEventsInWhichTakesPartRespone>(
+        return (await connection.QueryAsync<GetParticipantEventsInWhichTakesPartResponse>(
             "SELECT " +
-            $"[Event].[Id] AS [{nameof(GetParticipantEventsInWhichTakesPartRespone.EventId)}], " +
-            $"[Event].[RoleCode] AS [{nameof(GetParticipantEventsInWhichTakesPartRespone.RoleCode)}], " +
-            $"[Event].[TermStartDate] AS [{nameof(GetParticipantEventsInWhichTakesPartRespone.TermStartDate)}], " +
-            $"[Event].[TermEndDate] AS [{nameof(GetParticipantEventsInWhichTakesPartRespone.TermEndDate)}], " +
-            $"[Event].[Title] AS [{nameof(GetParticipantEventsInWhichTakesPartRespone.Title)}] " +
-            "FROM [events].[v_MemberEvents] AS [Event] " +
+            $"[EventParticipant].[Id] AS [{nameof(GetParticipantEventsInWhichTakesPartResponse.EventId)}], " +
+            $"[EventParticipant].[RoleCode] AS [{nameof(GetParticipantEventsInWhichTakesPartResponse.RoleCode)}], " +
+            $"[EventParticipant].[TermStartDate] AS [{nameof(GetParticipantEventsInWhichTakesPartResponse.TermStartDate)}], " +
+            $"[EventParticipant].[TermEndDate] AS [{nameof(GetParticipantEventsInWhichTakesPartResponse.TermEndDate)}], " +
+            $"[EventParticipant].[Title] AS [{nameof(GetParticipantEventsInWhichTakesPartResponse.Title)}] " +
+            "FROM [events].[v_EventParticipants] AS [EventParticipant] " +
             "WHERE [Event].[ParticipantId] = @ParticipantId AND [Event].[IsRemoved] = 0",
             new
             {
                 ParticipantId = _executionContextAccessor.UserId
-            })).AsList();
+            })).AsList(); //TODO: fix query 
     }
 }

@@ -4,7 +4,7 @@ using EventService.Application.Contracts.Queries;
 
 namespace EventService.Application.Events.Query.GetEventDetails;
 
-internal class GetEventDetailsQueryHandler : IQueryHandler<GetEventDetailsQuery, GetEventDetailsRespone>
+internal class GetEventDetailsQueryHandler : IQueryHandler<GetEventDetailsQuery, GetEventDetailsResponse>
 {
     private readonly ISqlConnectionFactory _sqlConnectionFactory;
 
@@ -13,25 +13,25 @@ internal class GetEventDetailsQueryHandler : IQueryHandler<GetEventDetailsQuery,
         _sqlConnectionFactory = sqlConnectionFactory;
     }
 
-    public async Task<GetEventDetailsRespone> Handle(GetEventDetailsQuery query, CancellationToken cancellationToken)
+    public async Task<GetEventDetailsResponse> Handle(GetEventDetailsQuery query, CancellationToken cancellationToken)
     {
         var connection = _sqlConnectionFactory.GetOpenConnection();
 
-        return await connection.QuerySingleAsync<GetEventDetailsRespone>(
+        return await connection.QuerySingleAsync<GetEventDetailsResponse>(
             "SELECT " +
-            $"[EventDetails].[Id] AS [{nameof(GetEventDetailsRespone.Id)}], " +
-            $"[EventDetails].[ExhibitionId] AS [{nameof(GetEventDetailsRespone.ExhibitionId)}], " +
-            $"[EventDetails].[Title] AS [{nameof(GetEventDetailsRespone.Title)}], " +
-            $"[EventDetails].[TermStartDate] AS [{nameof(GetEventDetailsRespone.TermStartDate)}], " +
-            $"[EventDetails].[TermEndDate] AS [{nameof(GetEventDetailsRespone.TermEndDate)}], " +
-            $"[EventDetails].[Description] AS [{nameof(GetEventDetailsRespone.Description)}], " +
-            $"[EventDetails].[ParticipantsLimit] AS [{nameof(GetEventDetailsRespone.ParticipantsLimit)}], " +
-            $"[EventDetails].[RSVPTermStartDate] AS [{nameof(GetEventDetailsRespone.RSVPTermStartDate)}], " +
-            $"[EventDetails].[RSVPTermEndDate] AS [{nameof(GetEventDetailsRespone.RSVPTermEndDate)}], " +
-            $"[EventDetails].[EventFeeValue] AS [{nameof(GetEventDetailsRespone.EventFeeValue)}], " +
-            $"[EventDetails].[EventFeeCurrency] AS [{nameof(GetEventDetailsRespone.EventFeeCurrency)}] " +
-            "FROM [events].[v_EventDetails] AS [EventDetails] " +
-            "WHERE [EventDetails].[Id] = @EventId",
+            $"[Events].[Id] AS [{nameof(GetEventDetailsResponse.Id)}], " +
+            $"[Events].[ExhibitionId] AS [{nameof(GetEventDetailsResponse.ExhibitionId)}], " +
+            $"[Events].[Title] AS [{nameof(GetEventDetailsResponse.Title)}], " +
+            $"[Events].[TermStartDate] AS [{nameof(GetEventDetailsResponse.TermStartDate)}], " +
+            $"[Events].[TermEndDate] AS [{nameof(GetEventDetailsResponse.TermEndDate)}], " +
+            $"[Events].[Description] AS [{nameof(GetEventDetailsResponse.Description)}], " +
+            $"[Events].[ParticipantsLimit] AS [{nameof(GetEventDetailsResponse.ParticipantsLimit)}], " +
+            $"[Events].[RSVPTermStartDate] AS [{nameof(GetEventDetailsResponse.RSVPTermStartDate)}], " +
+            $"[Events].[RSVPTermEndDate] AS [{nameof(GetEventDetailsResponse.RSVPTermEndDate)}], " +
+            $"[Events].[EventFeeValue] AS [{nameof(GetEventDetailsResponse.EventFeeValue)}], " +
+            $"[Events].[EventFeeCurrency] AS [{nameof(GetEventDetailsResponse.EventFeeCurrency)}] " +
+            "FROM [events].[Events] AS [Events] " +
+            "WHERE [Events].[Id] = @EventId",
             new
             {
                 query.EventId

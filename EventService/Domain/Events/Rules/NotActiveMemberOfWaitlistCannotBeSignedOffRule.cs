@@ -5,11 +5,11 @@ namespace EventService.Domain.Events.Rules;
 
 public class NotActiveMemberOfWaitlistCannotBeSignedOffRule : IBaseBusinessRule
 {
-    private readonly List<EventWaitlistMember> _waitlistMembers;
+    private readonly List<EventWaiteListMember> _waitlistMembers;
 
     private readonly MemberId _memberId;
 
-    public NotActiveMemberOfWaitlistCannotBeSignedOffRule(List<EventWaitlistMember> waitlistMembers, MemberId memberId)
+    public NotActiveMemberOfWaitlistCannotBeSignedOffRule(List<EventWaiteListMember> waitlistMembers, MemberId memberId)
     {
         _waitlistMembers = waitlistMembers;
         _memberId = memberId;

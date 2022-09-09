@@ -21,9 +21,7 @@ internal class GetAllExhibitionsQueryHandler : IQueryHandler<GetAllExhibitionsQu
                            "[Exhibition].[Id], " +
                            "[Exhibition].[Name], " +
                            "[Exhibition].[Description], " +
-                           "[Exhibition].[LocationCountryCode], " +
-                           "[Exhibition].[LocationCity]" +
-                           "FROM [meetings].[v_Exhibitions] AS [Exhibition]";
+                           "FROM [events].[v_Exhibitions] AS [Exhibition]";
         var exhibitions = await connection.QueryAsync<ExhibitionDto>(sql);
 
         return exhibitions.AsList();

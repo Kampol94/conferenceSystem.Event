@@ -26,14 +26,12 @@ internal class GetAuthenticationMemberExhibitionsQueryHandler :
         var connection = _sqlConnectionFactory.GetOpenConnection();
 
         var sql = "SELECT " +
-                  $"[MemberExhibition].[Id] AS [{nameof(MemberExhibitionDto.Id)}], " +
-                  $"[MemberExhibition].[Name] AS [{nameof(MemberExhibitionDto.Name)}], " +
-                  $"[MemberExhibition].[Description] AS [{nameof(MemberExhibitionDto.Description)}], " +
-                  $"[MemberExhibition].[LocationCountryCode] AS [{nameof(MemberExhibitionDto.LocationCountryCode)}], " +
-                  $"[MemberExhibition].[LocationCity] AS [{nameof(MemberExhibitionDto.LocationCity)}], " +
-                  $"[MemberExhibition].[MemberId] AS [{nameof(MemberExhibitionDto.MemberId)}], " +
-                  $"[MemberExhibition].[RoleCode] AS [{nameof(MemberExhibitionDto.RoleCode)}] " +
-                  "FROM [meetings].[v_MemberExhibitions] AS [MemberExhibition] " +
+                  $"[ExhibitionMember].[Id] AS [{nameof(MemberExhibitionDto.Id)}], " +
+                  $"[ExhibitionMember].[Name] AS [{nameof(MemberExhibitionDto.Name)}], " +
+                  $"[ExhibitionMember].[Description] AS [{nameof(MemberExhibitionDto.Description)}], " +
+                  $"[ExhibitionMember].[MemberId] AS [{nameof(MemberExhibitionDto.MemberId)}], " +
+                  $"[ExhibitionMember].[RoleCode] AS [{nameof(MemberExhibitionDto.RoleCode)}] " +
+                  "FROM [events].[v_ExhibitionMembers] AS [ExhibitionMember] " +
                   "WHERE [MemberExhibition].MemberId = @MemberId AND [MemberExhibition].[IsActive] = 1";
 
         var exhibitions = await connection.QueryAsync<MemberExhibitionDto>(

@@ -21,7 +21,7 @@ public class Event : BaseEntity
 
     private readonly List<EventParticipant> _participants;
 
-    private readonly List<EventWaitlistMember> _waitlistMembers;
+    private readonly List<EventWaiteListMember> _waitlistMembers;
 
     private EventLimits _eventLimits;
 
@@ -49,7 +49,7 @@ public class Event : BaseEntity
 #pragma warning restore CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
     {
         _participants = new List<EventParticipant>();
-        _waitlistMembers = new List<EventWaitlistMember>();
+        _waitlistMembers = new List<EventWaiteListMember>();
     }
 
     internal static Event CreateNew(
@@ -99,7 +99,7 @@ public class Event : BaseEntity
         _createDate = DateTime.Now; //TODO: add time provider for test proposes 
 
         _participants = new List<EventParticipant>();
-        _waitlistMembers = new List<EventWaitlistMember>();
+        _waitlistMembers = new List<EventWaiteListMember>();
 
         this.AddDomainEvent(new EventCreatedDomainEvent(Id));
         var rsvpDate = DateTime.Now; //TODO: add time provider for test proposes 
@@ -172,7 +172,7 @@ public class Event : BaseEntity
 
         CheckRule(new MemberCannotBeMoreThanOnceOnEventWaitlistRule(_waitlistMembers, memberId));
 
-        _waitlistMembers.Add(EventWaitlistMember.CreateNew(Id, memberId));
+        _waitlistMembers.Add(EventWaiteListMember.CreateNew(Id, memberId));
     }
 
     public void SignOffMemberFromWaitlist(MemberId memberId)
@@ -258,7 +258,7 @@ public class Event : BaseEntity
                 exhibition);
     }
 
-    private EventWaitlistMember GetActiveMemberOnWaitlist(MemberId memberId)
+    private EventWaiteListMember GetActiveMemberOnWaitlist(MemberId memberId)
     {
         //TODO: not generic expetion 
         return _waitlistMembers.SingleOrDefault(x => x.IsActiveOnWaitList(memberId)) ?? throw new Exception();
