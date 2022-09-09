@@ -8,7 +8,7 @@ public class OnlyActiveParticipantCanBeRemovedFromEventRule : IBaseBusinessRule
     private readonly List<EventParticipant> _participants;
     private readonly MemberId _participantId;
 
-    internal OnlyActiveParticipantCanBeRemovedFromEventRule(
+    public OnlyActiveParticipantCanBeRemovedFromEventRule(
         List<EventParticipant> participants,
         MemberId participantId)
     {

@@ -4,11 +4,11 @@ using MediatR;
 
 namespace EventService.Application.ExhibitionProposals.DomainEventHandlers;
 
-internal class ExhibitionProposalAcceptedNotificationHandler : INotificationHandler<ExhibitionProposalAcceptedDomainEvent>
+public class ExhibitionProposalAcceptedNotificationHandler : INotificationHandler<ExhibitionProposalAcceptedDomainEvent>
 {
     private readonly IMediator _mediator;
 
-    internal ExhibitionProposalAcceptedNotificationHandler(IMediator mediator)
+    public ExhibitionProposalAcceptedNotificationHandler(IMediator mediator)
     {
         _mediator = mediator;
     }

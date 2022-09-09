@@ -5,12 +5,12 @@ using MediatR;
 
 namespace EventService.Application.Exhibition.Commands.CreateNewExhibition;
 
-internal class CreateNewExhibitionCommandHandler : ICommandHandler<CreateNewExhibitionCommand>
+public class CreateNewExhibitionCommandHandler : ICommandHandler<CreateNewExhibitionCommand>
 {
     private readonly IExhibitionRepository _exhibitionRepository;
     private readonly IExhibitionProposalRepository _exhibitionProposalRepository;
 
-    internal CreateNewExhibitionCommandHandler(
+    public CreateNewExhibitionCommandHandler(
         IExhibitionRepository exhibitionRepository,
         IExhibitionProposalRepository exhibitionProposalRepository)
     {

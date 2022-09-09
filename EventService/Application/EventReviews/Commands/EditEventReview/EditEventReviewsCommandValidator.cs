@@ -2,7 +2,7 @@
 
 namespace EventService.Application.EventReviews.Commands.EditEventReview;
 
-internal class EditEventReviewsCommandValidator : AbstractValidator<EditEventReviewsCommand>
+public class EditEventReviewsCommandValidator : AbstractValidator<EditEventReviewsCommand>
 {
     public EditEventReviewsCommandValidator()
     {

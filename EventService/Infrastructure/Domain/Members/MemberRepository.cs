@@ -1,14 +1,13 @@
 ﻿using EventService.Domain.Members;
-using EventService.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 
-namespace CompanyName.MyMeetings.Modules.Meetings.Infrastructure.Domain.Members;
+namespace EventService.Infrastructure.Domain.Members;
 
-internal class MemberRepository : IMemberRepository
+public class MemberRepository : IMemberRepository
 {
     private readonly EventsContext _meetingsContext;
 
-    internal MemberRepository(EventsContext meetingsContext)
+    public MemberRepository(EventsContext meetingsContext)
     {
         _meetingsContext = meetingsContext;
     }

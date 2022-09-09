@@ -6,13 +6,13 @@ using MediatR;
 
 namespace EventService.Application.Events.DomainEventHandlers.EventParticipantAddedDomainEvents;
 
-internal class EventParticipantAddedHandler : INotificationHandler<EventParticipantAddedDomainEvent>
+public class EventParticipantAddedHandler : INotificationHandler<EventParticipantAddedDomainEvent>
 {
     private readonly IEventRepository _eventRepository;
     private readonly IMemberRepository _memberRepository;
     private readonly IEmailSender _emailSender;
 
-    internal EventParticipantAddedHandler(IEventRepository eventRepository, IMemberRepository memberRepository, IEmailSender emailSender)
+    public EventParticipantAddedHandler(IEventRepository eventRepository, IMemberRepository memberRepository, IEmailSender emailSender)
     {
         _eventRepository = eventRepository;
         _memberRepository = memberRepository;

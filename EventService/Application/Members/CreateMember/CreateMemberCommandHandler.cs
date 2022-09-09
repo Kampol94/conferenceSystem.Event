@@ -4,7 +4,7 @@ using MediatR;
 
 namespace EventService.Application.Members.CreateMember;
 
-internal class CreateMemberCommandHandler : ICommandHandler<CreateMemberCommand>
+public class CreateMemberCommandHandler : ICommandHandler<CreateMemberCommand>
 {
     private readonly IMemberRepository _memberRepository;
 

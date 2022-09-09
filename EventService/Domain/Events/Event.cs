@@ -52,7 +52,7 @@ public class Event : BaseEntity
         _waitlistMembers = new List<EventWaiteListMember>();
     }
 
-    internal static Event CreateNew(
+    public static Event CreateNew(
         ExhibitionId exhibitionId,
         string title,
         EventTime time,

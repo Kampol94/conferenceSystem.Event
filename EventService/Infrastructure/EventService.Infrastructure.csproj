@@ -13,6 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Application\EventService.Application.csproj" />
     <ProjectReference Include="..\Domain\EventService.Domain.csproj" />
   </ItemGroup>
 

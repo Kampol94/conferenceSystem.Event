@@ -7,9 +7,9 @@ namespace EventService.Domain.Events;
 
 public class EventParticipant : BaseEntity
 {
-    internal MemberId ParticipantId { get; private set; }
+    public MemberId ParticipantId { get; private set; }
 
-    internal EventId EventId { get; private set; }
+    public EventId EventId { get; private set; }
 
     private readonly DateTime _decisionDate;
 
@@ -38,7 +38,7 @@ public class EventParticipant : BaseEntity
     {
     }
 
-    internal static EventParticipant CreateNew(
+    public static EventParticipant CreateNew(
         EventId eventId,
         MemberId participantId,
         DateTime decisionDate,
@@ -74,7 +74,7 @@ public class EventParticipant : BaseEntity
             _fee.Currency));
     }
 
-    internal void ChangeDecision()
+    public void ChangeDecision()
     {
         _decisionChanged = true;
         _decisionChangeDate = DateTime.Now; //TODO: add time provider for test proposes 
@@ -82,36 +82,36 @@ public class EventParticipant : BaseEntity
         this.AddDomainEvent(new EventParticipantChangedDecisionDomainEvent(ParticipantId, EventId));
     }
 
-    internal bool IsActiveParticipant(MemberId participantId)
+    public bool IsActiveParticipant(MemberId participantId)
     {
         return ParticipantId == participantId && !_decisionChanged;
     }
 
-    internal bool IsActive()
+    public bool IsActive()
     {
         return !_decisionChangeDate.HasValue && !_isRemoved;
     }
 
-    internal bool IsActiveHost()
+    public bool IsActiveHost()
     {
         return IsActive() && _role == EventParticipantRole.Host;
     }
 
-    internal void SetAsHost()
+    public void SetAsHost()
     {
         _role = EventParticipantRole.Host;
 
         this.AddDomainEvent(new NewEventHostSetDomainEvent(EventId, ParticipantId));
     }
 
-    internal void SetAsParticipant()
+    public void SetAsParticipant()
     {
         _role = EventParticipantRole.Participant;
 
         this.AddDomainEvent(new MemberSetAsParticipantDomainEvent(EventId, ParticipantId));
     }
 
-    internal void Remove(MemberId removingMemberId, string reason)
+    public void Remove(MemberId removingMemberId, string reason)
     {
         CheckRule(new ReasonOfRemovingParticipantFromEventMustBeProvidedRule(reason));
 
@@ -123,7 +123,7 @@ public class EventParticipant : BaseEntity
         this.AddDomainEvent(new EventParticipantRemovedDomainEvent(ParticipantId, EventId, reason));
     }
 
-    internal void MarkFeeAsPayed()
+    public void MarkFeeAsPayed()
     {
         _isFeePaid = true;
 

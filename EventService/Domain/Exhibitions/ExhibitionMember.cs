@@ -6,13 +6,13 @@ namespace EventService.Domain.Exhibitions;
 
 public class ExhibitionMember : BaseEntity
 {
-    internal ExhibitionId ExhibitionId { get; private set; }
+    public ExhibitionId ExhibitionId { get; private set; }
 
-    internal MemberId MemberId { get; private set; }
+    public MemberId MemberId { get; private set; }
 
     private ExhibitionMemberRole _role;
 
-    internal DateTime JoinedDate { get; private set; }
+    public DateTime JoinedDate { get; private set; }
 
     private bool _isActive;
 
@@ -38,7 +38,7 @@ public class ExhibitionMember : BaseEntity
         this.AddDomainEvent(new NewExhibitionMemberJoinedDomainEvent(ExhibitionId, MemberId, _role));
     }
 
-    internal static ExhibitionMember CreateNew(
+    public static ExhibitionMember CreateNew(
         ExhibitionId exhibitionId,
         MemberId memberId,
         ExhibitionMemberRole role)
@@ -46,7 +46,7 @@ public class ExhibitionMember : BaseEntity
         return new ExhibitionMember(exhibitionId, memberId, role);
     }
 
-    internal void Leave()
+    public void Leave()
     {
         _isActive = false;
         _leaveDate = DateTime.Now;
@@ -54,12 +54,12 @@ public class ExhibitionMember : BaseEntity
         this.AddDomainEvent(new ExhibitionMemberLeftGroupDomainEvent(ExhibitionId, MemberId));
     }
 
-    internal bool IsMember(MemberId memberId)
+    public bool IsMember(MemberId memberId)
     {
         return _isActive && MemberId == memberId;
     }
 
-    internal bool IsOrganizer(MemberId memberId)
+    public bool IsOrganizer(MemberId memberId)
     {
         return IsMember(memberId) && _role == ExhibitionMemberRole.Organizer;
     }

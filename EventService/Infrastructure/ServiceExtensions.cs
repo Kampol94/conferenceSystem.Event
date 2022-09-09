@@ -1,17 +1,22 @@
-using CompanyName.MyMeetings.Modules.Meetings.Infrastructure.Domain.MeetingComments;
-using CompanyName.MyMeetings.Modules.Meetings.Infrastructure.Domain.MeetingGroupProposals;
-using CompanyName.MyMeetings.Modules.Meetings.Infrastructure.Domain.Meetings;
-using CompanyName.MyMeetings.Modules.Meetings.Infrastructure.Domain.Members;
-using CompanyName.MyMeetings.Modules.Meetings.Infrastructure.Domain.Members.MemberSubscriptions;
+using EventService.Application.Contracts;
+using EventService.Application.Emails;
 using EventService.Domain.ConferenceSubscriptions;
 using EventService.Domain.EventReviews;
 using EventService.Domain.Events;
 using EventService.Domain.ExhibitionProposals;
 using EventService.Domain.Exhibitions;
 using EventService.Domain.Members;
+using EventService.Infrastructure.Domain.ConferenceSubscriptions;
+using EventService.Infrastructure.Domain.EventReviews;
+using EventService.Infrastructure.Domain.Events;
+using EventService.Infrastructure.Domain.ExhibitionProposals;
+using EventService.Infrastructure.Domain.Exhibitions;
+using EventService.Infrastructure.Domain.Members;
+using EventService.Infrastructure.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using System.Reflection.Metadata.Ecma335;
 
 namespace EventService.Infrastructure;
 
@@ -29,7 +34,10 @@ public static class ServiceExtensions
         services.AddTransient<IConferenceSubscriptionRepository, ConferenceSubscriptionRepository>();
         services.AddTransient<IEventReviewRepository, EventReviewRepository>();
         services.AddTransient<IExhibitionProposalRepository, ExhibitionProposalRepository>();
+        services.AddTransient<IExhibitionRepository, ExhibitionRepository>();
         services.AddTransient<IMemberRepository, MemberRepository>();
+        services.AddTransient<ISqlConnectionFactory, SqlConnectionFactory>(x => new SqlConnectionFactory(configuration.GetConnectionString("DefaultConnection")));
+        services.AddTransient<IEmailSender, EmailSender>();
 
         return services;
     }

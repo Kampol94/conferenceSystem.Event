@@ -1,8 +1,7 @@
 ﻿using EventService.Domain.Contracts;
-using EventService.Domain.ExhibitionProposals;
 using EventService.Domain.Members;
 
-namespace CompanyName.MyMeetings.Modules.Meetings.Domain.ExhibitionProposals.Events;
+namespace EventService.Domain.ExhibitionProposals.Events;
 
 public class ExhibitionProposedDomainEvent : DomainEventBase
 {
@@ -13,11 +12,11 @@ public class ExhibitionProposedDomainEvent : DomainEventBase
         MemberId proposalUserId,
         DateTime proposalDate)
     {
-        this.ExhibitionProposalId = exhibitionProposalId;
-        this.Name = name;
-        this.Description = description;
-        this.ProposalDate = proposalDate;
-        this.ProposalUserId = proposalUserId;
+        ExhibitionProposalId = exhibitionProposalId;
+        Name = name;
+        Description = description;
+        ProposalDate = proposalDate;
+        ProposalUserId = proposalUserId;
     }
 
     public ExhibitionProposalId ExhibitionProposalId { get; }

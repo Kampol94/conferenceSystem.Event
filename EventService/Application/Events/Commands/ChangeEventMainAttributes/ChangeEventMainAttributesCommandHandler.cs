@@ -5,7 +5,7 @@ using MediatR;
 
 namespace EventService.Application.Events.Commands.ChangeEventMainAttributes;
 
-internal class ChangeEventMainAttributesCommandHandler : ICommandHandler<ChangeEventMainAttributesCommand>
+public class ChangeEventMainAttributesCommandHandler : ICommandHandler<ChangeEventMainAttributesCommand>
 {
     private readonly IMemberContext _memberContext;
     private readonly IEventRepository _eventRepository;

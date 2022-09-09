@@ -4,7 +4,7 @@ using EventService.Application.Contracts.Queries;
 
 namespace EventService.Application.Exhibition.Queries.GetAuthenticationMemberExhibition;
 
-internal class GetAuthenticationMemberExhibitionsQueryHandler :
+public class GetAuthenticationMemberExhibitionsQueryHandler :
     IQueryHandler<GetAuthenticationMemberExhibitionsQuery, List<MemberExhibitionDto>>
 {
     private readonly ISqlConnectionFactory _sqlConnectionFactory;

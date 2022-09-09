@@ -15,11 +15,11 @@ public class EditExhibitionGeneralAttributesCommand : CommandBase
 
     public string LocationCountry { get; }
 
-    internal Guid ExhibitionId { get; }
+    public Guid ExhibitionId { get; }
 
-    internal string Name { get; }
+    public string Name { get; }
 
-    internal string Description { get; }
+    public string Description { get; }
 
-    internal string LocationCity { get; }
+    public string LocationCity { get; }
 }

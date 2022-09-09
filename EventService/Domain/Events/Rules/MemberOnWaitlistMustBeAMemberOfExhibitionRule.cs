@@ -10,7 +10,7 @@ public class MemberOnWaitlistMustBeAMemberOfExhibitionRule : IBaseBusinessRule
 
     private readonly MemberId _memberId;
 
-    internal MemberOnWaitlistMustBeAMemberOfExhibitionRule(Exhibition exhibition, MemberId memberId)
+    public MemberOnWaitlistMustBeAMemberOfExhibitionRule(Exhibition exhibition, MemberId memberId)
         : base()
     {
         _exhibition = exhibition;

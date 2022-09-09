@@ -7,14 +7,14 @@ using MediatR;
 
 namespace EventService.Application.EventReviews.Commands.RemoveEventReview;
 
-internal class RemoveEventReviewsCommandHandler : ICommandHandler<RemoveEventReviewsCommand>
+public class RemoveEventReviewsCommandHandler : ICommandHandler<RemoveEventReviewsCommand>
 {
     private readonly IEventRepository _eventRepository;
     private readonly IEventReviewRepository _eventReviewsRepository;
     private readonly IExhibitionRepository _exhibitionRepository;
     private readonly IMemberContext _memberContext;
 
-    internal RemoveEventReviewsCommandHandler(IEventRepository eventRepository,
+    public RemoveEventReviewsCommandHandler(IEventRepository eventRepository,
         IEventReviewRepository eventReviewsRepository,
         IExhibitionRepository exhibitionRepository,
         IMemberContext memberContext)

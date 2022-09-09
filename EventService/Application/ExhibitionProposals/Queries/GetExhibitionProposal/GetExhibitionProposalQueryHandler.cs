@@ -4,7 +4,7 @@ using EventService.Application.Contracts.Queries;
 
 namespace EventService.Application.ExhibitionProposals.Queries.GetExhibitionProposal;
 
-internal class GetExhibitionProposalQueryHandler : IQueryHandler<GetExhibitionProposalQuery, ExhibitionProposalDto>
+public class GetExhibitionProposalQueryHandler : IQueryHandler<GetExhibitionProposalQuery, ExhibitionProposalDto>
 {
     private readonly ISqlConnectionFactory _sqlConnectionFactory;
 

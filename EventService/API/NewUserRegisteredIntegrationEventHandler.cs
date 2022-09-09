@@ -1,6 +1,4 @@
-﻿
-
-namespace EventService.Application.Members.CreateMember;
+﻿namespace EventService.API;
 
 public class NewUserRegisteredIntegrationEventHandler
 {

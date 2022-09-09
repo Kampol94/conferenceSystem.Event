@@ -2,13 +2,13 @@
 
 namespace EventService.Domain.Events.Rules;
 
-internal class ParticipantsLimitCannotBeChangedToSmallerThanActiveParticipantsRule : IBaseBusinessRule
+public class ParticipantsLimitCannotBeChangedToSmallerThanActiveParticipantsRule : IBaseBusinessRule
 {
     private readonly int? _participantsLimit;
 
     private readonly int _allActiveParticipantsWithGuestsNumber;
 
-    internal ParticipantsLimitCannotBeChangedToSmallerThanActiveParticipantsRule(
+    public ParticipantsLimitCannotBeChangedToSmallerThanActiveParticipantsRule(
         EventLimits eventLimits,
         int allActiveParticipantsWithGuestsNumber)
     {

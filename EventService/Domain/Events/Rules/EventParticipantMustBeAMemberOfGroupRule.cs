@@ -10,7 +10,7 @@ public class EventParticipantMustBeAMemberOfExhibitionRule : IBaseBusinessRule
 
     private readonly MemberId _participantId;
 
-    internal EventParticipantMustBeAMemberOfExhibitionRule(MemberId participantId, Exhibition exhibition)
+    public EventParticipantMustBeAMemberOfExhibitionRule(MemberId participantId, Exhibition exhibition)
     {
         _participantId = participantId;
         _exhibition = exhibition;

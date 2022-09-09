@@ -4,11 +4,11 @@ using EventService.Application.Contracts.Queries;
 
 namespace EventService.Application.Exhibition.Queries.GetAllExhibitions;
 
-internal class GetAllExhibitionsQueryHandler : IQueryHandler<GetAllExhibitionsQuery, List<ExhibitionDto>>
+public class GetAllExhibitionsQueryHandler : IQueryHandler<GetAllExhibitionsQuery, List<ExhibitionDto>>
 {
     private readonly ISqlConnectionFactory _sqlConnectionFactory;
 
-    internal GetAllExhibitionsQueryHandler(ISqlConnectionFactory sqlConnectionFactory)
+    public GetAllExhibitionsQueryHandler(ISqlConnectionFactory sqlConnectionFactory)
     {
         _sqlConnectionFactory = sqlConnectionFactory;
     }

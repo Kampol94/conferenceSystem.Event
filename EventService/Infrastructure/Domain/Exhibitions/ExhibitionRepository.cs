@@ -1,14 +1,13 @@
 ﻿using EventService.Domain.Exhibitions;
-using EventService.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 
-namespace CompanyName.MyMeetings.Modules.Meetings.Infrastructure.Domain.MeetingGroups;
+namespace EventService.Infrastructure.Domain.Exhibitions;
 
-internal class ExhibitionRepository : IExhibitionRepository
+public class ExhibitionRepository : IExhibitionRepository
 {
     private readonly EventsContext _meetingsContext;
 
-    internal ExhibitionRepository(EventsContext meetingsContext)
+    public ExhibitionRepository(EventsContext meetingsContext)
     {
         _meetingsContext = meetingsContext;
     }

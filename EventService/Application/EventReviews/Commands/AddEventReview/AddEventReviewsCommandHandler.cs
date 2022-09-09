@@ -6,7 +6,7 @@ using EventService.Domain.Members;
 
 namespace EventService.Application.EventReviews.Commands.AddEventReview;
 
-internal class AddEventReviewsCommandHandler : ICommandHandler<AddEventReviewsCommand, Guid>
+public class AddEventReviewsCommandHandler : ICommandHandler<AddEventReviewsCommand, Guid>
 {
     private readonly IEventRepository _eventRepository;
     private readonly IEventReviewRepository _eventReviewsRepository;

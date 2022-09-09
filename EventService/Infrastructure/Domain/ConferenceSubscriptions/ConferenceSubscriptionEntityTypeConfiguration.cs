@@ -2,9 +2,9 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace CompanyName.MyMeetings.Modules.Meetings.Infrastructure.Domain.Members.MemberSubscriptions;
+namespace EventService.Infrastructure.Domain.ConferenceSubscriptions;
 
-internal class ConferenceSubscriptionEntityTypeConfiguration : IEntityTypeConfiguration<ConferenceSubscription>
+public class ConferenceSubscriptionEntityTypeConfiguration : IEntityTypeConfiguration<ConferenceSubscription>
 {
     public void Configure(EntityTypeBuilder<ConferenceSubscription> builder)
     {

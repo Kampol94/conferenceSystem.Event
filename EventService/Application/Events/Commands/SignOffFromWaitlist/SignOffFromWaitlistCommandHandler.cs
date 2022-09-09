@@ -5,7 +5,7 @@ using MediatR;
 
 namespace EventService.Application.Events.Commands.SignOffFromWaitlist;
 
-internal class SignOffFromWaitlistCommandHandler : ICommandHandler<SignOffFromWaitlistCommand>
+public class SignOffFromWaitlistCommandHandler : ICommandHandler<SignOffFromWaitlistCommand>
 {
     private readonly IMemberContext _memberContext;
     private readonly IEventRepository _eventRepository;

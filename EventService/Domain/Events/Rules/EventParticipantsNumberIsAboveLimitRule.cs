@@ -8,7 +8,7 @@ public class EventParticipantsNumberIsAboveLimitRule : IBaseBusinessRule
 
     private readonly int _allActiveParticipants;
 
-    internal EventParticipantsNumberIsAboveLimitRule(
+    public EventParticipantsNumberIsAboveLimitRule(
         int? participantsLimit,
         int allActiveParticipants)
     {

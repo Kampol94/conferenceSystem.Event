@@ -1,14 +1,12 @@
 ﻿using EventService.Domain.ConferenceSubscriptions;
-using EventService.Infrastructure;
-using Microsoft.EntityFrameworkCore;
 
-namespace CompanyName.MyMeetings.Modules.Meetings.Infrastructure.Domain.Members.MemberSubscriptions;
+namespace EventService.Infrastructure.Domain.ConferenceSubscriptions;
 
-internal class ConferenceSubscriptionRepository : IConferenceSubscriptionRepository
+public class ConferenceSubscriptionRepository : IConferenceSubscriptionRepository
 {
     private readonly EventsContext _meetingsContext;
 
-    internal ConferenceSubscriptionRepository(EventsContext meetingsContext)
+    public ConferenceSubscriptionRepository(EventsContext meetingsContext)
     {
         _meetingsContext = meetingsContext;
     }

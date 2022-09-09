@@ -3,13 +3,13 @@ using EventService.Domain.Members;
 
 namespace EventService.Domain.Events.Rules;
 
-internal class OnlyEventParticipantCanHaveChangedRoleRule : IBaseBusinessRule
+public class OnlyEventParticipantCanHaveChangedRoleRule : IBaseBusinessRule
 {
     private readonly List<EventParticipant> _participants;
 
     private readonly MemberId _newOrganizerId;
 
-    internal OnlyEventParticipantCanHaveChangedRoleRule(List<EventParticipant> participants, MemberId newOrganizerId)
+    public OnlyEventParticipantCanHaveChangedRoleRule(List<EventParticipant> participants, MemberId newOrganizerId)
     {
         _participants = participants;
         _newOrganizerId = newOrganizerId;

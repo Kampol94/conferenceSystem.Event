@@ -23,7 +23,7 @@ public class Exhibition : BaseEntity
 
     private DateTime? _paymentDateTo;
 
-    internal static Exhibition CreateBasedOnProposal(
+    public static Exhibition CreateBasedOnProposal(
         ExhibitionProposalId exhibitionProposalId,
         string name,
         string description,
@@ -109,12 +109,12 @@ public class Exhibition : BaseEntity
             creatorId);
     }
 
-    internal bool IsMemberOfGroup(MemberId attendeeId)
+    public bool IsMemberOfGroup(MemberId attendeeId)
     {
         return _members.Any(x => x.IsMember(attendeeId));
     }
 
-    internal bool IsOrganizer(MemberId memberId)
+    public bool IsOrganizer(MemberId memberId)
     {
         return _members.Any(x => x.IsOrganizer(memberId));
     }

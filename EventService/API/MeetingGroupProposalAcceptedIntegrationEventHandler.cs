@@ -1,5 +1,4 @@
-﻿
-namespace CompanyName.MyMeetings.Modules.Meetings.Application.MeetingGroupProposals;
+﻿namespace EventService.API;
 
 public class MeetingGroupProposalAcceptedIntegrationEventHandler
 {

@@ -5,7 +5,7 @@ using MediatR;
 
 namespace EventService.Application.Events.Commands.MarkEventParticipantFeeAsPayed;
 
-internal class MarkEventParticipantFeeAsPayedCommandHandler : ICommandHandler<MarkEventParticipantFeeAsPayedCommand>
+public class MarkEventParticipantFeeAsPayedCommandHandler : ICommandHandler<MarkEventParticipantFeeAsPayedCommand>
 {
     private readonly IEventRepository _eventRepository;
 

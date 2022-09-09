@@ -4,7 +4,7 @@ using MediatR;
 
 namespace EventService.Application.Exhibition.DomainEventHandlers;
 
-internal class ExhibitionCreatedSendEmailHandler : INotificationHandler<ExhibitionCreatedDomainEvent>
+public class ExhibitionCreatedSendEmailHandler : INotificationHandler<ExhibitionCreatedDomainEvent>
 {
     private readonly IMediator _mediator;
 

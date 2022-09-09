@@ -1,13 +1,12 @@
 ﻿using EventService.Domain.Events;
-using EventService.Infrastructure;
 
-namespace CompanyName.MyMeetings.Modules.Meetings.Infrastructure.Domain.Meetings
+namespace EventService.Infrastructure.Domain.Events
 {
-    internal class EventRepository : IEventRepository
+    public class EventRepository : IEventRepository
     {
         private readonly EventsContext _meetingsContext;
 
-        internal EventRepository(EventsContext meetingsContext)
+        public EventRepository(EventsContext meetingsContext)
         {
             _meetingsContext = meetingsContext;
         }

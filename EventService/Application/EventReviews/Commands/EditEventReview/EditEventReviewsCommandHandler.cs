@@ -5,12 +5,12 @@ using MediatR;
 
 namespace EventService.Application.EventReviews.Commands.EditEventReview;
 
-internal class EditEventReviewsCommandHandler : ICommandHandler<EditEventReviewsCommand>
+public class EditEventReviewsCommandHandler : ICommandHandler<EditEventReviewsCommand>
 {
     private readonly IEventReviewRepository _eventReviewsRepository;
     private readonly IMemberContext _memberContext;
 
-    internal EditEventReviewsCommandHandler(
+    public EditEventReviewsCommandHandler(
         IEventReviewRepository eventReviewsRepository,
         IMemberContext memberContext)
     {

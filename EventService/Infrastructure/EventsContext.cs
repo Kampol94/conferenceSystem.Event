@@ -1,12 +1,10 @@
 ﻿using EventService.Domain.ConferenceSubscriptions;
-using EventService.Domain.Contracts;
 using EventService.Domain.EventReviews;
 using EventService.Domain.Events;
 using EventService.Domain.ExhibitionProposals;
 using EventService.Domain.Exhibitions;
 using EventService.Domain.Members;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Microsoft.Extensions.Logging;
 
 namespace EventService.Infrastructure;

@@ -2,7 +2,7 @@
 
 namespace EventService.Domain.Contracts.Exceptions;
 [Serializable]
-internal class BusinessRuleValidationException : Exception
+public class BusinessRuleValidationException : Exception
 {
     private IBaseBusinessRule _rule;
 

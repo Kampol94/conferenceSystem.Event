@@ -5,12 +5,12 @@ using MediatR;
 
 namespace EventService.Application.Exhibition.Commands.JoinToExhibition;
 
-internal class JoinToExhibitionCommandHandler : ICommandHandler<JoinToExhibitionCommand>
+public class JoinToExhibitionCommandHandler : ICommandHandler<JoinToExhibitionCommand>
 {
     private readonly IExhibitionRepository _exhibitionRepository;
     private readonly IMemberContext _memberContext;
 
-    internal JoinToExhibitionCommandHandler(
+    public JoinToExhibitionCommandHandler(
         IExhibitionRepository exhibitionRepository,
         IMemberContext memberContext)
     {

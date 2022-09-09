@@ -1,5 +1,4 @@
-﻿using CompanyName.MyMeetings.Modules.Meetings.Domain.ExhibitionProposals.Events;
-using EventService.Domain.Contracts;
+﻿using EventService.Domain.Contracts;
 using EventService.Domain.ExhibitionProposals.Events;
 using EventService.Domain.ExhibitionProposals.Rules;
 using EventService.Domain.Exhibitions;

@@ -2,7 +2,7 @@
 
 namespace EventService.Application.EventReviews.Commands.AddEventReview;
 
-internal class AddEventReviewsCommandValidator : AbstractValidator<AddEventReviewsCommand>
+public class AddEventReviewsCommandValidator : AbstractValidator<AddEventReviewsCommand>
 {
     public AddEventReviewsCommandValidator()
     {

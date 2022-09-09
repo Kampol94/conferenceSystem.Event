@@ -100,7 +100,7 @@ public class EventReview : BaseEntity
 
     public EventId GetEventId() => _eventId;
 
-    internal static EventReview Create(
+    public static EventReview Create(
         EventId eventId,
         MemberId authorId,
         string review,

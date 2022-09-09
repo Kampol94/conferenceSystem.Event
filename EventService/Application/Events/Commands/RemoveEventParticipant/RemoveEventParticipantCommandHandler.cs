@@ -5,12 +5,12 @@ using MediatR;
 
 namespace EventService.Application.Events.Commands.RemoveEventParticipant;
 
-internal class RemoveEventParticipantCommandHandler : ICommandHandler<RemoveEventParticipantCommand>
+public class RemoveEventParticipantCommandHandler : ICommandHandler<RemoveEventParticipantCommand>
 {
     private readonly IEventRepository _eventRepository;
     private readonly IMemberContext _memberContext;
 
-    internal RemoveEventParticipantCommandHandler(IEventRepository eventRepository, IMemberContext memberContext)
+    public RemoveEventParticipantCommandHandler(IEventRepository eventRepository, IMemberContext memberContext)
     {
         _eventRepository = eventRepository;
         _memberContext = memberContext;

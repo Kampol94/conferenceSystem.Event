@@ -6,7 +6,7 @@ using MediatR;
 
 namespace EventService.Application.Events.Commands.RegisterToEvent;
 
-internal class RegisterToEventCommandHandler : ICommandHandler<RegisterToEventCommand>
+public class RegisterToEventCommandHandler : ICommandHandler<RegisterToEventCommand>
 {
     private readonly IMemberContext _memberContext;
     private readonly IEventRepository _eventRepository;

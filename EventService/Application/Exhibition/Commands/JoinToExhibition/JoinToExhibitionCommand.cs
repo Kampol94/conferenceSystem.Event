@@ -9,5 +9,5 @@ public class JoinToExhibitionCommand : CommandBase
         ExhibitionId = exhibitionId;
     }
 
-    internal Guid ExhibitionId { get; }
+    public Guid ExhibitionId { get; }
 }

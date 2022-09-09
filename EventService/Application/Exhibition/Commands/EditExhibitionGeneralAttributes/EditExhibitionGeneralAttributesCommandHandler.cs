@@ -5,12 +5,12 @@ using MediatR;
 
 namespace EventService.Application.Exhibition.Commands.EditExhibitionGeneralAttributes;
 
-internal class EditExhibitionGeneralAttributesCommandHandler : ICommandHandler<EditExhibitionGeneralAttributesCommand>
+public class EditExhibitionGeneralAttributesCommandHandler : ICommandHandler<EditExhibitionGeneralAttributesCommand>
 {
     private readonly IMemberContext _memberContext;
     private readonly IExhibitionRepository _exhibitionRepository;
 
-    internal EditExhibitionGeneralAttributesCommandHandler(IMemberContext memberContext, IExhibitionRepository exhibitionRepository)
+    public EditExhibitionGeneralAttributesCommandHandler(IMemberContext memberContext, IExhibitionRepository exhibitionRepository)
     {
         _memberContext = memberContext;
         _exhibitionRepository = exhibitionRepository;

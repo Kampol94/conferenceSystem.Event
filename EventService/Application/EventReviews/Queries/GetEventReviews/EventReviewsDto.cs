@@ -1,4 +1,4 @@
-﻿namespace EventService.Application.EventReviews.Queries.GetMeetingComments;
+﻿namespace EventService.Application.EventReviews.Queries.GetEventReviews;
 
 public class EventReviewsDto
 {

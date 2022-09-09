@@ -1,1 +1,1 @@
-﻿namespace CompanyName.MyMeetings.Modules.Meetings.Application.ConferenceSubscriptions;
+﻿namespace EventService.API;

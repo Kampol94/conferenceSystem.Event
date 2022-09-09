@@ -6,11 +6,11 @@ public class ExhibitionProposalStatus : ValueObject
 {
     public string Value { get; }
 
-    internal static ExhibitionProposalStatus InVerification => new("InVerification");
+    public static ExhibitionProposalStatus InVerification => new("InVerification");
 
-    internal static ExhibitionProposalStatus Accepted => new("Accepted");
+    public static ExhibitionProposalStatus Accepted => new("Accepted");
 
-    internal bool IsAccepted => Value == "Accepted";
+    public bool IsAccepted => Value == "Accepted";
 
     private ExhibitionProposalStatus(string value)
     {

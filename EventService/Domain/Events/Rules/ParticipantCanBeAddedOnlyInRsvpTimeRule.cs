@@ -6,7 +6,7 @@ public class ParticipantCanBeAddedOnlyInRsvpTimeRule : IBaseBusinessRule
 {
     private readonly RsvpTime _rsvpTime;
 
-    internal ParticipantCanBeAddedOnlyInRsvpTimeRule(RsvpTime rsvpTime)
+    public ParticipantCanBeAddedOnlyInRsvpTimeRule(RsvpTime rsvpTime)
     {
         _rsvpTime = rsvpTime;
     }

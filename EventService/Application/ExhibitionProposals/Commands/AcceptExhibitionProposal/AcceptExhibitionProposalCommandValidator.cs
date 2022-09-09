@@ -2,7 +2,7 @@
 
 namespace EventService.Application.ExhibitionProposals.Commands.AcceptExhibitionProposal;
 
-internal class AcceptExhibitionProposalCommandValidator : AbstractValidator<AcceptExhibitionProposalCommand>
+public class AcceptExhibitionProposalCommandValidator : AbstractValidator<AcceptExhibitionProposalCommand>
 {
     public AcceptExhibitionProposalCommandValidator()
     {

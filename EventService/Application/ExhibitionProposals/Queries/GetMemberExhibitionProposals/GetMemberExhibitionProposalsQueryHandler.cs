@@ -6,7 +6,7 @@ using EventService.Domain.Members;
 
 namespace EventService.Application.ExhibitionProposals.Queries.GetMemberExhibitionProposals;
 
-internal class GetMemberExhibitionProposalsQueryHandler : IQueryHandler<GetMemberExhibitionProposalsQuery, List<ExhibitionProposalDto>>
+public class GetMemberExhibitionProposalsQueryHandler : IQueryHandler<GetMemberExhibitionProposalsQuery, List<ExhibitionProposalDto>>
 {
     private readonly ISqlConnectionFactory _sqlConnectionFactory;
 

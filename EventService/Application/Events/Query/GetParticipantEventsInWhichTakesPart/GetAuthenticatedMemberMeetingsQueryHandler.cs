@@ -4,7 +4,7 @@ using EventService.Application.Contracts.Queries;
 
 namespace EventService.Application.Events.Query.GetParticipantEventsInWhichTakesPart;
 
-internal class GetParticipantEventsInWhichTakesPartQueryHandler : IQueryHandler<GetParticipantEventsInWhichTakesPartQuery, List<GetParticipantEventsInWhichTakesPartResponse>>
+public class GetParticipantEventsInWhichTakesPartQueryHandler : IQueryHandler<GetParticipantEventsInWhichTakesPartQuery, List<GetParticipantEventsInWhichTakesPartResponse>>
 {
     private readonly ISqlConnectionFactory _sqlConnectionFactory;
 

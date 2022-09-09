@@ -5,12 +5,12 @@ using MediatR;
 
 namespace EventService.Application.Exhibition.Commands.LeaveExhibition;
 
-internal class LeaveExhibitionCommandHandler : ICommandHandler<LeaveExhibitionCommand>
+public class LeaveExhibitionCommandHandler : ICommandHandler<LeaveExhibitionCommand>
 {
     private readonly IExhibitionRepository _exhibitionRepository;
     private readonly IMemberContext _memberContext;
 
-    internal LeaveExhibitionCommandHandler(
+    public LeaveExhibitionCommandHandler(
         IExhibitionRepository exhibitionRepository,
         IMemberContext memberContext)
     {

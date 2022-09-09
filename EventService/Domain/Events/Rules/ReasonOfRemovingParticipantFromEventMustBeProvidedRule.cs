@@ -6,7 +6,7 @@ public class ReasonOfRemovingParticipantFromEventMustBeProvidedRule : IBaseBusin
 {
     private readonly string _reason;
 
-    internal ReasonOfRemovingParticipantFromEventMustBeProvidedRule(string reason)
+    public ReasonOfRemovingParticipantFromEventMustBeProvidedRule(string reason)
     {
         _reason = reason;
     }

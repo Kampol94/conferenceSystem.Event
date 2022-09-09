@@ -1,4 +1,4 @@
-﻿using CompanyName.MyMeetings.Modules.Meetings.Domain.ExhibitionProposals.Events;
+﻿using EventService.Domain.ExhibitionProposals.Events;
 using MediatR;
 
 namespace EventService.Application.ExhibitionProposals.DomainEventHandlers;

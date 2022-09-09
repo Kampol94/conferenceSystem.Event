@@ -5,13 +5,13 @@ using EventService.Domain.Members;
 
 namespace EventService.Application.Events.Commands.CreateEvent;
 
-internal class CreateEventCommandHandler : ICommandHandler<CreateEventCommand, Guid>
+public class CreateEventCommandHandler : ICommandHandler<CreateEventCommand, Guid>
 {
     private readonly IMemberContext _memberContext;
     private readonly IEventRepository _eventRepository;
     private readonly IExhibitionRepository _exhibitionRepository;
 
-    internal CreateEventCommandHandler(
+    public CreateEventCommandHandler(
         IMemberContext memberContext,
         IEventRepository eventRepository,
         IExhibitionRepository exhibitionRepository)

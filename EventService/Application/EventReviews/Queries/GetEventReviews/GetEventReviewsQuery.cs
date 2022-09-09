@@ -1,6 +1,6 @@
 ﻿using EventService.Application.Contracts.Queries;
 
-namespace EventService.Application.EventReviews.Queries.GetMeetingComments;
+namespace EventService.Application.EventReviews.Queries.GetEventReviews;
 
 public class GetEventReviewsQuery : QueryBase<List<EventReviewsDto>>
 {

@@ -11,5 +11,5 @@ public class CreateNewExhibitionCommand : CommandBase
         this.ExhibitionProposalId = ExhibitionProposalId;
     }
 
-    internal ExhibitionProposalId ExhibitionProposalId { get; }
+    public ExhibitionProposalId ExhibitionProposalId { get; }
 }

@@ -1,12 +1,7 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using EventService.Application.ExhibitionProposals.Commands.AcceptExhibitionProposal;
-using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
-namespace API.Controllers;
+namespace EventService.API.Controllers;
 
 public class TestController : BaseApiController
 {

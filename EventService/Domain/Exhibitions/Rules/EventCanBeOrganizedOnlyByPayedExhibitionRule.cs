@@ -6,7 +6,7 @@ public class EventCanBeOrganizedOnlyByPayedExhibitionRule : IBaseBusinessRule
 {
     private readonly DateTime? _paymentDateTo;
 
-    internal EventCanBeOrganizedOnlyByPayedExhibitionRule(DateTime? paymentDateTo)
+    public EventCanBeOrganizedOnlyByPayedExhibitionRule(DateTime? paymentDateTo)
     {
         _paymentDateTo = paymentDateTo;
     }

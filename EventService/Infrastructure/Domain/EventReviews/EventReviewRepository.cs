@@ -1,7 +1,6 @@
 ﻿using EventService.Domain.EventReviews;
-using EventService.Infrastructure;
 
-namespace CompanyName.MyMeetings.Modules.Meetings.Infrastructure.Domain.MeetingComments;
+namespace EventService.Infrastructure.Domain.EventReviews;
 
 public class EventReviewRepository : IEventReviewRepository
 {

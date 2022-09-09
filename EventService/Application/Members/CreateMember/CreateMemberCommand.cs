@@ -22,15 +22,15 @@ public class CreateMemberCommand : CommandBase
         Name = name;
     }
 
-    internal Guid MemberId { get; }
+    public Guid MemberId { get; }
 
-    internal string Login { get; }
+    public string Login { get; }
 
-    internal string Email { get; }
+    public string Email { get; }
 
-    internal string FirstName { get; }
+    public string FirstName { get; }
 
-    internal string LastName { get; }
+    public string LastName { get; }
 
-    internal string Name { get; }
+    public string Name { get; }
 }

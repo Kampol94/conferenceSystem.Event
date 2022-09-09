@@ -6,14 +6,14 @@ using EventService.Domain.Members;
 
 namespace EventService.Application.EventReviews.Commands.AddEventReviewtReply;
 
-internal class AddReplyToEventReviewsCommandHandler : ICommandHandler<AddReplyToEventReviewsCommand, Guid>
+public class AddReplyToEventReviewsCommandHandler : ICommandHandler<AddReplyToEventReviewsCommand, Guid>
 {
     private readonly IEventRepository _eventRepository;
     private readonly IEventReviewRepository _eventReviewsRepository;
     private readonly IExhibitionRepository _exhibitionRepository;
     private readonly IMemberContext _memberContext;
 
-    internal AddReplyToEventReviewsCommandHandler(
+    public AddReplyToEventReviewsCommandHandler(
         IEventRepository eventRepository,
         IEventReviewRepository eventReviewsRepository,
         IExhibitionRepository exhibitionRepository,

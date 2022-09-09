@@ -4,12 +4,12 @@ using EventService.Domain.Members;
 
 namespace EventService.Application.ExhibitionProposals.Commands.ProposeExhibition;
 
-internal class ProposeExhibitionCommandHandler : ICommandHandler<ProposeExhibitionCommand, Guid>
+public class ProposeExhibitionCommandHandler : ICommandHandler<ProposeExhibitionCommand, Guid>
 {
     private readonly IExhibitionProposalRepository _exhibitionProposalRepository;
     private readonly IMemberContext _memberContext;
 
-    internal ProposeExhibitionCommandHandler(
+    public ProposeExhibitionCommandHandler(
         IExhibitionProposalRepository exhibitionProposalRepository,
         IMemberContext memberContext)
     {

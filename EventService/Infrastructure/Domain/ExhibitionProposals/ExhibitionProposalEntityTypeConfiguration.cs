@@ -3,9 +3,9 @@ using EventService.Domain.Members;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace CompanyName.MyMeetings.Modules.Meetings.Infrastructure.Domain.MeetingGroupProposals;
+namespace EventService.Infrastructure.Domain.ExhibitionProposals;
 
-internal class ExhibitionProposalEntityTypeConfiguration : IEntityTypeConfiguration<ExhibitionProposal>
+public class ExhibitionProposalEntityTypeConfiguration : IEntityTypeConfiguration<ExhibitionProposal>
 {
     public void Configure(EntityTypeBuilder<ExhibitionProposal> builder)
     {

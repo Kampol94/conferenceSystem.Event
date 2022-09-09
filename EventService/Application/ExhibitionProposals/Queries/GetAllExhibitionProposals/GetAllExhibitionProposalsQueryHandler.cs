@@ -5,7 +5,7 @@ using EventService.Application.ExhibitionProposals.Queries.GetExhibitionProposal
 
 namespace EventService.Application.ExhibitionProposals.Queries.GetAllExhibitionProposals;
 
-internal class GetAllExhibitionProposalsQueryHandler : IQueryHandler<GetAllExhibitionProposalsQuery, List<ExhibitionProposalDto>>
+public class GetAllExhibitionProposalsQueryHandler : IQueryHandler<GetAllExhibitionProposalsQuery, List<ExhibitionProposalDto>>
 {
     private readonly ISqlConnectionFactory _sqlConnectionFactory;
 

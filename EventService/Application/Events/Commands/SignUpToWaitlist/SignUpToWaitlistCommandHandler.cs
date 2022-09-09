@@ -6,7 +6,7 @@ using EventService.Domain.Exhibitions;
 
 namespace EventService.Application.Events.Commands.SignUpToWaitlist;
 
-internal class SignUpToWaitlistCommandHandler : ICommandHandler<SignUpToWaitlistCommand>
+public class SignUpToWaitlistCommandHandler : ICommandHandler<SignUpToWaitlistCommand>
 {
     private readonly IMemberContext _memberContext;
     private readonly IEventRepository _eventRepository;

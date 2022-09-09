@@ -12,7 +12,7 @@ public class SetExhibitionExpirationDateCommand : CommandBase
         DateTo = dateTo;
     }
 
-    internal ExhibitionId ExhibitionId { get; }
+    public ExhibitionId ExhibitionId { get; }
 
-    internal DateTime DateTo { get; }
+    public DateTime DateTo { get; }
 }

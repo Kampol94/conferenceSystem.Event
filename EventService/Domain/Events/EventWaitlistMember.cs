@@ -6,11 +6,11 @@ namespace EventService.Domain.Events;
 
 public class EventWaiteListMember : BaseEntity
 {
-    internal MemberId MemberId { get; private set; }
+    public MemberId MemberId { get; private set; }
 
-    internal EventId EventId { get; private set; }
+    public EventId EventId { get; private set; }
 
-    internal DateTime SignUpDate { get; private set; }
+    public DateTime SignUpDate { get; private set; }
 
     private bool _isSignedOff;
 
@@ -37,28 +37,28 @@ public class EventWaiteListMember : BaseEntity
         AddDomainEvent(new EventWaitlistMemberAddedDomainEvent(EventId, MemberId));
     }
 
-    internal static EventWaiteListMember CreateNew(EventId eventId, MemberId memberId)
+    public static EventWaiteListMember CreateNew(EventId eventId, MemberId memberId)
     {
         return new EventWaiteListMember(eventId, memberId);
     }
 
-    internal void MarkIsMovedToParticipants()
+    public void MarkIsMovedToParticipants()
     {
         _isMovedToParticipants = true;
         _movedToParticipantsDate = DateTime.Now; //TODO: add time provider for test proposes 
     }
 
-    internal bool IsActiveOnWaitList(MemberId memberId)
+    public bool IsActiveOnWaitList(MemberId memberId)
     {
         return MemberId == memberId && IsActive();
     }
 
-    internal bool IsActive()
+    public bool IsActive()
     {
         return !_isSignedOff && !_isMovedToParticipants;
     }
 
-    internal void SignOff()
+    public void SignOff()
     {
         _isSignedOff = true;
         _signOffDate = DateTime.Now; //TODO: add time provider for test proposes 

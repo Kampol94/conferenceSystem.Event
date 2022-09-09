@@ -9,7 +9,7 @@ public class MemberCannotBeMoreThanOnceOnEventWaitlistRule : IBaseBusinessRule
 
     private readonly MemberId _memberId;
 
-    internal MemberCannotBeMoreThanOnceOnEventWaitlistRule(List<EventWaiteListMember> waitListMembers, MemberId memberId)
+    public MemberCannotBeMoreThanOnceOnEventWaitlistRule(List<EventWaiteListMember> waitListMembers, MemberId memberId)
     {
         _waitListMembers = waitListMembers;
         _memberId = memberId;

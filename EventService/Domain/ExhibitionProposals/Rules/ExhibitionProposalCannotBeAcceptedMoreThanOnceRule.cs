@@ -6,7 +6,7 @@ public class ExhibitionProposalCannotBeAcceptedMoreThanOnceRule : IBaseBusinessR
 {
     private readonly ExhibitionProposalStatus _actualStatus;
 
-    internal ExhibitionProposalCannotBeAcceptedMoreThanOnceRule(ExhibitionProposalStatus actualStatus)
+    public ExhibitionProposalCannotBeAcceptedMoreThanOnceRule(ExhibitionProposalStatus actualStatus)
     {
         _actualStatus = actualStatus;
     }

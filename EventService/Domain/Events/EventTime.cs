@@ -19,7 +19,7 @@ public class EventTime : ValueObject
         EndDate = endDate;
     }
 
-    internal bool IsAfterStart()
+    public bool IsAfterStart()
     {
         return DateTime.Now > StartDate; //TODO: add time provider for test proposes 
     }

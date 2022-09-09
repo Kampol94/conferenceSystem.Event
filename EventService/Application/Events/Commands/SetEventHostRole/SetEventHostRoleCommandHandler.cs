@@ -6,13 +6,13 @@ using MediatR;
 
 namespace EventService.Application.Events.Commands.SetEventHostRole;
 
-internal class SetEventHostRoleCommandHandler : ICommandHandler<SetEventHostRoleCommand>
+public class SetEventHostRoleCommandHandler : ICommandHandler<SetEventHostRoleCommand>
 {
     private readonly IMemberContext _memberContext;
     private readonly IEventRepository _eventRepository;
     private readonly IExhibitionRepository _exhibitionRepository;
 
-    internal SetEventHostRoleCommandHandler(
+    public SetEventHostRoleCommandHandler(
         IMemberContext memberContext,
         IEventRepository eventRepository,
         IExhibitionRepository exhibitionRepository)

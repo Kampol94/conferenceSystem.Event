@@ -2,9 +2,9 @@
 using EventService.Application.Contracts;
 using EventService.Application.Contracts.Queries;
 
-namespace EventService.Application.EventReviews.Queries.GetMeetingComments;
+namespace EventService.Application.EventReviews.Queries.GetEventReviews;
 
-internal class GetEventReviewsQueryHandler : IQueryHandler<GetEventReviewsQuery, List<EventReviewsDto>>
+public class GetEventReviewsQueryHandler : IQueryHandler<GetEventReviewsQuery, List<EventReviewsDto>>
 {
     private readonly ISqlConnectionFactory _sqlConnectionFactory;
 
