@@ -12,7 +12,8 @@ public class EventEntityTypeConfiguration : IEntityTypeConfiguration<Event>
     {
         builder.ToTable("Events", "events");
 
-        builder.HasKey(x => x.Id);
+        builder.Property<EventId>("Id").HasConversion(v => v.Value, c => new EventId(c));
+        builder.HasKey("Id");
 
         builder.Property<ExhibitionId>("_exhibitionId").HasColumnName("ExhibitionId").HasConversion(v => v.Value, c => new ExhibitionId(c)); ;
         builder.Property(x => x.Title).HasColumnName("Title");
@@ -47,7 +48,7 @@ public class EventEntityTypeConfiguration : IEntityTypeConfiguration<Event>
         {
             y.WithOwner().HasForeignKey("EventId");
             y.ToTable("EventParticipants", "events");
-            y.Property<MemberId>("ParticipantId");
+            y.Property<MemberId>("ParticipantId").HasConversion(v => v.Value, c => new MemberId(c));
             y.Property<EventId>("EventId").HasConversion(v => v.Value, c => new EventId(c));
             y.Property<DateTime>("_decisionDate").HasColumnName("DecisionDate");
             y.HasKey("ParticipantId", "EventId", "_decisionDate");

@@ -15,7 +15,10 @@ public class ReviewCanBeAddedOnlyByExhibitionMemberRule : IBaseBusinessRule
         _exhibition = exhibition;
     }
 
-    public bool IsBroken() => !_exhibition.IsMemberOfGroup(_authorId);
+    public bool IsBroken()
+    {
+        return !_exhibition.IsMemberOfGroup(_authorId);
+    }
 
     public string Message => "Only event participants can add review";
 }

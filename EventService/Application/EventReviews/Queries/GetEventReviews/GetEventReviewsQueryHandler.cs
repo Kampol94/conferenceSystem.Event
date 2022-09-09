@@ -15,7 +15,7 @@ public class GetEventReviewsQueryHandler : IQueryHandler<GetEventReviewsQuery, L
 
     public async Task<List<EventReviewsDto>> Handle(GetEventReviewsQuery query, CancellationToken cancellationToken)
     {
-        var connection = _sqlConnectionFactory.GetOpenConnection();
+        System.Data.IDbConnection connection = _sqlConnectionFactory.GetOpenConnection();
 
         string sql = "SELECT " +
                      $"[EventReviews].[Id] AS [{nameof(EventReviewsDto.Id)}], " +
@@ -26,7 +26,7 @@ public class GetEventReviewsQueryHandler : IQueryHandler<GetEventReviewsQuery, L
                      $"[EventReviews].[EditDate] AS [{nameof(EventReviewsDto.EditDate)}], " +
                      "FROM [events].[v_EventReviews] AS [EventReviews] " +
                      "WHERE [EventReviews].[EventId] = @EventId";
-        var eventReviews = await connection.QueryAsync<EventReviewsDto>(sql, new { query.EventId });
+        IEnumerable<EventReviewsDto> eventReviews = await connection.QueryAsync<EventReviewsDto>(sql, new { query.EventId });
 
         return eventReviews.AsList();
     }

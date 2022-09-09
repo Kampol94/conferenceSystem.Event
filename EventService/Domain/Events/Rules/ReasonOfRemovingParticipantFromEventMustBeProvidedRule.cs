@@ -11,7 +11,10 @@ public class ReasonOfRemovingParticipantFromEventMustBeProvidedRule : IBaseBusin
         _reason = reason;
     }
 
-    public bool IsBroken() => string.IsNullOrEmpty(_reason);
+    public bool IsBroken()
+    {
+        return string.IsNullOrEmpty(_reason);
+    }
 
     public string Message => "Reason of removing participant from event must be provided";
 }

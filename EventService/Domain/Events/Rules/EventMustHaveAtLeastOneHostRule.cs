@@ -11,7 +11,10 @@ public class EventMustHaveAtLeastOneHostRule : IBaseBusinessRule
         _eventHostNumber = eventHostNumber;
     }
 
-    public bool IsBroken() => _eventHostNumber == 0;
+    public bool IsBroken()
+    {
+        return _eventHostNumber == 0;
+    }
 
     public string Message => "Event must have at least one host";
 }

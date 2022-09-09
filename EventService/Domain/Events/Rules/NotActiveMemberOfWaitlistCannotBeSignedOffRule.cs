@@ -15,7 +15,10 @@ public class NotActiveMemberOfWaitlistCannotBeSignedOffRule : IBaseBusinessRule
         _memberId = memberId;
     }
 
-    public bool IsBroken() => _waitlistMembers.SingleOrDefault(x => x.IsActiveOnWaitList(_memberId)) == null;
+    public bool IsBroken()
+    {
+        return _waitlistMembers.SingleOrDefault(x => x.IsActiveOnWaitList(_memberId)) == null;
+    }
 
     public string Message => "Not active member of waitlist cannot be signed off";
 }

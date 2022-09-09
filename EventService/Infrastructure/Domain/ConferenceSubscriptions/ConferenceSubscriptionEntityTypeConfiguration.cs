@@ -10,7 +10,8 @@ public class ConferenceSubscriptionEntityTypeConfiguration : IEntityTypeConfigur
     {
         builder.ToTable("ConferenceSubscriptions", "events");
 
-        builder.HasKey(x => x.Id);
+        builder.Property<ConferenceSubscriptionId>("Id").HasConversion(v => v.Value, c => new ConferenceSubscriptionId(c));
+        builder.HasKey("Id");
 
         builder.Property("_expirationDate").HasColumnName("ExpirationDate");
     }

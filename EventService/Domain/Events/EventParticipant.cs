@@ -27,7 +27,7 @@ public class EventParticipant : BaseEntity
 
     private bool _isRemoved;
 
-    private Money _fee;
+    private readonly Money _fee;
 
     private bool _isFeePaid;
 
@@ -65,7 +65,7 @@ public class EventParticipant : BaseEntity
 
 
 
-        this.AddDomainEvent(new EventParticipantAddedDomainEvent(
+        AddDomainEvent(new EventParticipantAddedDomainEvent(
             EventId,
             ParticipantId,
             decisionDate,
@@ -79,7 +79,7 @@ public class EventParticipant : BaseEntity
         _decisionChanged = true;
         _decisionChangeDate = DateTime.Now; //TODO: add time provider for test proposes 
 
-        this.AddDomainEvent(new EventParticipantChangedDecisionDomainEvent(ParticipantId, EventId));
+        AddDomainEvent(new EventParticipantChangedDecisionDomainEvent(ParticipantId, EventId));
     }
 
     public bool IsActiveParticipant(MemberId participantId)
@@ -101,14 +101,14 @@ public class EventParticipant : BaseEntity
     {
         _role = EventParticipantRole.Host;
 
-        this.AddDomainEvent(new NewEventHostSetDomainEvent(EventId, ParticipantId));
+        AddDomainEvent(new NewEventHostSetDomainEvent(EventId, ParticipantId));
     }
 
     public void SetAsParticipant()
     {
         _role = EventParticipantRole.Participant;
 
-        this.AddDomainEvent(new MemberSetAsParticipantDomainEvent(EventId, ParticipantId));
+        AddDomainEvent(new MemberSetAsParticipantDomainEvent(EventId, ParticipantId));
     }
 
     public void Remove(MemberId removingMemberId, string reason)
@@ -120,13 +120,13 @@ public class EventParticipant : BaseEntity
         _removingReason = reason;
         _removingMemberId = removingMemberId;
 
-        this.AddDomainEvent(new EventParticipantRemovedDomainEvent(ParticipantId, EventId, reason));
+        AddDomainEvent(new EventParticipantRemovedDomainEvent(ParticipantId, EventId, reason));
     }
 
     public void MarkFeeAsPayed()
     {
         _isFeePaid = true;
 
-        this.AddDomainEvent(new EventParticipantFeePaidDomainEvent(EventId, ParticipantId));
+        AddDomainEvent(new EventParticipantFeePaidDomainEvent(EventId, ParticipantId));
     }
 }

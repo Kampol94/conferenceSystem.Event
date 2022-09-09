@@ -4,7 +4,7 @@ namespace EventService.Domain.Contracts.Exceptions;
 [Serializable]
 public class BusinessRuleValidationException : Exception
 {
-    private IBaseBusinessRule _rule;
+    private readonly IBaseBusinessRule _rule;
 
     public BusinessRuleValidationException(IBaseBusinessRule rule)
     {

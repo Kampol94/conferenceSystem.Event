@@ -4,9 +4,9 @@ namespace EventService.Domain.Exhibitions;
 
 public class ExhibitionMemberRole : ValueObject
 {
-    public static ExhibitionMemberRole Organizer => new ExhibitionMemberRole("Organizer");
+    public static ExhibitionMemberRole Organizer => new("Organizer");
 
-    public static ExhibitionMemberRole Member => new ExhibitionMemberRole("Member");
+    public static ExhibitionMemberRole Member => new("Member");
 
     public string Value { get; }
 

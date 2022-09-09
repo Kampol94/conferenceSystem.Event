@@ -11,7 +11,10 @@ public class ReviewTextMustBeProvidedRule : IBaseBusinessRule
         _text = text;
     }
 
-    public bool IsBroken() => string.IsNullOrEmpty(_text);
+    public bool IsBroken()
+    {
+        return string.IsNullOrEmpty(_text);
+    }
 
     public string Message => "Review text must be provided.";
 }

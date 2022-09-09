@@ -27,14 +27,14 @@ public class RemoveEventReviewsCommandHandler : ICommandHandler<RemoveEventRevie
 
     public async Task<Unit> Handle(RemoveEventReviewsCommand command, CancellationToken cancellationToken)
     {
-        var exhibition = await _eventReviewsRepository.GetByIdAsync(new EventReviewId(command.EventReviewsId));
+        EventReview? exhibition = await _eventReviewsRepository.GetByIdAsync(new EventReviewId(command.EventReviewsId));
         if (exhibition == null)
         {
             throw new Exception("Meeting comment for removing must exist.");
         }
 
-        var @event = await _eventRepository.GetByIdAsync(exhibition.GetEventId());
-        var meetingGroup = await _exhibitionRepository.GetByIdAsync(@event.GetExhibitionId());
+        Event? @event = await _eventRepository.GetByIdAsync(exhibition.GetEventId());
+        Exhibition? meetingGroup = await _exhibitionRepository.GetByIdAsync(@event.GetExhibitionId());
 
         exhibition.Remove(_memberContext.MemberId, meetingGroup, command.Reason);
 

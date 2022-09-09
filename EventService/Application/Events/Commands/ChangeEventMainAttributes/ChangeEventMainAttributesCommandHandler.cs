@@ -18,7 +18,7 @@ public class ChangeEventMainAttributesCommandHandler : ICommandHandler<ChangeEve
 
     public async Task<Unit> Handle(ChangeEventMainAttributesCommand request, CancellationToken cancellationToken)
     {
-        var @event = await _eventRepository.GetByIdAsync(new EventId(request.EventId));
+        Event? @event = await _eventRepository.GetByIdAsync(new EventId(request.EventId));
 
         @event.ChangeMainAttributes(
             request.Title,

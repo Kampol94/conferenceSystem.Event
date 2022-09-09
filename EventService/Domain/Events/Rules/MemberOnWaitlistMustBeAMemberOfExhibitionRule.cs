@@ -17,7 +17,10 @@ public class MemberOnWaitlistMustBeAMemberOfExhibitionRule : IBaseBusinessRule
         _memberId = memberId;
     }
 
-    public bool IsBroken() => !_exhibition.IsMemberOfGroup(_memberId);
+    public bool IsBroken()
+    {
+        return !_exhibition.IsMemberOfGroup(_memberId);
+    }
 
     public string Message => "Member on waitlist must be a member of group";
 }

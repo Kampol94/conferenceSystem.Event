@@ -11,8 +11,8 @@ public class ExhibitionProposalEntityTypeConfiguration : IEntityTypeConfiguratio
     {
         builder.ToTable("ExhibitionProposals", "events");
 
-        builder.HasKey(x => x.Id);
-        builder.Property(x => x.Id);
+        builder.Property<ExhibitionProposalId>("Id").HasConversion(v => v.Value, c => new ExhibitionProposalId(c));
+        builder.HasKey("Id");
 
         builder.Property<string>("_name").HasColumnName("Name");
         builder.Property<string>("_description").HasColumnName("Description");

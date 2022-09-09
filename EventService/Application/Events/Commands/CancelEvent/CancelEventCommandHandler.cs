@@ -18,7 +18,7 @@ public class CancelEventCommandHandler : ICommandHandler<CancelEventCommand>
 
     public async Task<Unit> Handle(CancelEventCommand request, CancellationToken cancellationToken)
     {
-        var @event = await _eventRepository.GetByIdAsync(new EventId(request.EventId));
+        Event? @event = await _eventRepository.GetByIdAsync(new EventId(request.EventId));
 
         @event.Cancel(_memberContext.MemberId);
 

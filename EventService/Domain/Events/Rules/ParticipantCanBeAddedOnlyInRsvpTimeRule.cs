@@ -11,7 +11,10 @@ public class ParticipantCanBeAddedOnlyInRsvpTimeRule : IBaseBusinessRule
         _rsvpTime = rsvpTime;
     }
 
-    public bool IsBroken() => !_rsvpTime.IsInTerm(DateTime.Now); //TODO: add time provider for test proposes 
+    public bool IsBroken()
+    {
+        return !_rsvpTime.IsInTerm(DateTime.Now); //TODO: add time provider for test proposes 
+    }
 
     public string Message => "Participant can be added only within the time allowed";
 }

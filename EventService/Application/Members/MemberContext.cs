@@ -12,5 +12,5 @@ public class MemberContext : IMemberContext
         _executionContextAccessor = executionContextAccessor;
     }
 
-    public MemberId MemberId => new MemberId(_executionContextAccessor.UserId);
+    public MemberId MemberId => new(_executionContextAccessor.UserId);
 }

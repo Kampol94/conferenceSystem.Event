@@ -18,7 +18,7 @@ public class RemoveEventParticipantCommandHandler : ICommandHandler<RemoveEventP
 
     public async Task<Unit> Handle(RemoveEventParticipantCommand request, CancellationToken cancellationToken)
     {
-        var @event = await _eventRepository.GetByIdAsync(new EventId(request.EventId));
+        Event? @event = await _eventRepository.GetByIdAsync(new EventId(request.EventId));
 
         @event.RemoveParticipant(new MemberId(request.ParticipantId), _memberContext.MemberId, request.RemovingReason);
 

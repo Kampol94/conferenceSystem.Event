@@ -21,7 +21,7 @@ public class ConferenceSubscription : BaseEntity
         Id = new ConferenceSubscriptionId(memberId.Value);
         _expirationDate = expirationDate;
 
-        this.AddDomainEvent(new ConferenceSubscriptionExpirationDateChangedDomainEvent(memberId, _expirationDate));
+        AddDomainEvent(new ConferenceSubscriptionExpirationDateChangedDomainEvent(memberId, _expirationDate));
     }
 
     public static ConferenceSubscription CreateForMember(MemberId memberId, DateTime expirationDate)
@@ -33,7 +33,7 @@ public class ConferenceSubscription : BaseEntity
     {
         _expirationDate = expirationDate;
 
-        this.AddDomainEvent(new ConferenceSubscriptionExpirationDateChangedDomainEvent(
+        AddDomainEvent(new ConferenceSubscriptionExpirationDateChangedDomainEvent(
             new MemberId(Id.Value),
             _expirationDate));
     }

@@ -12,12 +12,13 @@ public class EventReviewsEntityTypeConfiguration : IEntityTypeConfiguration<Even
     {
         builder.ToTable("EventReviews", "events");
 
-        builder.HasKey(c => c.Id);
+        builder.Property<EventReviewId>("Id").HasConversion(v => v.Value, c => new EventReviewId(c));
+        builder.HasKey("Id");
 
         builder.Property<string>("_text").HasColumnName("Text");
         builder.Property<EventId>("_eventId").HasColumnName("EventId").HasConversion(v => v.Value, c => new EventId(c));
-        builder.Property<MemberId>("_authorId").HasColumnName("AuthorId").HasConversion(v => v.Value, c => new MemberId(c));;
-        builder.Property<EventReviewId>("_inReplyToReviewId").HasColumnName("InReplyToReviewId").HasConversion(v => v.Value, c => new EventReviewId(c));;
+        builder.Property<MemberId>("_authorId").HasColumnName("AuthorId").HasConversion(v => v.Value, c => new MemberId(c)); ;
+        builder.Property<EventReviewId>("_inReplyToReviewId").HasColumnName("InReplyToReviewId").HasConversion(v => v.Value, c => new EventReviewId(c)); ;
         builder.Property<bool>("_isRemoved").HasColumnName("IsRemoved");
         builder.Property<string>("_removedByReason").HasColumnName("RemovedByReason");
         builder.Property<DateTime>("_createDate").HasColumnName("CreateDate");

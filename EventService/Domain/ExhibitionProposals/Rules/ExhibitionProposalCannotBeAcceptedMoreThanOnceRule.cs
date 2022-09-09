@@ -11,7 +11,10 @@ public class ExhibitionProposalCannotBeAcceptedMoreThanOnceRule : IBaseBusinessR
         _actualStatus = actualStatus;
     }
 
-    public bool IsBroken() => _actualStatus.IsAccepted;
+    public bool IsBroken()
+    {
+        return _actualStatus.IsAccepted;
+    }
 
     public string Message => "Exhibition proposal cannot be accepted more than once";
 }

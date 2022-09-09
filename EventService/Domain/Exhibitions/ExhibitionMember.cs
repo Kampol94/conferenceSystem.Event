@@ -10,7 +10,7 @@ public class ExhibitionMember : BaseEntity
 
     public MemberId MemberId { get; private set; }
 
-    private ExhibitionMemberRole _role;
+    private readonly ExhibitionMemberRole _role;
 
     public DateTime JoinedDate { get; private set; }
 
@@ -35,7 +35,7 @@ public class ExhibitionMember : BaseEntity
         JoinedDate = DateTime.Now;
         _isActive = true;
 
-        this.AddDomainEvent(new NewExhibitionMemberJoinedDomainEvent(ExhibitionId, MemberId, _role));
+        AddDomainEvent(new NewExhibitionMemberJoinedDomainEvent(ExhibitionId, MemberId, _role));
     }
 
     public static ExhibitionMember CreateNew(
@@ -51,7 +51,7 @@ public class ExhibitionMember : BaseEntity
         _isActive = false;
         _leaveDate = DateTime.Now;
 
-        this.AddDomainEvent(new ExhibitionMemberLeftGroupDomainEvent(ExhibitionId, MemberId));
+        AddDomainEvent(new ExhibitionMemberLeftGroupDomainEvent(ExhibitionId, MemberId));
     }
 
     public bool IsMember(MemberId memberId)

@@ -11,7 +11,10 @@ public class EventCanBeOrganizedOnlyByPayedExhibitionRule : IBaseBusinessRule
         _paymentDateTo = paymentDateTo;
     }
 
-    public bool IsBroken() => !_paymentDateTo.HasValue || _paymentDateTo < DateTime.Now;
+    public bool IsBroken()
+    {
+        return !_paymentDateTo.HasValue || _paymentDateTo < DateTime.Now;
+    }
 
     public string Message => "Meeting can be organized only by payed exhibition";
 }

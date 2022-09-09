@@ -1,4 +1,4 @@
-﻿using EventService.Application.Exhibition.Commands.SetExhibitionExpirationDate;
+﻿using EventService.Application.Exhibitions.Commands.SetExhibitionExpirationDate;
 using EventService.Domain.ConferenceSubscriptions.Events;
 using EventService.Domain.Exhibitions;
 using MediatR;
@@ -19,9 +19,9 @@ public class ConferenceSubscriptionExpirationDateChangedNotificationHandler :
 
     public async Task Handle(ConferenceSubscriptionExpirationDateChangedDomainEvent notification, CancellationToken cancellationToken)
     {
-        var exhibitionsCoveredByConferenceSubscription = (_exhibitionRepository.GatAllAsync()).Where(x => x.CreatorId == notification.MemberId);
+        IQueryable<Exhibition> exhibitionsCoveredByConferenceSubscription = _exhibitionRepository.GatAllAsync().Where(x => x.CreatorId == notification.MemberId);
 
-        foreach (var exhibition in exhibitionsCoveredByConferenceSubscription)
+        foreach (Exhibition? exhibition in exhibitionsCoveredByConferenceSubscription)
         {
             await _mediator.Send(new SetExhibitionExpirationDateCommand(
                 Guid.NewGuid(),

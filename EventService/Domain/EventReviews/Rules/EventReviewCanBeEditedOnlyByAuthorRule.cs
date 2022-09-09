@@ -14,7 +14,10 @@ public class EventReviewCanBeEditedOnlyByAuthorRule : IBaseBusinessRule
         _editorId = editorId;
     }
 
-    public bool IsBroken() => _editorId != _authorId;
+    public bool IsBroken()
+    {
+        return _editorId != _authorId;
+    }
 
     public string Message => "Only the author of a review can edit it.";
 }

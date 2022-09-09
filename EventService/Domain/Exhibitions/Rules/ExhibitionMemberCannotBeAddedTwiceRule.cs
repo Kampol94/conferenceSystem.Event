@@ -16,7 +16,10 @@ public class ExhibitionMemberCannotBeAddedTwiceRule : IBaseBusinessRule
         _memberId = memberId;
     }
 
-    public bool IsBroken() => _members.SingleOrDefault(x => x.IsMember(_memberId)) != null;
+    public bool IsBroken()
+    {
+        return _members.SingleOrDefault(x => x.IsMember(_memberId)) != null;
+    }
 
     public string Message => "Member cannot be added twice to the same exhibition";
 }

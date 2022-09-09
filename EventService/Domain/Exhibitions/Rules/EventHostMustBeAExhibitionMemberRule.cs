@@ -23,13 +23,9 @@ public class EventHostMustBeAExhibitionMemberRule : IBaseBusinessRule
 
     public bool IsBroken()
     {
-        var memberIds = _members.Select(x => x.MemberId).ToList();
-        if (!_hostsMembersIds.Any() && !memberIds.Contains(_creatorId))
-        {
-            return true;
-        }
-
-        return _hostsMembersIds.Any() && _hostsMembersIds.Except(memberIds).Any();
+        List<MemberId> memberIds = _members.Select(x => x.MemberId).ToList();
+        return (!_hostsMembersIds.Any() && !memberIds.Contains(_creatorId))
+|| (_hostsMembersIds.Any() && _hostsMembersIds.Except(memberIds).Any());
     }
 
     public string Message => "Meeting host must be a exhibition member";

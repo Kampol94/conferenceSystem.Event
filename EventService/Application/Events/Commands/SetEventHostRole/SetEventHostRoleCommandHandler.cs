@@ -24,9 +24,9 @@ public class SetEventHostRoleCommandHandler : ICommandHandler<SetEventHostRoleCo
 
     public async Task<Unit> Handle(SetEventHostRoleCommand request, CancellationToken cancellationToken)
     {
-        var @event = await _eventRepository.GetByIdAsync(new EventId(request.EventId));
+        Event? @event = await _eventRepository.GetByIdAsync(new EventId(request.EventId));
 
-        var exhibition = await _exhibitionRepository.GetByIdAsync(@event.GetExhibitionId());
+        Exhibition? exhibition = await _exhibitionRepository.GetByIdAsync(@event.GetExhibitionId());
 
         @event.SetHostRole(exhibition, _memberContext.MemberId, new MemberId(request.MemberId));
 

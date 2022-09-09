@@ -11,7 +11,10 @@ public class EventParticipantsLimitCannotBeNegativeRule : IBaseBusinessRule
         _participantsLimit = participantsLimit;
     }
 
-    public bool IsBroken() => _participantsLimit.HasValue && _participantsLimit.Value < 0;
+    public bool IsBroken()
+    {
+        return _participantsLimit.HasValue && _participantsLimit.Value < 0;
+    }
 
     public string Message => "Participants limit cannot be negative";
 }

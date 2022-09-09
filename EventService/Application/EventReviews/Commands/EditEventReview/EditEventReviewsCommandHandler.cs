@@ -20,7 +20,7 @@ public class EditEventReviewsCommandHandler : ICommandHandler<EditEventReviewsCo
 
     public async Task<Unit> Handle(EditEventReviewsCommand command, CancellationToken cancellationToken)
     {
-        var eventReview = await _eventReviewsRepository.GetByIdAsync(new EventReviewId(command.EventReviewsId));
+        EventReview? eventReview = await _eventReviewsRepository.GetByIdAsync(new EventReviewId(command.EventReviewsId));
         if (eventReview == null)
         {
             throw new Exception("Meeting comment for editing must exist.");

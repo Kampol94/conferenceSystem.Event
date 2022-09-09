@@ -23,17 +23,17 @@ public class CreateEventCommandHandler : ICommandHandler<CreateEventCommand, Gui
 
     public async Task<Guid> Handle(CreateEventCommand request, CancellationToken cancellationToken)
     {
-        var exhibition = await _exhibitionRepository.GetByIdAsync(new ExhibitionId(request.ExhibitionId));
+        Exhibition? exhibition = await _exhibitionRepository.GetByIdAsync(new ExhibitionId(request.ExhibitionId));
 
-        var hostsMembersIds = request.HostMemberIds.Select(x => new MemberId(x)).ToList();
+        List<MemberId> hostsMembersIds = request.HostMemberIds.Select(x => new MemberId(x)).ToList();
 
-        var @event = exhibition.CreateEvent(
+        Event @event = exhibition.CreateEvent(
             request.Title,
             EventTime.CreateNewBetweenDates(request.TermStartDate, request.TermStartDate),
             request.Description,
             request.ParticipantsLimit,
             RsvpTime.CreateNewBetweenDates(request.RSVPTermStartDate, request.RSVPTermEndDate),
-            request.EventFeeValue.HasValue? Money.Of(request.EventFeeValue.Value, request.EventFeeCurrency) : Money.Undefined,
+            request.EventFeeValue.HasValue ? Money.Of(request.EventFeeValue.Value, request.EventFeeCurrency) : Money.Undefined,
             hostsMembersIds,
             _memberContext.MemberId);
 

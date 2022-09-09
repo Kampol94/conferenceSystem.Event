@@ -23,9 +23,9 @@ public class RsvpTime : ValueObject
 
     public bool IsInTerm(DateTime date)
     {
-        var left = !StartDate.HasValue || StartDate.Value <= date;
+        bool left = !StartDate.HasValue || StartDate.Value <= date;
 
-        var right = !EndDate.HasValue || EndDate.Value >= date;
+        bool right = !EndDate.HasValue || EndDate.Value >= date;
 
         return left && right;
     }

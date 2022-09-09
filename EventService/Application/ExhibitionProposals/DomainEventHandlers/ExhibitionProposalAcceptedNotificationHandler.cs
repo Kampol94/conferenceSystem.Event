@@ -1,4 +1,4 @@
-﻿using EventService.Application.Exhibition.Commands.CreateNewExhibition;
+﻿using EventService.Application.Exhibitions.Commands.CreateNewExhibition;
 using EventService.Domain.ExhibitionProposals.Events;
 using MediatR;
 

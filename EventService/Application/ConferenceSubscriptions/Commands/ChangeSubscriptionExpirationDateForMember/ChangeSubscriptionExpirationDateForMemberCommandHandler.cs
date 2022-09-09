@@ -1,5 +1,6 @@
 ﻿using EventService.Application.Contracts.Commands;
 using EventService.Domain.ConferenceSubscriptions;
+using EventService.Domain.Members;
 using MediatR;
 
 namespace EventService.Application.ConferenceSubscriptions.Commands.ChangeSubscriptionExpirationDateForMember;
@@ -15,11 +16,11 @@ public class ChangeSubscriptionExpirationDateForMemberCommandHandler : ICommandH
 
     public async Task<Unit> Handle(ChangeSubscriptionExpirationDateForMemberCommand command, CancellationToken cancellationToken)
     {
-        ConferenceSubscription conferenceSubscription = await _conferenceSubscriptionRepository.GetByIdOptionalAsync(new ConferenceSubscriptionId(command.MemberId.Value));
+        ConferenceSubscription? conferenceSubscription = await _conferenceSubscriptionRepository.GetByIdOptionalAsync(new ConferenceSubscriptionId(command.Id));
 
         if (conferenceSubscription == null)
         {
-            conferenceSubscription = ConferenceSubscription.CreateForMember(command.MemberId, command.ExpirationDate);
+            conferenceSubscription = ConferenceSubscription.CreateForMember(new MemberId(command.MemberId), command.ExpirationDate);
             await _conferenceSubscriptionRepository.AddAsync(conferenceSubscription);
         }
         else

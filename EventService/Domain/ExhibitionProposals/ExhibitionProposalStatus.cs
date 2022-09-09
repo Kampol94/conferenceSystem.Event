@@ -19,6 +19,6 @@ public class ExhibitionProposalStatus : ValueObject
 
     protected override IEnumerable<object?> GetEqualityComponents()
     {
-        yield return Value; 
+        yield return Value;
     }
 }

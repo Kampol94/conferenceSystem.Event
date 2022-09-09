@@ -19,7 +19,7 @@ public class ProposeExhibitionCommandHandler : ICommandHandler<ProposeExhibition
 
     public async Task<Guid> Handle(ProposeExhibitionCommand request, CancellationToken cancellationToken)
     {
-        var exhibitionProposal = ExhibitionProposal.ProposeNew(
+        ExhibitionProposal exhibitionProposal = ExhibitionProposal.ProposeNew(
             request.Name,
             request.Description,
             _memberContext.MemberId);

@@ -17,7 +17,10 @@ public class EventReviewCanBeRemovedOnlyByAuthorOrExhibitionOrganizerRule : IBas
         _removingMemberId = removingMemberId;
     }
 
-    public bool IsBroken() => _removingMemberId != _authorId && !_exhibition.IsOrganizer(_removingMemberId);
+    public bool IsBroken()
+    {
+        return _removingMemberId != _authorId && !_exhibition.IsOrganizer(_removingMemberId);
+    }
 
     public string Message => "Only author of comment or exhibition organizer can remove meeting comment.";
 }

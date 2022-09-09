@@ -1,4 +1,5 @@
-﻿using EventService.Domain.Exhibitions;
+﻿using EventService.Domain.ExhibitionProposals;
+using EventService.Domain.Exhibitions;
 using EventService.Domain.Members;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
@@ -11,7 +12,8 @@ public class ExhibitionsEntityTypeConfiguration : IEntityTypeConfiguration<Exhib
     {
         builder.ToTable("Exhibitions", "events");
 
-        builder.HasKey(x => x.Id);
+        builder.Property<ExhibitionId>("Id").HasConversion(v => v.Value, c => new ExhibitionId(c));
+        builder.HasKey("Id");
 
         builder.Property(x => x.Name).HasColumnName("Name");
         builder.Property<string>("_description").HasColumnName("Description");

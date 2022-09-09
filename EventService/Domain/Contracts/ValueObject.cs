@@ -6,17 +6,12 @@ public abstract class ValueObject
 {
     protected static bool EqualOperator(ValueObject left, ValueObject right)
     {
-        if (left is null ^ right is null)
-        {
-            return false;
-        }
-
-        return left?.Equals(right!) != false;
+        return !(left is null ^ right is null) && left?.Equals(right!) != false;
     }
 
     protected static bool NotEqualOperator(ValueObject left, ValueObject right)
     {
-        return !(EqualOperator(left, right));
+        return !EqualOperator(left, right);
     }
 
     protected abstract IEnumerable<object?> GetEqualityComponents();
@@ -28,7 +23,7 @@ public abstract class ValueObject
             return false;
         }
 
-        var other = (ValueObject)obj;
+        ValueObject other = (ValueObject)obj;
         return GetEqualityComponents().SequenceEqual(other.GetEqualityComponents());
     }
 

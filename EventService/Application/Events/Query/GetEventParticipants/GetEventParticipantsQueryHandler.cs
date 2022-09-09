@@ -15,7 +15,7 @@ public class GetEventParticipantsQueryHandler : IQueryHandler<GetEventParticipan
 
     public async Task<List<GetEventParticipantsResponse>> Handle(GetEventParticipantsQuery query, CancellationToken cancellationToken)
     {
-        var connection = _sqlConnectionFactory.GetOpenConnection();
+        System.Data.IDbConnection connection = _sqlConnectionFactory.GetOpenConnection();
 
         return (await connection.QueryAsync<GetEventParticipantsResponse>(
             "SELECT " +

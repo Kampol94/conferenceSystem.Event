@@ -40,6 +40,6 @@ public class Member : BaseEntity
         _name = name;
         _createDate = DateTime.Now; //TODO: add time provider for test proposes 
 
-        this.AddDomainEvent(new MemberCreatedDomainEvent(Id));
+        AddDomainEvent(new MemberCreatedDomainEvent(Id));
     }
 }

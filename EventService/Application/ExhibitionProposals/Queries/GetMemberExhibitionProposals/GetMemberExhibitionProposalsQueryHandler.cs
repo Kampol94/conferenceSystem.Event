@@ -22,7 +22,7 @@ public class GetMemberExhibitionProposalsQueryHandler : IQueryHandler<GetMemberE
 
     public async Task<List<ExhibitionProposalDto>> Handle(GetMemberExhibitionProposalsQuery query, CancellationToken cancellationToken)
     {
-        var connection = _sqlConnectionFactory.GetOpenConnection();
+        System.Data.IDbConnection connection = _sqlConnectionFactory.GetOpenConnection();
 
         string sql = "SELECT " +
                      $"[ExhibitionProposal].[Id] AS [{nameof(ExhibitionProposalDto.Id)}], " +
@@ -35,7 +35,7 @@ public class GetMemberExhibitionProposalsQueryHandler : IQueryHandler<GetMemberE
                      "WHERE [ExhibitionProposal].ProposalUserId = @MemberId " +
                      "ORDER BY [ExhibitionProposal].[Name]";
 
-        var exhibitionProposals = await connection.QueryAsync<ExhibitionProposalDto>(
+        IEnumerable<ExhibitionProposalDto> exhibitionProposals = await connection.QueryAsync<ExhibitionProposalDto>(
             sql,
             new
             {

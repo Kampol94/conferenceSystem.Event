@@ -15,7 +15,10 @@ public class MemberCannotBeMoreThanOnceOnEventWaitlistRule : IBaseBusinessRule
         _memberId = memberId;
     }
 
-    public bool IsBroken() => _waitListMembers.SingleOrDefault(x => x.IsActiveOnWaitList(_memberId)) != null;
+    public bool IsBroken()
+    {
+        return _waitListMembers.SingleOrDefault(x => x.IsActiveOnWaitList(_memberId)) != null;
+    }
 
     public string Message => "Member cannot be more than once on the event waitlist";
 }

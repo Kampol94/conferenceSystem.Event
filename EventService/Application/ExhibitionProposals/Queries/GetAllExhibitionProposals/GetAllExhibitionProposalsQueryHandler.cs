@@ -16,7 +16,7 @@ public class GetAllExhibitionProposalsQueryHandler : IQueryHandler<GetAllExhibit
 
     public async Task<List<ExhibitionProposalDto>> Handle(GetAllExhibitionProposalsQuery query, CancellationToken cancellationToken)
     {
-        var connection = _sqlConnectionFactory.GetOpenConnection();
+        System.Data.IDbConnection connection = _sqlConnectionFactory.GetOpenConnection();
 
         string sql = "SELECT " +
                      $"[ExhibitionProposal].[Id] AS [{nameof(ExhibitionProposalDto.Id)}], " +
@@ -28,7 +28,7 @@ public class GetAllExhibitionProposalsQueryHandler : IQueryHandler<GetAllExhibit
                      "FROM [events].[v_ExhibitionProposals] AS [ExhibitionProposal] " +
                      "ORDER BY [ExhibitionProposal].[Name]";
 
-        var exhibitionProposals = await connection.QueryAsync<ExhibitionProposalDto>(sql);
+        IEnumerable<ExhibitionProposalDto> exhibitionProposals = await connection.QueryAsync<ExhibitionProposalDto>(sql);
 
         return exhibitionProposals.AsList();
     }

@@ -1,4 +1,5 @@
-﻿using EventService.Domain.Members;
+﻿using EventService.Domain.ExhibitionProposals;
+using EventService.Domain.Members;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -8,9 +9,10 @@ public class MemberEntityTypeConfiguration : IEntityTypeConfiguration<Member>
 {
     public void Configure(EntityTypeBuilder<Member> builder)
     {
-        builder.ToTable("Members", "meetings");
+        builder.ToTable("Members", "events");
 
-        builder.HasKey(x => x.Id);
+        builder.Property<MemberId>("Id").HasConversion(v => v.Value, c => new MemberId(c));
+        builder.HasKey("Id");
 
         builder.Property<string>("_login").HasColumnName("Login");
         builder.Property<string>("_email").HasColumnName("Email");

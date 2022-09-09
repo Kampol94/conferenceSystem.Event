@@ -15,7 +15,7 @@ public class CreateMemberCommandHandler : ICommandHandler<CreateMemberCommand>
 
     public async Task<Unit> Handle(CreateMemberCommand request, CancellationToken cancellationToken)
     {
-        var member = Member.Create(request.MemberId, request.Login, request.Email, request.FirstName, request.LastName, request.Name);
+        Member member = Member.Create(request.MemberId, request.Login, request.Email, request.FirstName, request.LastName, request.Name);
 
         await _memberRepository.AddAsync(member);
 

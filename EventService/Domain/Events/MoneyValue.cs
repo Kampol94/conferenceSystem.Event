@@ -4,7 +4,7 @@ namespace EventService.Domain.Events;
 
 public class Money : ValueObject
 {
-    public static Money Undefined => new Money(null, null);
+    public static Money Undefined => new(null, null);
 
     public decimal? Value { get; }
 

@@ -15,7 +15,7 @@ public class GetExhibitionProposalQueryHandler : IQueryHandler<GetExhibitionProp
 
     public async Task<ExhibitionProposalDto> Handle(GetExhibitionProposalQuery query, CancellationToken cancellationToken)
     {
-        var connection = _sqlConnectionFactory.GetOpenConnection();
+        System.Data.IDbConnection connection = _sqlConnectionFactory.GetOpenConnection();
 
         string sql = "SELECT " +
                      $"[ExhibitionProposal].[Id] AS [{nameof(ExhibitionProposalDto.Id)}], " +

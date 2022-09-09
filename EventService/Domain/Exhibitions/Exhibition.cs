@@ -17,9 +17,9 @@ public class Exhibition : BaseEntity
 
     public MemberId CreatorId { get; private set; }
 
-    private List<ExhibitionMember> _members;
+    private readonly List<ExhibitionMember> _members;
 
-    private DateTime _createDate;
+    private readonly DateTime _createDate;
 
     private DateTime? _paymentDateTo;
 
@@ -46,10 +46,12 @@ public class Exhibition : BaseEntity
         CreatorId = creatorId;
         _createDate = DateTime.Now;
 
-        this.AddDomainEvent(new ExhibitionCreatedDomainEvent(Id, creatorId));
+        AddDomainEvent(new ExhibitionCreatedDomainEvent(Id, creatorId));
 
-        _members = new List<ExhibitionMember>();
-        _members.Add(ExhibitionMember.CreateNew(Id, CreatorId, ExhibitionMemberRole.Organizer));
+        _members = new List<ExhibitionMember>
+        {
+            ExhibitionMember.CreateNew(Id, CreatorId, ExhibitionMemberRole.Organizer)
+        };
     }
 
     public void EditGeneralAttributes(string name, string description)
@@ -57,7 +59,7 @@ public class Exhibition : BaseEntity
         Name = name;
         _description = description;
 
-        this.AddDomainEvent(new ExhibitionGeneralAttributesEditedDomainEvent(Name, _description));
+        AddDomainEvent(new ExhibitionGeneralAttributesEditedDomainEvent(Name, _description));
     }
 
     public void AddMember(MemberId memberId)
@@ -71,7 +73,7 @@ public class Exhibition : BaseEntity
     {
         CheckRule(new NotActualExhibitionMemberCannotLeaveGroupRule(_members, memberId));
 
-        var member = _members.Single(x => x.IsMember(memberId));
+        ExhibitionMember member = _members.Single(x => x.IsMember(memberId));
 
         member.Leave();
     }
@@ -80,7 +82,7 @@ public class Exhibition : BaseEntity
     {
         _paymentDateTo = dateTo;
 
-        this.AddDomainEvent(new ExhibitionPaymentInfoUpdatedDomainEvent(Id, _paymentDateTo.Value));
+        AddDomainEvent(new ExhibitionPaymentInfoUpdatedDomainEvent(Id, _paymentDateTo.Value));
     }
 
     public Event CreateEvent(

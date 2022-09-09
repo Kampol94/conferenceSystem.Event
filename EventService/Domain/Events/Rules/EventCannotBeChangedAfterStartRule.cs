@@ -11,7 +11,10 @@ public class EventCannotBeChangedAfterStartRule : IBaseBusinessRule
         _eventTerm = eventTerm;
     }
 
-    public bool IsBroken() => _eventTerm.IsAfterStart();
+    public bool IsBroken()
+    {
+        return _eventTerm.IsAfterStart();
+    }
 
     public string Message => "Event cannot be changed after start";
 }

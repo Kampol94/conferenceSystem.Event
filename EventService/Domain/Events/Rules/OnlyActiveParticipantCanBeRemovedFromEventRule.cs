@@ -16,7 +16,10 @@ public class OnlyActiveParticipantCanBeRemovedFromEventRule : IBaseBusinessRule
         _participantId = participantId;
     }
 
-    public bool IsBroken() => _participants.SingleOrDefault(x => x.IsActiveParticipant(_participantId)) == null;
+    public bool IsBroken()
+    {
+        return _participants.SingleOrDefault(x => x.IsActiveParticipant(_participantId)) == null;
+    }
 
     public string Message => "Only active participant can be removed from event";
 }

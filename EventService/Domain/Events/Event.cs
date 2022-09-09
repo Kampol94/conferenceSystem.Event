@@ -101,11 +101,11 @@ public class Event : BaseEntity
         _participants = new List<EventParticipant>();
         _waitlistMembers = new List<EventWaiteListMember>();
 
-        this.AddDomainEvent(new EventCreatedDomainEvent(Id));
-        var rsvpDate = DateTime.Now; //TODO: add time provider for test proposes 
+        AddDomainEvent(new EventCreatedDomainEvent(Id));
+        DateTime rsvpDate = DateTime.Now; //TODO: add time provider for test proposes 
         if (hostsMembersIds.Any())
         {
-            foreach (var hostMemberId in hostsMembersIds)
+            foreach (MemberId hostMemberId in hostsMembersIds)
             {
                 _participants.Add(EventParticipant.CreateNew(Id, hostMemberId, rsvpDate, EventParticipantRole.Host, Money.Undefined));
             }
@@ -139,7 +139,7 @@ public class Event : BaseEntity
         _changeDate = DateTime.Now; //TODO: add time provider for test proposes 
         _changeMemberId = modifyUserId;
 
-        this.AddDomainEvent(new EventMainAttributesChangedDomainEvent(Id));
+        AddDomainEvent(new EventMainAttributesChangedDomainEvent(Id));
     }
 
     public void AddParticipant(Exhibition exhibition, MemberId participanId)
@@ -181,7 +181,7 @@ public class Event : BaseEntity
 
         CheckRule(new NotActiveMemberOfWaitlistCannotBeSignedOffRule(_waitlistMembers, memberId));
 
-        var memberOnWaitlist = GetActiveMemberOnWaitlist(memberId);
+        EventWaiteListMember memberOnWaitlist = GetActiveMemberOnWaitlist(memberId);
 
         memberOnWaitlist.SignOff();
     }
@@ -194,7 +194,7 @@ public class Event : BaseEntity
 
         CheckRule(new OnlyEventParticipantCanHaveChangedRoleRule(_participants, newOrganizerId));
 
-        var participant = GetActiveParicipant(newOrganizerId);
+        EventParticipant participant = GetActiveParicipant(newOrganizerId);
 
         participant.SetAsHost();
     }
@@ -207,16 +207,19 @@ public class Event : BaseEntity
 
         CheckRule(new OnlyEventParticipantCanHaveChangedRoleRule(_participants, newOrganizerId));
 
-        var participant = GetActiveParicipant(newOrganizerId);
+        EventParticipant participant = GetActiveParicipant(newOrganizerId);
 
         participant.SetAsParticipant();
 
-        var eventHostNumber = _participants.Count(x => x.IsActiveHost());
+        int eventHostNumber = _participants.Count(x => x.IsActiveHost());
 
         CheckRule(new EventMustHaveAtLeastOneHostRule(eventHostNumber));
     }
 
-    public ExhibitionId GetExhibitionId() => _exhibitionId;
+    public ExhibitionId GetExhibitionId()
+    {
+        return _exhibitionId;
+    }
 
     public void Cancel(MemberId cancelMemberId)
     {
@@ -228,7 +231,7 @@ public class Event : BaseEntity
             _cancelDate = DateTime.Now; //TODO: add time provider for test proposes 
             _cancelMemberId = cancelMemberId;
 
-            this.AddDomainEvent(new EventCanceledDomainEvent(Id, _cancelMemberId, _cancelDate.Value));
+            AddDomainEvent(new EventCanceledDomainEvent(Id, _cancelMemberId, _cancelDate.Value));
         }
     }
 
@@ -237,14 +240,14 @@ public class Event : BaseEntity
         CheckRule(new EventCannotBeChangedAfterStartRule(Time));
         CheckRule(new OnlyActiveParticipantCanBeRemovedFromEventRule(_participants, participantId));
 
-        var participant = GetActiveParicipant(participantId);
+        EventParticipant participant = GetActiveParicipant(participantId);
 
         participant.Remove(removingPersonId, reason);
     }
 
     public void MarkParticipantFeeAsPayed(MemberId memberId)
     {
-        var participant = GetActiveParicipant(memberId);
+        EventParticipant participant = GetActiveParicipant(memberId);
 
         participant.MarkFeeAsPayed();
     }

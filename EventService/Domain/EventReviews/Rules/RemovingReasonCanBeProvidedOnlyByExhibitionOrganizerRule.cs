@@ -17,8 +17,10 @@ public class RemovingReasonCanBeProvidedOnlyByExhibitionOrganizerRule : IBaseBus
         _removingReason = removingReason;
     }
 
-    public bool IsBroken() =>
-        !string.IsNullOrEmpty(_removingReason) && !_exhibition.IsOrganizer(_removingMemberId);
+    public bool IsBroken()
+    {
+        return !string.IsNullOrEmpty(_removingReason) && !_exhibition.IsOrganizer(_removingMemberId);
+    }
 
     public string Message => "Only exhibition organizer can provide review's removing reason.";
 }

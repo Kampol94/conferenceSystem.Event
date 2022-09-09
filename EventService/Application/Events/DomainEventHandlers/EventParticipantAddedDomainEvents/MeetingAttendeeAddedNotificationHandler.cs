@@ -21,11 +21,11 @@ public class EventParticipantAddedHandler : INotificationHandler<EventParticipan
 
     public async Task Handle(EventParticipantAddedDomainEvent notification, CancellationToken cancellationToken)
     {
-        var @event = await _eventRepository.GetByIdAsync(notification.EventId);
+        Event? @event = await _eventRepository.GetByIdAsync(notification.EventId);
 
-        var participant = await _memberRepository.GetByIdAsync(notification.ParticipantId);
+        Member? participant = await _memberRepository.GetByIdAsync(notification.ParticipantId);
 
-        var email = new EmailMessage(
+        EmailMessage email = new(
             participant.Email,
             $"You joined to {@event.Title} event.",
             $"You joined to {@event.Title} title at {@event.Time.StartDate.ToShortDateString()} - {@event.Time.EndDate.ToShortDateString()}");

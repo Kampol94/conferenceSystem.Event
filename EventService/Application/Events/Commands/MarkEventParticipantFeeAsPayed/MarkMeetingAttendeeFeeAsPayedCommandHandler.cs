@@ -16,7 +16,7 @@ public class MarkEventParticipantFeeAsPayedCommandHandler : ICommandHandler<Mark
 
     public async Task<Unit> Handle(MarkEventParticipantFeeAsPayedCommand command, CancellationToken cancellationToken)
     {
-        var @event = await _eventRepository.GetByIdAsync(new EventId(command.EventId));
+        Event? @event = await _eventRepository.GetByIdAsync(new EventId(command.EventId));
 
         @event.MarkParticipantFeeAsPayed(new MemberId(command.MemberId));
 

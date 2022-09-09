@@ -16,7 +16,10 @@ public class ParticipantsLimitCannotBeChangedToSmallerThanActiveParticipantsRule
         _allActiveParticipantsWithGuestsNumber = allActiveParticipantsWithGuestsNumber;
     }
 
-    public bool IsBroken() => _participantsLimit.HasValue && _participantsLimit.Value < _allActiveParticipantsWithGuestsNumber;
+    public bool IsBroken()
+    {
+        return _participantsLimit.HasValue && _participantsLimit.Value < _allActiveParticipantsWithGuestsNumber;
+    }
 
     public string Message => "Participants limit cannot be change to smaller than active participants number";
 }

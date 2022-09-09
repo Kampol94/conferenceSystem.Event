@@ -27,17 +27,17 @@ public class AddReplyToEventReviewsCommandHandler : ICommandHandler<AddReplyToEv
 
     public async Task<Guid> Handle(AddReplyToEventReviewsCommand command, CancellationToken cancellationToken)
     {
-        var eventReviews = await _eventReviewsRepository.GetByIdAsync(new EventReviewId(command.InReplyToEventReviewId));
+        EventReview? eventReviews = await _eventReviewsRepository.GetByIdAsync(new EventReviewId(command.InReplyToEventReviewId));
         if (eventReviews == null)
         {
-            throw new Exception("To create reply the review must exist." );
+            throw new Exception("To create reply the review must exist.");
         }
 
-        var meeting = await _eventRepository.GetByIdAsync(eventReviews.GetEventId());
+        Event? meeting = await _eventRepository.GetByIdAsync(eventReviews.GetEventId());
 
-        var meetingGroup = await _exhibitionRepository.GetByIdAsync(meeting.GetExhibitionId());
+        Exhibition? meetingGroup = await _exhibitionRepository.GetByIdAsync(meeting.GetExhibitionId());
 
-        var reply = eventReviews.Reply(_memberContext.MemberId, command.Reply, meetingGroup);
+        EventReview reply = eventReviews.Reply(_memberContext.MemberId, command.Reply, meetingGroup);
         await _eventReviewsRepository.AddAsync(reply);
 
         return reply.Id.Value;

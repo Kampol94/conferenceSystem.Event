@@ -15,7 +15,7 @@ public class AcceptExhibitionProposalCommandHandler : ICommandHandler<AcceptExhi
 
     public async Task<Unit> Handle(AcceptExhibitionProposalCommand request, CancellationToken cancellationToken)
     {
-        var exhibitionProposal = await _exhibitionProposalRepository.GetByIdAsync(new ExhibitionProposalId(request.ExhibitionProposalId));
+        ExhibitionProposal? exhibitionProposal = await _exhibitionProposalRepository.GetByIdAsync(new ExhibitionProposalId(request.ExhibitionProposalId));
 
         exhibitionProposal.Accept();
 

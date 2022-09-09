@@ -19,10 +19,10 @@ public class OnlyEventOrExhibitionOrganizerCanSetEventMemberRolesRule : IBaseBus
 
     public bool IsBroken()
     {
-        var settingMember = _participants.SingleOrDefault(x => x.IsActiveParticipant(_settingMemberId));
+        EventParticipant? settingMember = _participants.SingleOrDefault(x => x.IsActiveParticipant(_settingMemberId));
 
-        var isHost = settingMember != null && settingMember.IsActiveHost();
-        var isOrganizer = _exhibition.IsOrganizer(_settingMemberId);
+        bool isHost = settingMember != null && settingMember.IsActiveHost();
+        bool isOrganizer = _exhibition.IsOrganizer(_settingMemberId);
 
         return !isHost && !isOrganizer;
     }

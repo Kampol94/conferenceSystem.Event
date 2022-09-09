@@ -11,15 +11,15 @@ public class EventReview : BaseEntity
 {
     public EventReviewId Id { get; }
 
-    private EventId _eventId;
+    private readonly EventId _eventId;
 
-    private MemberId _authorId;
+    private readonly MemberId _authorId;
 
-    private EventReviewId? _inReplyToReviewId;
+    private readonly EventReviewId? _inReplyToReviewId;
 
     private string _text;
 
-    private DateTime _createDate;
+    private readonly DateTime _createDate;
 
     private DateTime? _editDate;
 
@@ -37,7 +37,7 @@ public class EventReview : BaseEntity
         CheckRule(new ReviewTextMustBeProvidedRule(text));
         CheckRule(new ReviewCanBeAddedOnlyByExhibitionMemberRule(authorId, exhibition));
 
-        this.Id = new EventReviewId(Guid.NewGuid());
+        Id = new EventReviewId(Guid.NewGuid());
         _eventId = eventId;
         _authorId = authorId;
         _text = text;
@@ -52,11 +52,11 @@ public class EventReview : BaseEntity
 
         if (inReplyToReviewId is null)
         {
-            this.AddDomainEvent(new EventReviewAddedDomainEvent(this.Id, _eventId, text));
+            AddDomainEvent(new EventReviewAddedDomainEvent(Id, _eventId, text));
         }
         else
         {
-            this.AddDomainEvent(new ReplyToEventReviewAddedDomainEvent(this.Id, inReplyToReviewId, text));
+            AddDomainEvent(new ReplyToEventReviewAddedDomainEvent(Id, inReplyToReviewId, text));
         }
     }
 
@@ -74,7 +74,7 @@ public class EventReview : BaseEntity
         _text = editedReview;
         _editDate = DateTime.Now;
 
-        this.AddDomainEvent(new EventReviewEditedDomainEvent(Id, editedReview));
+        AddDomainEvent(new EventReviewEditedDomainEvent(Id, editedReview));
     }
 
     public void Remove(MemberId removingMemberId, Exhibition exhibition, string reason)
@@ -85,7 +85,7 @@ public class EventReview : BaseEntity
         _isRemoved = true;
         _removedByReason = reason ?? string.Empty;
 
-        this.AddDomainEvent(new EventReviewRemovedDomainEvent(Id));
+        AddDomainEvent(new EventReviewRemovedDomainEvent(Id));
     }
 
     public EventReview Reply(MemberId replierId, string reply, Exhibition exhibition)
@@ -98,7 +98,10 @@ public class EventReview : BaseEntity
                 exhibition);
     }
 
-    public EventId GetEventId() => _eventId;
+    public EventId GetEventId()
+    {
+        return _eventId;
+    }
 
     public static EventReview Create(
         EventId eventId,

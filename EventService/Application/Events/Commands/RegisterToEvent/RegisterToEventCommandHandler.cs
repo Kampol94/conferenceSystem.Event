@@ -24,9 +24,9 @@ public class RegisterToEventCommandHandler : ICommandHandler<RegisterToEventComm
 
     public async Task<Unit> Handle(RegisterToEventCommand request, CancellationToken cancellationToken)
     {
-        var @event = await _eventRepository.GetByIdAsync(new EventId(request.EventId));
+        Event? @event = await _eventRepository.GetByIdAsync(new EventId(request.EventId));
 
-        var exhibition = await _exhibitionRepository.GetByIdAsync(@event.GetExhibitionId());
+        Exhibition? exhibition = await _exhibitionRepository.GetByIdAsync(@event.GetExhibitionId());
 
         @event.AddParticipant(exhibition, _memberContext.MemberId);
 

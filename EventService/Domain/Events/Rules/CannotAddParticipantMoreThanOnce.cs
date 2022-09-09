@@ -15,7 +15,10 @@ public class CannotAddParticipantMoreThenOnce : IBaseBusinessRule
         _participants = participants;
     }
 
-    public bool IsBroken() => _participants.SingleOrDefault(x => x.IsActiveParticipant(_participantId)) != null;
+    public bool IsBroken()
+    {
+        return _participants.SingleOrDefault(x => x.IsActiveParticipant(_participantId)) != null;
+    }
 
     public string Message => "Member is already added to this event";
 }

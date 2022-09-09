@@ -44,7 +44,7 @@ public class ExhibitionProposal : BaseEntity
         _proposalDate = DateTime.Now;
         _status = ExhibitionProposalStatus.InVerification;
 
-        this.AddDomainEvent(new ExhibitionProposedDomainEvent(Id, _name, _description, proposalUserId, _proposalDate));
+        AddDomainEvent(new ExhibitionProposedDomainEvent(Id, _name, _description, proposalUserId, _proposalDate));
     }
 
     public static ExhibitionProposal ProposeNew(
@@ -61,6 +61,6 @@ public class ExhibitionProposal : BaseEntity
 
         _status = ExhibitionProposalStatus.Accepted;
 
-        this.AddDomainEvent(new ExhibitionProposalAcceptedDomainEvent(Id));
+        AddDomainEvent(new ExhibitionProposalAcceptedDomainEvent(Id));
     }
 }

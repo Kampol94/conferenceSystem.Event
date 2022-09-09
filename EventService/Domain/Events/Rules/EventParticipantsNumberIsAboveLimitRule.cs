@@ -16,8 +16,11 @@ public class EventParticipantsNumberIsAboveLimitRule : IBaseBusinessRule
         _allActiveParticipants = allActiveParticipants;
     }
 
-    public bool IsBroken() => _participantsLimit.HasValue &&
+    public bool IsBroken()
+    {
+        return _participantsLimit.HasValue &&
                               _participantsLimit.Value < _allActiveParticipants + 1;
+    }
 
     public string Message => "Event is full";
 }

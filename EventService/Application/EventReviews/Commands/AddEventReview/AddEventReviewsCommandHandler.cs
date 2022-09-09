@@ -27,15 +27,15 @@ public class AddEventReviewsCommandHandler : ICommandHandler<AddEventReviewsComm
 
     public async Task<Guid> Handle(AddEventReviewsCommand command, CancellationToken cancellationToken)
     {
-        var @event = await _eventRepository.GetByIdAsync(new EventId(command.EventId));
+        Event? @event = await _eventRepository.GetByIdAsync(new EventId(command.EventId));
         if (@event == null)
         {
-            throw new Exception("Meeting for adding comment must exist." ); // TODO: custom exception
+            throw new Exception("Meeting for adding comment must exist."); // TODO: custom exception
         }
 
-        var exhibition = await _exhibitionRepository.GetByIdAsync(@event.GetExhibitionId());
+        Exhibition? exhibition = await _exhibitionRepository.GetByIdAsync(@event.GetExhibitionId());
 
-        var eventReviews = @event.AddReview(_memberContext.MemberId, command.Comment, exhibition);
+        EventReview eventReviews = @event.AddReview(_memberContext.MemberId, command.Comment, exhibition);
 
         await _eventReviewsRepository.AddAsync(eventReviews);
 

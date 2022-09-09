@@ -7,7 +7,7 @@ public abstract class DomainEventBase : IBaseDomainEvent
 
     public DomainEventBase()
     {
-        this.Id = Guid.NewGuid();
-        this.When = DateTime.UtcNow; // TODO: add time provider 
+        Id = Guid.NewGuid();
+        When = DateTime.UtcNow; // TODO: add time provider 
     }
 }

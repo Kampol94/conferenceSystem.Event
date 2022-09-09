@@ -20,7 +20,7 @@ public class GetParticipantEventsInWhichTakesPartQueryHandler : IQueryHandler<Ge
 
     public async Task<List<GetParticipantEventsInWhichTakesPartResponse>> Handle(GetParticipantEventsInWhichTakesPartQuery request, CancellationToken cancellationToken)
     {
-        var connection = _sqlConnectionFactory.GetOpenConnection();
+        System.Data.IDbConnection connection = _sqlConnectionFactory.GetOpenConnection();
 
         return (await connection.QueryAsync<GetParticipantEventsInWhichTakesPartResponse>(
             "SELECT " +

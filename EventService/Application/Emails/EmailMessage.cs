@@ -13,8 +13,8 @@ public struct EmailMessage
         string subject,
         string content)
     {
-        this.To = to;
-        this.Subject = subject;
-        this.Content = content;
+        To = to;
+        Subject = subject;
+        Content = content;
     }
 }

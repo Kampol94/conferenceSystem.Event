@@ -15,7 +15,10 @@ public class OnlyEventParticipantCanHaveChangedRoleRule : IBaseBusinessRule
         _newOrganizerId = newOrganizerId;
     }
 
-    public bool IsBroken() => _participants.SingleOrDefault(x => x.IsActiveParticipant(_newOrganizerId)) == null;
+    public bool IsBroken()
+    {
+        return _participants.SingleOrDefault(x => x.IsActiveParticipant(_newOrganizerId)) == null;
+    }
 
     public string Message => "Only event participants can be set as organizer of event";
 }

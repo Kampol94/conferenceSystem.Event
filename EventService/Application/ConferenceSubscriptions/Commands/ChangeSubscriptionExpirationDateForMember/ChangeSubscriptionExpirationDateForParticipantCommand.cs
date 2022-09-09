@@ -1,5 +1,4 @@
 ﻿using EventService.Application.Contracts.Commands;
-using EventService.Domain.Members;
 
 namespace EventService.Application.ConferenceSubscriptions.Commands.ChangeSubscriptionExpirationDateForMember;
 
@@ -7,7 +6,7 @@ public class ChangeSubscriptionExpirationDateForMemberCommand : CommandBase
 {
     public ChangeSubscriptionExpirationDateForMemberCommand(
         Guid id,
-        MemberId memberId,
+        Guid memberId,
         DateTime expirationDate)
         : base(id)
     {
@@ -15,7 +14,7 @@ public class ChangeSubscriptionExpirationDateForMemberCommand : CommandBase
         ExpirationDate = expirationDate;
     }
 
-    public MemberId MemberId { get; }
+    public Guid MemberId { get; }
 
     public DateTime ExpirationDate { get; }
 }

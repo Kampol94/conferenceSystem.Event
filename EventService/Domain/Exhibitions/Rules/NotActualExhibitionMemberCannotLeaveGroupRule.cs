@@ -16,7 +16,10 @@ public class NotActualExhibitionMemberCannotLeaveGroupRule : IBaseBusinessRule
         this.memberId = memberId;
     }
 
-    public bool IsBroken() => _members.SingleOrDefault(x => x.IsMember(memberId)) == null;
+    public bool IsBroken()
+    {
+        return _members.SingleOrDefault(x => x.IsMember(memberId)) == null;
+    }
 
     public string Message => "Member is not member of this exhibitio so he cannot leave it";
 }
