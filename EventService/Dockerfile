@@ -6,16 +6,16 @@ EXPOSE 80
 
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src
-COPY ["EventService/EventService.csproj", "EventService/"]
-RUN dotnet restore "EventService/EventService.csproj"
+COPY [".", "."]
+RUN dotnet restore "API/EventService.API.csproj"
 COPY . .
-WORKDIR "/src/EventService"
-RUN dotnet build "EventService.csproj" -c Release -o /app/build
+WORKDIR "/src/API"
+RUN dotnet build "EventService.API.csproj" -c Release -o /app/build
 
 FROM build AS publish
-RUN dotnet publish "EventService.csproj" -c Release -o /app/publish /p:UseAppHost=false
+RUN dotnet publish "EventService.API.csproj" -c Release -o /app/publish /p:UseAppHost=false
 
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "EventService.dll"]
+ENTRYPOINT ["dotnet", "EventService.API.dll"]

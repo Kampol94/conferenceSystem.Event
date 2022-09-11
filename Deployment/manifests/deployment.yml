@@ -1,0 +1,23 @@
+apiVersion : apps/v1
+kind: Deployment
+metadata:
+  name: conferencesystemevent 
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: conferencesystemevent
+  template:
+    metadata:
+      labels:
+        app: conferencesystemevent 
+    spec:
+      containers:
+        - name: conferencesystemevent 
+          image: conferencesystem.azurecr.io/conferencesystemevent
+          ports:
+            - containerPort: 80
+              protocol: TCP
+          env:
+            - name: ASPNETCORE_URLS
+              value: http://+:80
