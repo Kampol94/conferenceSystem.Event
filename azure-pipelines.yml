@@ -7,7 +7,7 @@ resources:
 variables:
   dockerRegistryServiceConnection: 'fb34df85-9e8c-49e7-868c-5a7aa67895f1'
   imageRepository: 'conferencesystemevent'
-  containerRegistry: 'test1223345.azurecr.io'
+  containerRegistry: 'conferencesystem.azurecr.io'
   dockerfilePath: '$(Build.SourcesDirectory)/EventService/Dockerfile'
   tag: '$(Build.BuildId)'
 
