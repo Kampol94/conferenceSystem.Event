@@ -28,7 +28,7 @@ stages:
     displayName: Deploy
     pool:
       vmImage: $(vmImageName)
-    environment: 'conferenceSystemEvent.master'
+    environment: 'Kampol94conferenceSystemEvent.master'
     strategy:
       runOnce:
         deploy:
@@ -58,7 +58,7 @@ stages:
     pool:
       vmImage: $(vmImageName)
 
-    environment: 'conferenceSystemEvent.$(k8sNamespaceForPR)'
+    environment: 'Kampol94conferenceSystemEvent.$(k8sNamespaceForPR)'
     strategy:
       runOnce:
         deploy:
