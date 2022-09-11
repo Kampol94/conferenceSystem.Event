@@ -5,7 +5,7 @@ namespace EventService.API.Controllers;
 
 public class ConferenceSubscriptionController : BaseApiController
 {
-    [HttpPut]
+    [HttpPut("change")]
     //internal from managment service
     public async Task<ActionResult> ChangeSubscriptionExpirationDateForMember([FromBody] ChangeSubscriptionExpirationDateForMemberCommand command, CancellationToken cancellationToken)
     {

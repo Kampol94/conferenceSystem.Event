@@ -29,6 +29,7 @@ public class EventsContext : DbContext
         : base(options)
     {
         _loggerFactory = loggerFactory;
+        Database.EnsureCreated();
     }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -39,5 +40,6 @@ public class EventsContext : DbContext
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.ApplyConfigurationsFromAssembly(GetType().Assembly);
+        base.OnModelCreating(modelBuilder);
     }
 }

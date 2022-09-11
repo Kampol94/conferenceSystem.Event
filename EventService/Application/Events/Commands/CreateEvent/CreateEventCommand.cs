@@ -1,21 +1,18 @@
 ﻿using EventService.Application.Contracts.Commands;
+using System.Text.Json.Serialization;
 
 namespace EventService.Application.Events.Commands.CreateEvent;
 
 public class CreateEventCommand : CommandBase<Guid>
 {
+    [JsonConstructor]
     public CreateEventCommand(
         Guid exhibitionId,
         string title,
         DateTime termStartDate,
         DateTime termEndDate,
         string description,
-        string eventLocationName,
-        string eventLocationAddress,
-        string eventLocationPostalCode,
-        string eventLocationCity,
         int? participantsLimit,
-        int guestsLimit,
         DateTime? rsvpTermStartDate,
         DateTime? rsvpTermEndDate,
         decimal? eventFeeValue,
