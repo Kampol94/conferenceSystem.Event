@@ -47,7 +47,7 @@ stages:
       displayName: Generate SQL migration scripts
       inputs:
         command: custom
-        workingDirectory: '**/EventService'
+        workingDirectory: 'EventService'
         custom: 'ef '
         arguments: migrations script -o $(Build.ArtifactStagingDirectory)/migrations/scripts.sql --project Infrastructure --startup-project API -v -i
         
