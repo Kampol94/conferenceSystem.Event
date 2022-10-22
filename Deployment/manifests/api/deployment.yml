@@ -28,7 +28,3 @@ spec:
                 secretKeyRef:
                   name: mssql
                   key: constr
-          resources:
-            limits:
-              memory: "2G"
-              cpu: "2000m"

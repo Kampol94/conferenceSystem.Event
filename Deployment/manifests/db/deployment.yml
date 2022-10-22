@@ -19,10 +19,6 @@ spec:
       containers:
       - name: eventdb
         image: mcr.microsoft.com/mssql/server:2019-latest
-        resources:
-          limits:
-            memory: "2G"
-            cpu: "2000m"
         ports:
         - containerPort: 1433
         env:
