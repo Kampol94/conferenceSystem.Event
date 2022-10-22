@@ -67,7 +67,7 @@ stages:
               action: 'createSecret'
               secretType: 'generic'
               secretName: '$(dbSecret)'
-              secretArguments: '--from-literal=pwd=$(DbPwd) --from-literal=constr="Server=tcp:mssqlsvr,1433;Initial Catalog=events;Persist Security Info=False;User ID=sa;Password=$(DbPwd);MultipleActiveResultSets=False;Encrypt=False;TrustServerCertificate=True;Connection Timeout=30;"'
+              secretArguments: '--from-literal=pwd=$(DbPwd) --from-literal=constr="Data Source=eventdb;User ID=sa;Password=$(DbPwd);Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False"'
 
           - task: KubernetesManifest@0
             displayName: Deploy DB to Kubernetes cluster
@@ -123,7 +123,7 @@ stages:
               action: 'createSecret'
               secretType: 'generic'
               secretName: '$(dbSecret)'
-              secretArguments: '--from-literal=pwd=$(DbPwd) --from-literal=constr="Server=tcp:mssqlsvr,1433;Initial Catalog=events;Persist Security Info=False;User ID=sa;Password=$(DbPwd);MultipleActiveResultSets=False;Encrypt=False;TrustServerCertificate=True;Connection Timeout=30;"'
+              secretArguments: '--from-literal=pwd=$(DbPwd) --from-literal=constr="Data Source=eventdb;User ID=sa;Password=$(DbPwd);Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False"'
 
           - task: KubernetesManifest@0
             displayName: Deploy DB to Kubernetes cluster
