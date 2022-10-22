@@ -74,11 +74,11 @@ stages:
                 $(containerRegistry)/$(imageRepository):$(tag)
           
           - task: KubernetesManifest@0
-            displayName: Create dbSecret
             inputs:
-              action: createSecret
-              secretName: $(dbSecret)
-              MSSQL_SA_PASSWORD: 
+              action: 'createSecret'
+              secretType: 'generic'
+              secretName: '$(dbSecret)'
+              secretArguments: 'kubectl create secret generic mssql --from-literal=pwd=$(DbPwd) --from-literal=constr="Server=tcp:mssqlsvr,1433;Initial Catalog=events;Persist Security Info=False;User ID=sa;Password=$(DbPwd);MultipleActiveResultSets=False;Encrypt=False;TrustServerCertificate=True;Connection Timeout=30;"'
 
           - task: KubernetesManifest@0
             displayName: Deploy DB to Kubernetes cluster
@@ -130,11 +130,11 @@ stages:
                 $(containerRegistry)/$(imageRepository):$(tag)
 
           - task: KubernetesManifest@0
-            displayName: Create dbSecret
             inputs:
-              action: createSecret
-              secretName: $(dbSecret)
-              MSSQL_SA_PASSWORD: 
+              action: 'createSecret'
+              secretType: 'generic'
+              secretName: '$(dbSecret)'
+              secretArguments: 'kubectl create secret generic mssql --from-literal=pwd=$(DbPwd) --from-literal=constr="Server=tcp:mssqlsvr,1433;Initial Catalog=events;Persist Security Info=False;User ID=sa;Password=$(DbPwd);MultipleActiveResultSets=False;Encrypt=False;TrustServerCertificate=True;Connection Timeout=30;"'
 
           - task: KubernetesManifest@0
             displayName: Deploy DB to Kubernetes cluster
