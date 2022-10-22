@@ -26,7 +26,17 @@ public class SetEventParticipantRoleCommandHandler : ICommandHandler<SetEventPar
     {
         Event? @event = await _eventRepository.GetByIdAsync(new EventId(request.EventId));
 
+        if (@event is null)
+        {
+            throw new Exception("Event must exist."); // TODO: custom exception
+        }
+
         Exhibition? exhibition = await _exhibitionRepository.GetByIdAsync(@event.GetExhibitionId());
+
+        if (exhibition is null)
+        {
+            throw new Exception("Exhibition must exist."); // TODO: custom exception
+        }
 
         @event.SetParticipantRole(exhibition, _memberContext.MemberId, new MemberId(request.MemberId));
 

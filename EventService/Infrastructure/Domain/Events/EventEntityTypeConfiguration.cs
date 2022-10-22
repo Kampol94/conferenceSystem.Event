@@ -89,7 +89,7 @@ public class EventEntityTypeConfiguration : IEntityTypeConfiguration<Event>
 
         builder.OwnsOne<EventLimits>("_eventLimits", meetingLimits =>
         {
-            meetingLimits.Property(x => x.ParticipantsLimit).HasColumnName("AttendeesLimit");
+            meetingLimits.Property(x => x.ParticipantsLimit).HasColumnName("ParticipantsLimit");
         });
     }
 }

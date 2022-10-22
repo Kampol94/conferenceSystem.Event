@@ -24,16 +24,16 @@ public class GetParticipantEventsInWhichTakesPartQueryHandler : IQueryHandler<Ge
 
         return (await connection.QueryAsync<GetParticipantEventsInWhichTakesPartResponse>(
             "SELECT " +
-            $"[EventParticipant].[Id] AS [{nameof(GetParticipantEventsInWhichTakesPartResponse.EventId)}], " +
-            $"[EventParticipant].[RoleCode] AS [{nameof(GetParticipantEventsInWhichTakesPartResponse.RoleCode)}], " +
-            $"[EventParticipant].[TermStartDate] AS [{nameof(GetParticipantEventsInWhichTakesPartResponse.TermStartDate)}], " +
-            $"[EventParticipant].[TermEndDate] AS [{nameof(GetParticipantEventsInWhichTakesPartResponse.TermEndDate)}], " +
-            $"[EventParticipant].[Title] AS [{nameof(GetParticipantEventsInWhichTakesPartResponse.Title)}] " +
-            "FROM [events].[v_EventParticipants] AS [EventParticipant] " +
-            "WHERE [Event].[ParticipantId] = @ParticipantId AND [Event].[IsRemoved] = 0",
+            $"[ParticipantEvent].[Id] AS [{nameof(GetParticipantEventsInWhichTakesPartResponse.EventId)}], " +
+            $"[ParticipantEvent].[RoleCode] AS [{nameof(GetParticipantEventsInWhichTakesPartResponse.RoleCode)}], " +
+            $"[ParticipantEvent].[TermStartDate] AS [{nameof(GetParticipantEventsInWhichTakesPartResponse.TermStartDate)}], " +
+            $"[ParticipantEvent].[TermEndDate] AS [{nameof(GetParticipantEventsInWhichTakesPartResponse.TermEndDate)}], " +
+            $"[ParticipantEvent].[Title] AS [{nameof(GetParticipantEventsInWhichTakesPartResponse.Title)}] " +
+            "FROM [events].[v_ParticipantEvents] AS [ParticipantEvent] " +
+            "WHERE [ParticipantEvent].[ParticipantId] = @ParticipantId AND [ParticipantEvent].[IsRemoved] = 0",
             new
             {
                 ParticipantId = _executionContextAccessor.UserId
-            })).AsList(); //TODO: fix query 
+            })).AsList();
     }
 }

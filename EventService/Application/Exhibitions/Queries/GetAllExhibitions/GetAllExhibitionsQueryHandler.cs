@@ -20,8 +20,8 @@ public class GetAllExhibitionsQueryHandler : IQueryHandler<GetAllExhibitionsQuer
         const string sql = "SELECT " +
                            "[Exhibition].[Id], " +
                            "[Exhibition].[Name], " +
-                           "[Exhibition].[Description], " +
-                           "FROM [events].[v_Exhibitions] AS [Exhibition]";
+                           "[Exhibition].[Description] " +
+                           "FROM [events].[Exhibitions] AS [Exhibition]";
         IEnumerable<ExhibitionDto> exhibitions = await connection.QueryAsync<ExhibitionDto>(sql);
 
         return exhibitions.AsList();

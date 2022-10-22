@@ -32,7 +32,7 @@ public class GetAuthenticationMemberExhibitionsQueryHandler :
                   $"[ExhibitionMember].[MemberId] AS [{nameof(MemberExhibitionDto.MemberId)}], " +
                   $"[ExhibitionMember].[RoleCode] AS [{nameof(MemberExhibitionDto.RoleCode)}] " +
                   "FROM [events].[v_ExhibitionMembers] AS [ExhibitionMember] " +
-                  "WHERE [MemberExhibition].MemberId = @MemberId AND [MemberExhibition].[IsActive] = 1";
+                  "WHERE [ExhibitionMember].MemberId = @MemberId AND [ExhibitionMember].[IsActive] = 1";
 
         IEnumerable<MemberExhibitionDto> exhibitions = await connection.QueryAsync<MemberExhibitionDto>(
             sql,

@@ -26,7 +26,17 @@ public class SignUpToWaitlistCommandHandler : ICommandHandler<SignUpToWaitlistCo
     {
         Event? @event = await _eventRepository.GetByIdAsync(new EventId(request.EventId));
 
+        if (@event is null)
+        {
+            throw new Exception("Event for signup to wait list must exist."); // TODO: custom exception
+        }
+
         Exhibition? exhibition = await _exhibitionRepository.GetByIdAsync(@event.GetExhibitionId());
+
+        if (exhibition is null)
+        {
+            throw new Exception("Exhibition for signup to wait list must exist."); // TODO: custom exception
+        }
 
         @event.SignUpMemberToWaitlist(exhibition, _memberContext.MemberId);
 

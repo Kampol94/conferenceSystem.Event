@@ -18,6 +18,11 @@ public class MarkEventParticipantFeeAsPayedCommandHandler : ICommandHandler<Mark
     {
         Event? @event = await _eventRepository.GetByIdAsync(new EventId(command.EventId));
 
+        if (@event is null)
+        {
+            throw new Exception("Event must exist."); // TODO: custom exception
+        }
+
         @event.MarkParticipantFeeAsPayed(new MemberId(command.MemberId));
 
         return Unit.Value;

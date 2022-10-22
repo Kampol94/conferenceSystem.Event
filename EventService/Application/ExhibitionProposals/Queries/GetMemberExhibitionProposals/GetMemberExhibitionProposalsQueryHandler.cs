@@ -31,7 +31,7 @@ public class GetMemberExhibitionProposalsQueryHandler : IQueryHandler<GetMemberE
                      $"[ExhibitionProposal].[Description] AS [{nameof(ExhibitionProposalDto.Description)}], " +
                      $"[ExhibitionProposal].[ProposalDate] AS [{nameof(ExhibitionProposalDto.ProposalDate)}], " +
                      $"[ExhibitionProposal].[StatusCode] AS [{nameof(ExhibitionProposalDto.StatusCode)}] " +
-                     "FROM [events].[v_ExhibitionProposals] AS [ExhibitionProposal] " +
+                     "FROM [events].[ExhibitionProposals] AS [ExhibitionProposal] " +
                      "WHERE [ExhibitionProposal].ProposalUserId = @MemberId " +
                      "ORDER BY [ExhibitionProposal].[Name]";
 

@@ -6,7 +6,7 @@ using EventService.Application.ExhibitionProposals.Commands.ProposeExhibition;
 
 namespace EventService.API.Controllers;
 
-public class ExhibitionProposalController : BaseApiController
+public class ExhibitionProposalsController : BaseApiController
 {
     [HttpPut("accept")]
     //internal from managment service
@@ -15,7 +15,7 @@ public class ExhibitionProposalController : BaseApiController
         return Ok(await Mediator.Send(command, cancellationToken));
     }
 
-    [HttpGet("")]
+    [HttpGet("member")]
     [ProducesResponseType(typeof(List<ExhibitionProposalDto>), StatusCodes.Status200OK)]
     public async Task<IActionResult> GetMemberExhibitionProposals()
     {

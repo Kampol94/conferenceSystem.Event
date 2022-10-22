@@ -22,6 +22,10 @@ public class JoinToExhibitionCommandHandler : ICommandHandler<JoinToExhibitionCo
     {
         Exhibition? exhibition = await _exhibitionRepository.GetByIdAsync(new ExhibitionId(request.ExhibitionId));
 
+        if (exhibition is null)
+        {
+            throw new Exception("Exhibition must exist.");
+        }
         exhibition.AddMember(_memberContext.MemberId);
 
         return Unit.Value;

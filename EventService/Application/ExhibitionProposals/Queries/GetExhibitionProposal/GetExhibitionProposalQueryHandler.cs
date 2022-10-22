@@ -24,7 +24,7 @@ public class GetExhibitionProposalQueryHandler : IQueryHandler<GetExhibitionProp
                      $"[ExhibitionProposal].[Description] AS [{nameof(ExhibitionProposalDto.Description)}], " +
                      $"[ExhibitionProposal].[ProposalDate] AS [{nameof(ExhibitionProposalDto.ProposalDate)}], " +
                      $"[ExhibitionProposal].[StatusCode] AS [{nameof(ExhibitionProposalDto.StatusCode)}] " +
-                     "FROM [events].[v_ExhibitionProposals] AS [ExhibitionProposal] " +
+                     "FROM [events].[ExhibitionProposals] AS [ExhibitionProposal] " +
                      "WHERE [ExhibitionProposal].[Id] = @ExhibitionProposalId";
 
         return await connection.QuerySingleAsync<ExhibitionProposalDto>(sql, new { query.ExhibitionProposalId });

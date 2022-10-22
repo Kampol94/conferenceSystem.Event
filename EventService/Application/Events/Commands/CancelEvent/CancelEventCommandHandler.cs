@@ -20,6 +20,11 @@ public class CancelEventCommandHandler : ICommandHandler<CancelEventCommand>
     {
         Event? @event = await _eventRepository.GetByIdAsync(new EventId(request.EventId));
 
+        if (@event is null)
+        {
+            throw new Exception("Event must exist."); // TODO: custom exception
+        }
+
         @event.Cancel(_memberContext.MemberId);
 
         return Unit.Value;

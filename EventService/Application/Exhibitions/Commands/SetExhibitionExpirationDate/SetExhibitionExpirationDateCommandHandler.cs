@@ -17,6 +17,10 @@ public class SetExhibitionExpirationDateCommandHandler : ICommandHandler<SetExhi
     {
         Exhibition? exhibition = await _exhibitionRepository.GetByIdAsync(request.ExhibitionId);
 
+        if (exhibition is null)
+        {
+            throw new Exception("Exhibition must exist.");
+        }
         exhibition.SetExpirationDate(request.DateTo);
 
         return Unit.Value;

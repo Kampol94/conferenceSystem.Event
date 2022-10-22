@@ -33,11 +33,21 @@ public class AddReplyToEventReviewsCommandHandler : ICommandHandler<AddReplyToEv
             throw new Exception("To create reply the review must exist.");
         }
 
-        Event? meeting = await _eventRepository.GetByIdAsync(eventReviews.GetEventId());
+        Event? @event = await _eventRepository.GetByIdAsync(eventReviews.GetEventId());
 
-        Exhibition? meetingGroup = await _exhibitionRepository.GetByIdAsync(meeting.GetExhibitionId());
+        if (@event is null)
+        {
+            throw new Exception("Event must exist."); // TODO: custom exception
+        }
 
-        EventReview reply = eventReviews.Reply(_memberContext.MemberId, command.Reply, meetingGroup);
+        Exhibition? exhibition = await _exhibitionRepository.GetByIdAsync(@event.GetExhibitionId());
+
+        if (exhibition is null)
+        {
+            throw new Exception("Exhibition must exist."); // TODO: custom exception
+        }
+
+        EventReview reply = eventReviews.Reply(_memberContext.MemberId, command.Reply, exhibition);
         await _eventReviewsRepository.AddAsync(reply);
 
         return reply.Id.Value;

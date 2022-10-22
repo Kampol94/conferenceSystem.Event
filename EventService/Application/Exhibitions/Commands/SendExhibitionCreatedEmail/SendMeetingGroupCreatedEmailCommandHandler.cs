@@ -1,5 +1,6 @@
 ﻿using EventService.Application.Contracts.Commands;
 using EventService.Application.Emails;
+using EventService.Domain.Events;
 using EventService.Domain.Exhibitions;
 using EventService.Domain.Members;
 using MediatR;
@@ -23,7 +24,17 @@ public class SendExhibitionCreatedEmailCommandHandler : ICommandHandler<SendExhi
     {
         Exhibition? exhibition = await _exhibitionRepository.GetByIdAsync(request.ExhibitionId);
 
+        if (exhibition is null)
+        {
+            throw new Exception("Exhibition must exist."); // TODO: custom exception
+        }
+
         Member? member = await _memberRepository.GetByIdAsync(request.CreatorId);
+
+        if (member is null)
+        {
+            throw new Exception("Member must exist."); // TODO: custom exception
+        }
 
         EmailMessage email = new(
             member.Email,

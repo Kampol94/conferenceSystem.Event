@@ -25,6 +25,11 @@ public class CreateEventCommandHandler : ICommandHandler<CreateEventCommand, Gui
     {
         Exhibition? exhibition = await _exhibitionRepository.GetByIdAsync(new ExhibitionId(request.ExhibitionId));
 
+        if (exhibition is null)
+        {
+            throw new Exception("exhibition for adding event must exist."); // TODO: custom exception
+        }
+
         List<MemberId> hostsMembersIds = request.HostMemberIds.Select(x => new MemberId(x)).ToList();
 
         Event @event = exhibition.CreateEvent(

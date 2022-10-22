@@ -22,6 +22,11 @@ public class LeaveExhibitionCommandHandler : ICommandHandler<LeaveExhibitionComm
     {
         Exhibition? exhibition = await _exhibitionRepository.GetByIdAsync(new ExhibitionId(request.ExhibitionId));
 
+        if (exhibition is null)
+        {
+            throw new Exception("Exhibition must exist."); // TODO: custom exception
+        }
+
         exhibition.LeaveGroup(_memberContext.MemberId);
 
         return Unit.Value;

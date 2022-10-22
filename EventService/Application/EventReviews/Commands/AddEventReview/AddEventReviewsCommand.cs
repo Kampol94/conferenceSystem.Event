@@ -8,9 +8,9 @@ public class AddEventReviewsCommand : CommandBase<Guid>
 
     public string Comment { get; }
 
-    public AddEventReviewsCommand(Guid meetingId, string comment)
+    public AddEventReviewsCommand(Guid eventId, string comment)
     {
-        EventId = meetingId;
+        EventId = eventId;
         Comment = comment;
     }
 }

@@ -23,7 +23,17 @@ public class EventParticipantAddedHandler : INotificationHandler<EventParticipan
     {
         Event? @event = await _eventRepository.GetByIdAsync(notification.EventId);
 
+        if (@event is null)
+        {
+            throw new Exception("Event must exist."); // TODO: custom exception
+        }
+
         Member? participant = await _memberRepository.GetByIdAsync(notification.ParticipantId);
+
+        if (participant is null)
+        {
+            throw new Exception("Participant must exist."); // TODO: custom exception
+        }
 
         EmailMessage email = new(
             participant.Email,

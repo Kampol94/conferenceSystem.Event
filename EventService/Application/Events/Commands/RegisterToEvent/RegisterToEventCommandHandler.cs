@@ -26,7 +26,17 @@ public class RegisterToEventCommandHandler : ICommandHandler<RegisterToEventComm
     {
         Event? @event = await _eventRepository.GetByIdAsync(new EventId(request.EventId));
 
+        if (@event is null)
+        {
+            throw new Exception("Event for registration must exist."); // TODO: custom exception
+        }
+
         Exhibition? exhibition = await _exhibitionRepository.GetByIdAsync(@event.GetExhibitionId());
+
+        if (exhibition is null)
+        {
+            throw new Exception("Exhibition for registration must exist."); // TODO: custom exception
+        }
 
         @event.AddParticipant(exhibition, _memberContext.MemberId);
 

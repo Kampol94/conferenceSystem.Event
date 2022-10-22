@@ -46,21 +46,21 @@ public class EventsController : BaseApiController
         return Ok(await Mediator.Send(request));
     }
 
-    [HttpGet("attendees")]
+    [HttpGet("attendees/{eventId}")]
     [ProducesResponseType(typeof(List<GetEventParticipantsResponse>), StatusCodes.Status200OK)]
-    public async Task<IActionResult> GetEventParticipants([FromBody] GetEventParticipantsQuery request)
+    public async Task<IActionResult> GetEventParticipants([FromRoute] Guid eventId)
     {
-        return Ok(await Mediator.Send(request));
+        return Ok(await Mediator.Send(new GetEventParticipantsQuery(eventId)));
     }
 
-    [HttpPost("attendees")]
+    [HttpPost("register")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     public async Task<IActionResult> RegisterToEvent([FromBody] RegisterToEventCommand request)
     {
         return Ok(await Mediator.Send(request));
     }
 
-    [HttpDelete("attendees")]
+    [HttpDelete("participant")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     public async Task<IActionResult> RemoveEventParticipant([FromBody] RemoveEventParticipantCommand request)
     {

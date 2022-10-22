@@ -22,6 +22,11 @@ public class CreateNewExhibitionCommandHandler : ICommandHandler<CreateNewExhibi
     {
         ExhibitionProposal? exhibitionProposal = await _exhibitionProposalRepository.GetByIdAsync(request.ExhibitionProposalId);
 
+        if (exhibitionProposal is null)
+        {
+            throw new Exception("ExhibitionProposal must exist."); // TODO: custom exception
+        }
+
         Exhibition Exhibition = exhibitionProposal.CreateExhibition();
 
         await _exhibitionRepository.AddAsync(Exhibition);

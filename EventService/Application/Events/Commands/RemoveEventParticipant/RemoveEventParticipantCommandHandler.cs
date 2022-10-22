@@ -20,6 +20,11 @@ public class RemoveEventParticipantCommandHandler : ICommandHandler<RemoveEventP
     {
         Event? @event = await _eventRepository.GetByIdAsync(new EventId(request.EventId));
 
+        if (@event is null)
+        {
+            throw new Exception("Event for removing participant must exist."); // TODO: custom exception
+        }
+
         @event.RemoveParticipant(new MemberId(request.ParticipantId), _memberContext.MemberId, request.RemovingReason);
 
         return Unit.Value;

@@ -22,8 +22,8 @@ public class GetExhibitionDetailsQueryHandler : IQueryHandler<GetExhibitionDetai
             "SELECT " +
             $"[Exhibition].[Id] AS [{nameof(ExhibitionDetailsDto.Id)}], " +
             $"[Exhibition].[Name] AS [{nameof(ExhibitionDetailsDto.Name)}], " +
-            $"[Exhibition].[Description] AS [{nameof(ExhibitionDetailsDto.Description)}], " +
-            "FROM [events].[v_Exhibitions] AS [Exhibition] " +
+            $"[Exhibition].[Description] AS [{nameof(ExhibitionDetailsDto.Description)}] " +
+            "FROM [events].[Exhibitions] AS [Exhibition] " +
             "WHERE [Exhibition].[Id] = @ExhibitionId",
             new
             {

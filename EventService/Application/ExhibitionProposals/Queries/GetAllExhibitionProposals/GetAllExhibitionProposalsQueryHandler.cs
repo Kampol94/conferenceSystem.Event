@@ -25,7 +25,7 @@ public class GetAllExhibitionProposalsQueryHandler : IQueryHandler<GetAllExhibit
                      $"[ExhibitionProposal].[Description] AS [{nameof(ExhibitionProposalDto.Description)}], " +
                      $"[ExhibitionProposal].[ProposalDate] AS [{nameof(ExhibitionProposalDto.ProposalDate)}], " +
                      $"[ExhibitionProposal].[StatusCode] AS [{nameof(ExhibitionProposalDto.StatusCode)}] " +
-                     "FROM [events].[v_ExhibitionProposals] AS [ExhibitionProposal] " +
+                     "FROM [events].[ExhibitionProposals] AS [ExhibitionProposal] " +
                      "ORDER BY [ExhibitionProposal].[Name]";
 
         IEnumerable<ExhibitionProposalDto> exhibitionProposals = await connection.QueryAsync<ExhibitionProposalDto>(sql);

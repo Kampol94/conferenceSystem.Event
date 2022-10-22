@@ -30,10 +30,15 @@ public class AddEventReviewsCommandHandler : ICommandHandler<AddEventReviewsComm
         Event? @event = await _eventRepository.GetByIdAsync(new EventId(command.EventId));
         if (@event == null)
         {
-            throw new Exception("Meeting for adding comment must exist."); // TODO: custom exception
+            throw new Exception("Event for adding comment must exist."); // TODO: custom exception
         }
 
         Exhibition? exhibition = await _exhibitionRepository.GetByIdAsync(@event.GetExhibitionId());
+
+        if (exhibition is null)
+        {
+            throw new Exception("Exhibition for adding comment must exist"); // TODO: custom exception
+        }
 
         EventReview eventReviews = @event.AddReview(_memberContext.MemberId, command.Comment, exhibition);
 

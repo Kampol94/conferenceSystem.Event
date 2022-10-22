@@ -20,6 +20,11 @@ public class SignOffFromWaitlistCommandHandler : ICommandHandler<SignOffFromWait
     {
         Event? @event = await _eventRepository.GetByIdAsync(new EventId(request.EventId));
 
+        if (@event is null)
+        {
+            throw new Exception("Event for signoff from wait list must exist."); // TODO: custom exception
+        }
+
         @event.SignOffMemberFromWaitlist(_memberContext.MemberId);
 
         return Unit.Value;

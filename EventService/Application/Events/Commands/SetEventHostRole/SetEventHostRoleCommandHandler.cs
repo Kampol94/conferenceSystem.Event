@@ -26,7 +26,17 @@ public class SetEventHostRoleCommandHandler : ICommandHandler<SetEventHostRoleCo
     {
         Event? @event = await _eventRepository.GetByIdAsync(new EventId(request.EventId));
 
+        if (@event is null)
+        {
+            throw new Exception("Event for setting event host must exist."); // TODO: custom exception
+        }
+
         Exhibition? exhibition = await _exhibitionRepository.GetByIdAsync(@event.GetExhibitionId());
+
+        if (exhibition is null)
+        {
+            throw new Exception("Exhibition for setting event host must exist."); // TODO: custom exception
+        }
 
         @event.SetHostRole(exhibition, _memberContext.MemberId, new MemberId(request.MemberId));
 
