@@ -46,7 +46,7 @@ stages:
       inputs:
         folderPath: '$(System.DefaultWorkingDirectory)'
         fileType: 'json'
-        targetFiles: 'EventService\API\appsettings.json'
+        targetFiles: 'EventService/API/appsettings.json'
     - task: DotNetCoreCLI@2
       displayName: Generate SQL migration scripts
       inputs:
