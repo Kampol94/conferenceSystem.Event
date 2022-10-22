@@ -42,14 +42,6 @@ stages:
         command: 'custom'
         custom: 'tool'
         arguments: 'install --global dotnet-ef'
-
-    - task: DotNetCoreCLI@2
-      displayName: Generate SQL migration scripts
-      inputs:
-        command: custom
-        workingDirectory: 'EventService'
-        custom: 'ef '
-        arguments: migrations script -o $(Build.ArtifactStagingDirectory)/migrations/scripts.sql --project Infrastructure --startup-project API -v -i --connection "Data Source=eventdb;User ID=sa;Password=$(DbPwd);Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False"
         
     - upload: Deployment/manifests
       artifact: manifests
@@ -91,6 +83,20 @@ stages:
               manifests: |
                 $(Pipeline.Workspace)/manifests/db/pvc.yml
                 $(Pipeline.Workspace)/manifests/db/deployment.yml
+          - task: DotNetCoreCLI@2
+            displayName: 'Install dotnet-ef'
+            inputs:
+              command: 'custom'
+              custom: 'tool'
+              arguments: 'install --global dotnet-ef'
+
+          - task: DotNetCoreCLI@2
+            displayName: 'dotnet-ef update'
+            inputs:
+              command: 'custom'
+              workingDirectory: 'EventService'
+              custom: 'ef'
+              arguments: 'database update --project Infrastructure --startup-project API --connection "Data Source=eventdb;User ID=sa;Password=$(DbPwd);Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False"'
 
           - task: KubernetesManifest@0
             displayName: Deploy API to Kubernetes cluster
