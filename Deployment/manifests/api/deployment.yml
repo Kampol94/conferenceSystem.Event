@@ -23,7 +23,7 @@ spec:
               value: http://+:80
             - name: ASPNETCORE_ENVIRONMENT
               value: Development
-            - name: ConnectionStrings__DefaultConnectionString
+            - name: ConnectionStrings__DefaultConnection
               valueFrom:
                 secretKeyRef:
                   name: mssql
