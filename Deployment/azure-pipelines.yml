@@ -74,8 +74,8 @@ stages:
             inputs:
               action: deploy
               manifests: |
-                $(Pipeline.Workspace)/manifests/pvc.yml
-                $(Pipeline.Workspace)/manifests/deployment.yml
+                $(Pipeline.Workspace)/manifests/db/pvc.yml
+                $(Pipeline.Workspace)/manifests/db/deployment.yml
 
           - task: KubernetesManifest@0
             displayName: Deploy API to Kubernetes cluster
@@ -131,8 +131,8 @@ stages:
               action: deploy
               namespace: $(k8sNamespaceForPR)
               manifests: |
-                $(Pipeline.Workspace)/manifests/pvc.yml
-                $(Pipeline.Workspace)/manifests/deployment.yml
+                $(Pipeline.Workspace)/manifests/db/pvc.yml
+                $(Pipeline.Workspace)/manifests/db/deployment.yml
 
           - task: KubernetesManifest@0
             displayName: Deploy to the new namespace in the Kubernetes cluster
