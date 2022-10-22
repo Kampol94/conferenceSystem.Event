@@ -20,9 +20,6 @@ spec:
       - name: eventdb
         image: mcr.microsoft.com/mssql/server:2019-latest
         resources:
-          requests:
-            memory: "2G"
-            cpu: "2000m"
           limits:
             memory: "2G"
             cpu: "2000m"

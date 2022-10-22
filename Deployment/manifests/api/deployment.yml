@@ -29,9 +29,6 @@ spec:
                   name: mssql
                   key: constr
           resources:
-            requests:
-              memory: "2G"
-              cpu: "2000m"
             limits:
               memory: "2G"
               cpu: "2000m"
