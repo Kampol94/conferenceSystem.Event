@@ -23,3 +23,15 @@ spec:
               value: http://+:80
             - name: ASPNETCORE_ENVIRONMENT
               value: Development
+            - name: ConnectionStrings__DefaultConnectionString
+              valueFrom:
+                secretKeyRef:
+                  name: mssql
+                  key: constr
+          resources:
+            requests:
+              memory: "2G"
+              cpu: "2000m"
+            limits:
+              memory: "2G"
+              cpu: "2000m"
