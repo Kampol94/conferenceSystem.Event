@@ -1,6 +1,7 @@
 using EventService.API;
 using EventService.Application;
 using EventService.Application.Contracts;
+using EventService.Domain.EventReviews.DomainEvents;
 using EventService.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -27,4 +28,5 @@ app.UseAuthorization();
 
 app.MapControllers();
 
+app.MigrateDatabase(); //TODO: change to initContainer 
 app.Run();
