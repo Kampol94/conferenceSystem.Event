@@ -8,13 +8,6 @@ namespace EventService.API.Controllers;
 
 public class ExhibitionProposalsController : BaseApiController
 {
-    [HttpPut("accept")]
-    //internal from managment service
-    public async Task<ActionResult> AcceptExhibitionProposal([FromBody] AcceptExhibitionProposalCommand command, CancellationToken cancellationToken)
-    {
-        return Ok(await Mediator.Send(command, cancellationToken));
-    }
-
     [HttpGet("member")]
     [ProducesResponseType(typeof(List<ExhibitionProposalDto>), StatusCodes.Status200OK)]
     public async Task<IActionResult> GetMemberExhibitionProposals()
