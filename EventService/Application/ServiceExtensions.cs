@@ -1,3 +1,4 @@
+using EventService.Application.Contracts.Commands;
 using EventService.Application.Members;
 using EventService.Domain.Members;
 using FluentValidation;
@@ -13,6 +14,7 @@ public static class ServiceExtensions
     {
         services.AddMediatR(Assembly.GetExecutingAssembly());
         services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
+        services.AddScoped(typeof(IPipelineBehavior<,>), typeof(CommitBehavior<,>));
         services.AddTransient<IMemberContext, MemberContext>();
         return services;
     }

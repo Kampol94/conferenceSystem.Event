@@ -37,6 +37,7 @@ public static class ServiceExtensions
         services.AddTransient<IMemberRepository, MemberRepository>();
         services.AddTransient<ISqlConnectionFactory, SqlConnectionFactory>(x => new SqlConnectionFactory(configuration.GetConnectionString("DefaultConnection")));
         services.AddTransient<IEmailSender, EmailSender>();
+        services.AddTransient<IEventBus, EventBus>();
 
         return services;
     }
