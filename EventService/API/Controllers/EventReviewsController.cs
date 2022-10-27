@@ -2,6 +2,7 @@
 using EventService.Application.EventReviews.Commands.AddEventReviewtReply;
 using EventService.Application.EventReviews.Commands.EditEventReview;
 using EventService.Application.EventReviews.Commands.RemoveEventReview;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EventService.API.Controllers;
@@ -10,6 +11,7 @@ namespace EventService.API.Controllers;
 public class EventReviewsController : BaseApiController
 {
     [HttpPost]
+    [Authorize]
     [ProducesResponseType(typeof(Guid), StatusCodes.Status200OK)]
     public async Task<IActionResult> AddEventReview([FromBody] AddEventReviewsCommand request)
     {
@@ -17,6 +19,7 @@ public class EventReviewsController : BaseApiController
     }
 
     [HttpPut("")]
+    [Authorize]
     [ProducesResponseType(StatusCodes.Status200OK)]
     public async Task<IActionResult> EditEventReview([FromBody] EditEventReviewsCommand request)
     {
@@ -24,6 +27,7 @@ public class EventReviewsController : BaseApiController
     }
 
     [HttpDelete("")]
+    [Authorize]
     [ProducesResponseType(StatusCodes.Status200OK)]
     public async Task<IActionResult> RemoveEventReview([FromBody] RemoveEventReviewsCommand request)
     {
@@ -31,6 +35,7 @@ public class EventReviewsController : BaseApiController
     }
 
     [HttpPost("{meetingCommentId}/replies")]
+    [Authorize]
     [ProducesResponseType(StatusCodes.Status200OK)]
     public async Task<IActionResult> AddReply([FromBody] AddReplyToEventReviewsCommand request)
     {

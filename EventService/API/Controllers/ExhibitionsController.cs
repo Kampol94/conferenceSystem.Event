@@ -4,6 +4,7 @@ using EventService.Application.Exhibitions.Commands.LeaveExhibition;
 using EventService.Application.Exhibitions.Queries.GetAllExhibitions;
 using EventService.Application.Exhibitions.Queries.GetAuthenticationMemberExhibition;
 using EventService.Application.Exhibitions.Queries.GetExhibitionDetails;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EventService.API.Controllers;
@@ -12,6 +13,7 @@ namespace EventService.API.Controllers;
 public class ExhibitionsController : BaseApiController
 {
     [HttpGet("")]
+    [Authorize]
     [ProducesResponseType(typeof(List<MemberExhibitionDto>), StatusCodes.Status200OK)]
     public async Task<IActionResult> GetAuthenticationMemberExhibitions()
     {
@@ -32,6 +34,7 @@ public class ExhibitionsController : BaseApiController
     }
 
     [HttpPut("")]
+    [Authorize]
     [ProducesResponseType(StatusCodes.Status200OK)]
     public async Task<IActionResult> EditExhibitionGeneralAttributes([FromBody] EditExhibitionGeneralAttributesCommand request)
     {
@@ -39,6 +42,7 @@ public class ExhibitionsController : BaseApiController
     }
 
     [HttpPost("members")]
+    [Authorize]
     [ProducesResponseType(StatusCodes.Status200OK)]
     public async Task<IActionResult> JoinToExhibition([FromBody] JoinToExhibitionCommand request)
     {
@@ -46,6 +50,7 @@ public class ExhibitionsController : BaseApiController
     }
 
     [HttpDelete("members")]
+    [Authorize]
     [ProducesResponseType(StatusCodes.Status200OK)]
     public async Task<IActionResult> LeaveExhibition([FromBody] LeaveExhibitionCommand request)
     {

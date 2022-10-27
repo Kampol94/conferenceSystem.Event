@@ -10,6 +10,7 @@ using EventService.Application.Events.Commands.SignUpToWaitlist;
 using EventService.Application.Events.Query.GetEventDetails;
 using EventService.Application.Events.Query.GetEventParticipants;
 using EventService.Application.Events.Query.GetParticipantEventsInWhichTakesPart;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EventService.API.Controllers;
@@ -17,6 +18,7 @@ namespace EventService.API.Controllers;
 public class EventsController : BaseApiController
 {
     [HttpGet("")]
+    [Authorize]
     [ProducesResponseType(typeof(List<GetParticipantEventsInWhichTakesPartResponse>), StatusCodes.Status200OK)]
     public async Task<IActionResult> GetParticipantEventsInWhichTakesPart()
     {
@@ -24,6 +26,7 @@ public class EventsController : BaseApiController
     }
 
     [HttpGet("{eventId}")]
+    [Authorize]
     [ProducesResponseType(typeof(GetEventDetailsResponse), StatusCodes.Status200OK)]
     public async Task<IActionResult> GetEventDetails([FromRoute] Guid eventId)
     {
@@ -32,6 +35,7 @@ public class EventsController : BaseApiController
 
 
     [HttpPost("")]
+    [Authorize]
     [ProducesResponseType(StatusCodes.Status200OK)]
     public async Task<IActionResult> CreateEvent([FromBody] CreateEventCommand request)
     {
@@ -40,6 +44,7 @@ public class EventsController : BaseApiController
 
 
     [HttpPut("")]
+    [Authorize]
     [ProducesResponseType(StatusCodes.Status200OK)]
     public async Task<IActionResult> EditMeeting([FromBody] ChangeEventMainAttributesCommand request)
     {
@@ -47,6 +52,7 @@ public class EventsController : BaseApiController
     }
 
     [HttpGet("attendees/{eventId}")]
+    [Authorize]
     [ProducesResponseType(typeof(List<GetEventParticipantsResponse>), StatusCodes.Status200OK)]
     public async Task<IActionResult> GetEventParticipants([FromRoute] Guid eventId)
     {
@@ -54,6 +60,7 @@ public class EventsController : BaseApiController
     }
 
     [HttpPost("register")]
+    [Authorize]
     [ProducesResponseType(StatusCodes.Status200OK)]
     public async Task<IActionResult> RegisterToEvent([FromBody] RegisterToEventCommand request)
     {
@@ -61,6 +68,7 @@ public class EventsController : BaseApiController
     }
 
     [HttpDelete("participant")]
+    [Authorize]
     [ProducesResponseType(StatusCodes.Status200OK)]
     public async Task<IActionResult> RemoveEventParticipant([FromBody] RemoveEventParticipantCommand request)
     {
@@ -68,6 +76,7 @@ public class EventsController : BaseApiController
     }
 
     [HttpPost("waitlistMembers")]
+    [Authorize]
     [ProducesResponseType(StatusCodes.Status200OK)]
     public async Task<IActionResult> SignUpToWaitlist([FromBody] SignUpToWaitlistCommand request)
     {
@@ -75,6 +84,7 @@ public class EventsController : BaseApiController
     }
 
     [HttpDelete("waitlistMembers")]
+    [Authorize]
     [ProducesResponseType(StatusCodes.Status200OK)]
     public async Task<IActionResult> SignOffMemberFromWaitlist([FromBody] SignOffFromWaitlistCommand request)
     {
@@ -82,6 +92,7 @@ public class EventsController : BaseApiController
     }
 
     [HttpPost("hosts")]
+    [Authorize]
     [ProducesResponseType(StatusCodes.Status200OK)]
     public async Task<IActionResult> SetEventHostRole([FromBody] SetEventHostRoleCommand request)
     {
@@ -89,6 +100,7 @@ public class EventsController : BaseApiController
     }
 
     [HttpPost("attendees/attendeeRole")]
+    [Authorize]
     [ProducesResponseType(StatusCodes.Status200OK)]
     public async Task<IActionResult> SetEventParticipantRole([FromBody] SetEventParticipantRoleCommand request)
     {
@@ -96,6 +108,7 @@ public class EventsController : BaseApiController
     }
 
     [HttpPatch("cancel")]
+    [Authorize]
     [ProducesResponseType(StatusCodes.Status200OK)]
     public async Task<IActionResult> CancelEvent([FromBody] CancelEventCommand request)
     {
