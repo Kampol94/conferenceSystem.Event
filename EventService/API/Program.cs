@@ -60,7 +60,6 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJw
 });
 
 WebApplication app = builder.Build();
-EventsBusStartup.Initialize(app.Services.GetService<IEventBus>(), app.Services.GetService<IMediator>());
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
