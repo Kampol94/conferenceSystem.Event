@@ -6,6 +6,7 @@ using EventService.Domain.Events;
 using EventService.Domain.ExhibitionProposals;
 using EventService.Domain.Exhibitions;
 using EventService.Domain.Members;
+using EventService.Infrastructure.Domain;
 using EventService.Infrastructure.Domain.ConferenceSubscriptions;
 using EventService.Infrastructure.Domain.EventReviews;
 using EventService.Infrastructure.Domain.Events;
@@ -38,6 +39,7 @@ public static class ServiceExtensions
         services.AddTransient<ISqlConnectionFactory, SqlConnectionFactory>(x => new SqlConnectionFactory(configuration.GetConnectionString("DefaultConnection")));
         services.AddTransient<IEmailSender, EmailSender>();
         services.AddTransient<IEventBus, EventBus>();
+        services.AddTransient<IRepository, Repository>();
         services.AddHostedService<EventReceiverService>();
 
         return services;
