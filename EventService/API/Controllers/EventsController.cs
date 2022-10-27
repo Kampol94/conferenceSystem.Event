@@ -37,7 +37,7 @@ public class EventsController : BaseApiController
     {
         return Ok(await Mediator.Send(request));
     }
-    
+
 
     [HttpPut("")]
     [ProducesResponseType(StatusCodes.Status200OK)]

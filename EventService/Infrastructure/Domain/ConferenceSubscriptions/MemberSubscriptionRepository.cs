@@ -13,7 +13,7 @@ public class ConferenceSubscriptionRepository : IConferenceSubscriptionRepositor
 
     public async Task AddAsync(ConferenceSubscription member)
     {
-        await _meetingsContext.ConferenceSubscriptions.AddAsync(member);
+        _ = await _meetingsContext.ConferenceSubscriptions.AddAsync(member);
     }
 
     public async Task<ConferenceSubscription?> GetByIdOptionalAsync(ConferenceSubscriptionId memberSubscriptionId)

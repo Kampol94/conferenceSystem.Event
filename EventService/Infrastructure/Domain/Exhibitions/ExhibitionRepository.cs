@@ -14,7 +14,7 @@ public class ExhibitionRepository : IExhibitionRepository
 
     public async Task AddAsync(Exhibition exhibition)
     {
-        await _meetingsContext.Exhibitions.AddAsync(exhibition);
+        _ = await _meetingsContext.Exhibitions.AddAsync(exhibition);
     }
 
     public async Task<int> Commit()

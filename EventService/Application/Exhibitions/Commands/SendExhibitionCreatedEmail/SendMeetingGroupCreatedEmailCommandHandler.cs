@@ -1,6 +1,5 @@
 ﻿using EventService.Application.Contracts.Commands;
 using EventService.Application.Emails;
-using EventService.Domain.Events;
 using EventService.Domain.Exhibitions;
 using EventService.Domain.Members;
 using MediatR;

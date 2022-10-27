@@ -1,8 +1,6 @@
-﻿using EventService.Application.ConferenceSubscriptions.Commands.ChangeSubscriptionExpirationDateForMember;
-using EventService.Application.Contracts;
+﻿using EventService.Application.Contracts;
 using EventService.Application.Events.Commands.MarkEventParticipantFeeAsPayed;
 using EventService.Application.IntegrationEvents.Events;
-using EventService.Domain.Members;
 using MediatR;
 
 namespace EventService.Application.IntegrationEvents.EventHandlings;
@@ -18,10 +16,10 @@ public class EventFeePaidIntegrationEventHandler : IIntegrationEventHandler<Even
 
     public async Task Handle(EventFeePaidIntegrationEvent @event)
     {
-        var command = new MarkEventParticipantFeeAsPayedCommand(
+        MarkEventParticipantFeeAsPayedCommand command = new(
             Guid.NewGuid(),
             @event.PayerId,
             @event.MeetingId);
-        await _mediator.Send(command);
+        _ = await _mediator.Send(command);
     }
 }

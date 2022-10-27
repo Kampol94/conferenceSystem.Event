@@ -6,6 +6,6 @@ public class ProposeExhibitionCommandValidator : AbstractValidator<ProposeExhibi
 {
     public ProposeExhibitionCommandValidator()
     {
-        RuleFor(x => x.Name).NotEmpty().WithMessage("Exhibition name cannot be empty");
+        _ = RuleFor(x => x.Name).NotEmpty().WithMessage("Exhibition name cannot be empty");
     }
 }

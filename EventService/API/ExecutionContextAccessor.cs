@@ -15,7 +15,7 @@ public class ExecutionContextAccessor : IExecutionContextAccessor
     {
         get
         {
-            var userId = _httpContextAccessor
+            string userId = _httpContextAccessor
                .HttpContext?
                .User?
             .Claims?

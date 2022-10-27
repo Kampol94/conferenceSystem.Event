@@ -6,7 +6,7 @@ public class EditEventReviewsCommandValidator : AbstractValidator<EditEventRevie
 {
     public EditEventReviewsCommandValidator()
     {
-        RuleFor(c => c.EditedReview).NotNull().NotEmpty()
+        _ = RuleFor(c => c.EditedReview).NotNull().NotEmpty()
             .WithMessage("Review cannot be null or empty.");
     }
 }

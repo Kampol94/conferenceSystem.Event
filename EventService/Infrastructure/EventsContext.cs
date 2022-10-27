@@ -29,17 +29,17 @@ public class EventsContext : DbContext
         : base(options)
     {
         _loggerFactory = loggerFactory;
-        Database.EnsureCreated();
+        _ = Database.EnsureCreated();
     }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
-        optionsBuilder.UseLoggerFactory(_loggerFactory).EnableSensitiveDataLogging();
+        _ = optionsBuilder.UseLoggerFactory(_loggerFactory).EnableSensitiveDataLogging();
     }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.ApplyConfigurationsFromAssembly(GetType().Assembly);
+        _ = modelBuilder.ApplyConfigurationsFromAssembly(GetType().Assembly);
         base.OnModelCreating(modelBuilder);
     }
 }

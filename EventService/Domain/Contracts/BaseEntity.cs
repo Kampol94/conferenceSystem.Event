@@ -1,13 +1,10 @@
 ﻿using EventService.Domain.Contracts.Exceptions;
-using MediatR;
-using Microsoft.Extensions.DependencyInjection;
-using System.Reflection;
 
 namespace EventService.Domain.Contracts;
 
 public abstract class BaseEntity
 {
-    private readonly Queue<IBaseDomainEvent> _events = new Queue<IBaseDomainEvent>();
+    private readonly Queue<IBaseDomainEvent> _events = new();
 
     public int CountEvents => _events.Count;
 

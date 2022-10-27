@@ -13,7 +13,7 @@ public class EventReviewRepository : IEventReviewRepository
 
     public async Task AddAsync(EventReview eventReview)
     {
-        await _eventsContext.EventReviews.AddAsync(eventReview);
+        _ = await _eventsContext.EventReviews.AddAsync(eventReview);
     }
 
     public async Task<EventReview?> GetByIdAsync(EventReviewId eventReviewId)

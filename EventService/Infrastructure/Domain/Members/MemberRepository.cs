@@ -14,7 +14,7 @@ public class MemberRepository : IMemberRepository
 
     public async Task AddAsync(Member member)
     {
-        await _meetingsContext.Members.AddAsync(member);
+        _ = await _meetingsContext.Members.AddAsync(member);
     }
 
     public async Task<Member?> GetByIdAsync(MemberId memberId)

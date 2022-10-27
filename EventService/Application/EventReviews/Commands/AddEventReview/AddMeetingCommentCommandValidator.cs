@@ -6,10 +6,10 @@ public class AddEventReviewsCommandValidator : AbstractValidator<AddEventReviews
 {
     public AddEventReviewsCommandValidator()
     {
-        RuleFor(c => c.EventId).NotEmpty()
+        _ = RuleFor(c => c.EventId).NotEmpty()
             .WithMessage("Id of meeting member cannot be empty.");
 
-        RuleFor(c => c.Comment).NotNull().NotEmpty()
+        _ = RuleFor(c => c.Comment).NotNull().NotEmpty()
             .WithMessage("Comment cannot be null or empty.");
     }
 }

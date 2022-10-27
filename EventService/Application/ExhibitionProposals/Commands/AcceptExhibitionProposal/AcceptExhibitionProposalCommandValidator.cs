@@ -6,7 +6,7 @@ public class AcceptExhibitionProposalCommandValidator : AbstractValidator<Accept
 {
     public AcceptExhibitionProposalCommandValidator()
     {
-        RuleFor(x => x.ExhibitionProposalId).NotEmpty()
+        _ = RuleFor(x => x.ExhibitionProposalId).NotEmpty()
             .WithMessage("Id of Exhibition proposal cannot be empty");
     }
 }

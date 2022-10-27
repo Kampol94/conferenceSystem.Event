@@ -13,7 +13,7 @@ public class EventRepository : IEventRepository
 
     public async Task AddAsync(Event @event)
     {
-        await _meetingsContext.Events.AddAsync(@event);
+        _ = await _meetingsContext.Events.AddAsync(@event);
     }
 
     public async Task<Event?> GetByIdAsync(EventId id)

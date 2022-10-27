@@ -16,10 +16,10 @@ public class CommitBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, T
 
     public async Task<TResponse> Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate<TResponse> next)
     {
-        var result = await next();
-        await _repository.CommitAsync();
+        TResponse? result = await next();
+        _ = await _repository.CommitAsync();
 
-        var test = _repository.GetEntitiesWithEvents();
+        List<Domain.Contracts.BaseEntity> test = _repository.GetEntitiesWithEvents();
 
         await Parallel.ForEachAsync(test, async (entity, cancellationToken) =>
         {

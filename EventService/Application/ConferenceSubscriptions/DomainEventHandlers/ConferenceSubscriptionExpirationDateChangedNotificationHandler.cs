@@ -23,7 +23,7 @@ public class ConferenceSubscriptionExpirationDateChangedNotificationHandler :
 
         foreach (Exhibition? exhibition in exhibitionsCoveredByConferenceSubscription)
         {
-            await _mediator.Send(new SetExhibitionExpirationDateCommand(
+            _ = await _mediator.Send(new SetExhibitionExpirationDateCommand(
                 Guid.NewGuid(),
                 exhibition.Id,
                 notification.ExpirationDate

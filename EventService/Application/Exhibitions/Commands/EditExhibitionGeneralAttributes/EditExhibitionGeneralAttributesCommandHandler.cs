@@ -25,7 +25,7 @@ public class EditExhibitionGeneralAttributesCommandHandler : ICommandHandler<Edi
 
         exhibition.EditGeneralAttributes(request.Name, request.Description);
 
-        await _exhibitionRepository.Commit();
+        _ = await _exhibitionRepository.Commit();
 
         return Unit.Value;
     }

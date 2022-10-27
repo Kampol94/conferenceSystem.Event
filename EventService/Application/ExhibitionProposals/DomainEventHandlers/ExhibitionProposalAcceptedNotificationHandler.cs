@@ -15,7 +15,7 @@ public class ExhibitionProposalAcceptedNotificationHandler : INotificationHandle
 
     public async Task Handle(ExhibitionProposalAcceptedDomainEvent notification, CancellationToken cancellationToken)
     {
-        await _mediator.Send(
+        _ = await _mediator.Send(
             new CreateNewExhibitionCommand(
                 Guid.NewGuid(),
                 notification.ExhibitionProposalId), cancellationToken);

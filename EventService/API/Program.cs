@@ -1,14 +1,14 @@
 using EventService.API;
 using EventService.Application;
 using EventService.Application.Contracts;
-using EventService.Domain.EventReviews.DomainEvents;
 using EventService.Infrastructure;
+using MediatR;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using System.Text;
 
-var builder = WebApplication.CreateBuilder(args);
+WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 builder.Services.AddApplication()
@@ -59,13 +59,14 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJw
     };
 });
 
-var app = builder.Build();
+WebApplication app = builder.Build();
+EventsBusStartup.Initialize(app.Services.GetService<IEventBus>(), app.Services.GetService<IMediator>());
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
-    app.UseSwagger();
-    app.UseSwaggerUI();
+    _ = app.UseSwagger();
+    _ = app.UseSwaggerUI();
 }
 
 app.UseAuthentication();

@@ -12,10 +12,10 @@ public static class ServiceExtensions
 {
     public static IServiceCollection AddApplication(this IServiceCollection services)
     {
-        services.AddMediatR(Assembly.GetExecutingAssembly());
-        services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
-        services.AddScoped(typeof(IPipelineBehavior<,>), typeof(CommitBehavior<,>));
-        services.AddTransient<IMemberContext, MemberContext>();
+        _ = services.AddMediatR(Assembly.GetExecutingAssembly());
+        _ = services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
+        _ = services.AddScoped(typeof(IPipelineBehavior<,>), typeof(CommitBehavior<,>));
+        _ = services.AddTransient<IMemberContext, MemberContext>();
         return services;
     }
 }

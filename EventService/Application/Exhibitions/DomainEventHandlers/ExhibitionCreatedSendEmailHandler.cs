@@ -15,7 +15,7 @@ public class ExhibitionCreatedSendEmailHandler : INotificationHandler<Exhibition
 
     public Task Handle(ExhibitionCreatedDomainEvent notification, CancellationToken cancellationToken)
     {
-        _mediator.Send(new SendExhibitionCreatedEmailCommand(
+        _ = _mediator.Send(new SendExhibitionCreatedEmailCommand(
                     Guid.NewGuid(),
                     notification.ExhibitionId,
                     notification.CreatorId), cancellationToken);

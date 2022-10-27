@@ -1,8 +1,7 @@
-using EventService.Application.ExhibitionProposals.Commands.AcceptExhibitionProposal;
-using EventService.Application.ExhibitionProposals.Queries.GetExhibitionProposal;
-using Microsoft.AspNetCore.Mvc;
-using EventService.Application.ExhibitionProposals.Queries.GetMemberExhibitionProposals;
 using EventService.Application.ExhibitionProposals.Commands.ProposeExhibition;
+using EventService.Application.ExhibitionProposals.Queries.GetExhibitionProposal;
+using EventService.Application.ExhibitionProposals.Queries.GetMemberExhibitionProposals;
+using Microsoft.AspNetCore.Mvc;
 
 namespace EventService.API.Controllers;
 

@@ -10,18 +10,18 @@ public class EventReviewsEntityTypeConfiguration : IEntityTypeConfiguration<Even
 {
     public void Configure(EntityTypeBuilder<EventReview> builder)
     {
-        builder.ToTable("EventReviews", "events");
+        _ = builder.ToTable("EventReviews", "events");
 
-        builder.Property<EventReviewId>("Id").HasConversion(v => v.Value, c => new EventReviewId(c));
-        builder.HasKey("Id");
+        _ = builder.Property<EventReviewId>("Id").HasConversion(v => v.Value, c => new EventReviewId(c));
+        _ = builder.HasKey("Id");
 
-        builder.Property<string>("_text").HasColumnName("Text");
-        builder.Property<EventId>("_eventId").HasColumnName("EventId").HasConversion(v => v.Value, c => new EventId(c));
-        builder.Property<MemberId>("_authorId").HasColumnName("AuthorId").HasConversion(v => v.Value, c => new MemberId(c)); ;
-        builder.Property<EventReviewId>("_inReplyToReviewId").HasColumnName("InReplyToReviewId").HasConversion(v => v.Value, c => new EventReviewId(c)); ;
-        builder.Property<bool>("_isRemoved").HasColumnName("IsRemoved");
-        builder.Property<string>("_removedByReason").HasColumnName("RemovedByReason");
-        builder.Property<DateTime>("_createDate").HasColumnName("CreateDate");
-        builder.Property<DateTime?>("_editDate").HasColumnName("EditDate");
+        _ = builder.Property<string>("_text").HasColumnName("Text");
+        _ = builder.Property<EventId>("_eventId").HasColumnName("EventId").HasConversion(v => v.Value, c => new EventId(c));
+        _ = builder.Property<MemberId>("_authorId").HasColumnName("AuthorId").HasConversion(v => v.Value, c => new MemberId(c)); ;
+        _ = builder.Property<EventReviewId>("_inReplyToReviewId").HasColumnName("InReplyToReviewId").HasConversion(v => v.Value, c => new EventReviewId(c)); ;
+        _ = builder.Property<bool>("_isRemoved").HasColumnName("IsRemoved");
+        _ = builder.Property<string>("_removedByReason").HasColumnName("RemovedByReason");
+        _ = builder.Property<DateTime>("_createDate").HasColumnName("CreateDate");
+        _ = builder.Property<DateTime?>("_editDate").HasColumnName("EditDate");
     }
 }

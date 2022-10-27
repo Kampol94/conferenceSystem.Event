@@ -20,7 +20,7 @@ public class ChangeEventMainAttributesCommandHandler : ICommandHandler<ChangeEve
     {
         Event? @event = await _eventRepository.GetByIdAsync(new EventId(request.EventId));
 
-        if(@event is null)
+        if (@event is null)
         {
             throw new Exception("Event must exist."); // TODO: custom exception
         }

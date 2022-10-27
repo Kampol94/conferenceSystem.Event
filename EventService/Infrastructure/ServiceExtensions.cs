@@ -25,19 +25,19 @@ public static class ServiceExtensions
     {
         if (configuration != null)
         {
-            services.AddDbContext<EventsContext>(options =>
+            _ = services.AddDbContext<EventsContext>(options =>
                 options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
         }
 
-        services.AddTransient<IEventRepository, EventRepository>();
-        services.AddTransient<IConferenceSubscriptionRepository, ConferenceSubscriptionRepository>();
-        services.AddTransient<IEventReviewRepository, EventReviewRepository>();
-        services.AddTransient<IExhibitionProposalRepository, ExhibitionProposalRepository>();
-        services.AddTransient<IExhibitionRepository, ExhibitionRepository>();
-        services.AddTransient<IMemberRepository, MemberRepository>();
-        services.AddTransient<ISqlConnectionFactory, SqlConnectionFactory>(x => new SqlConnectionFactory(configuration.GetConnectionString("DefaultConnection")));
-        services.AddTransient<IEmailSender, EmailSender>();
-        services.AddTransient<IEventBus, EventBus>();
+        _ = services.AddTransient<IEventRepository, EventRepository>();
+        _ = services.AddTransient<IConferenceSubscriptionRepository, ConferenceSubscriptionRepository>();
+        _ = services.AddTransient<IEventReviewRepository, EventReviewRepository>();
+        _ = services.AddTransient<IExhibitionProposalRepository, ExhibitionProposalRepository>();
+        _ = services.AddTransient<IExhibitionRepository, ExhibitionRepository>();
+        _ = services.AddTransient<IMemberRepository, MemberRepository>();
+        _ = services.AddTransient<ISqlConnectionFactory, SqlConnectionFactory>(x => new SqlConnectionFactory(configuration.GetConnectionString("DefaultConnection")));
+        _ = services.AddTransient<IEmailSender, EmailSender>();
+        _ = services.AddTransient<IEventBus, EventBus>();
 
         return services;
     }

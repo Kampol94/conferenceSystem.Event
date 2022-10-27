@@ -1,9 +1,6 @@
-﻿using EventService.Application.ConferenceSubscriptions.Commands.ChangeSubscriptionExpirationDateForMember;
-using EventService.Application.Contracts;
-using EventService.Application.ExhibitionProposals.Commands.AcceptExhibitionProposal;
+﻿using EventService.Application.Contracts;
 using EventService.Application.IntegrationEvents.Events;
 using EventService.Application.Members.CreateMember;
-using EventService.Domain.Members;
 using MediatR;
 
 namespace EventService.Application.IntegrationEvents.EventHandlings;
@@ -19,7 +16,7 @@ public class NewUserRegisteredIntegrationEventHandler : IIntegrationEventHandler
 
     public async Task Handle(NewUserRegisteredIntegrationEvent @event)
     {
-        var command = new CreateMemberCommand(
+        CreateMemberCommand command = new(
             Guid.NewGuid(),
             @event.UserId,
             @event.Login,
@@ -27,6 +24,6 @@ public class NewUserRegisteredIntegrationEventHandler : IIntegrationEventHandler
             @event.FirstName,
             @event.LastName,
             @event.Name);
-        await _mediator.Send(command);
+        _ = await _mediator.Send(command);
     }
 }

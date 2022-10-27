@@ -14,7 +14,7 @@ public class ExhibitionProposalRepository : IExhibitionProposalRepository
 
     public async Task AddAsync(ExhibitionProposal exhibitionProposal)
     {
-        await _context.ExhibitionProposals.AddAsync(exhibitionProposal);
+        _ = await _context.ExhibitionProposals.AddAsync(exhibitionProposal);
     }
 
     public async Task<ExhibitionProposal?> GetByIdAsync(ExhibitionProposalId exhibitionProposalId)

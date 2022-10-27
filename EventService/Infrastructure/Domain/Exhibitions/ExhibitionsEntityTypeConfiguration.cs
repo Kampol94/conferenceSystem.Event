@@ -1,5 +1,4 @@
-﻿using EventService.Domain.ExhibitionProposals;
-using EventService.Domain.Exhibitions;
+﻿using EventService.Domain.Exhibitions;
 using EventService.Domain.Members;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
@@ -10,33 +9,33 @@ public class ExhibitionsEntityTypeConfiguration : IEntityTypeConfiguration<Exhib
 {
     public void Configure(EntityTypeBuilder<Exhibition> builder)
     {
-        builder.ToTable("Exhibitions", "events");
+        _ = builder.ToTable("Exhibitions", "events");
 
-        builder.Property<ExhibitionId>("Id").HasConversion(v => v.Value, c => new ExhibitionId(c));
-        builder.HasKey("Id");
+        _ = builder.Property<ExhibitionId>("Id").HasConversion(v => v.Value, c => new ExhibitionId(c));
+        _ = builder.HasKey("Id");
 
-        builder.Property(x => x.Name).HasColumnName("Name");
-        builder.Property<string>("_description").HasColumnName("Description");
-        builder.Property(x => x.CreatorId).HasColumnName("CreatorId").HasConversion(v => v.Value, c => new MemberId(c));
-        builder.Property<DateTime>("_createDate").HasColumnName("CreateDate");
-        builder.Property<DateTime?>("_paymentDateTo").HasColumnName("PaymentDateTo");
+        _ = builder.Property(x => x.Name).HasColumnName("Name");
+        _ = builder.Property<string>("_description").HasColumnName("Description");
+        _ = builder.Property(x => x.CreatorId).HasColumnName("CreatorId").HasConversion(v => v.Value, c => new MemberId(c));
+        _ = builder.Property<DateTime>("_createDate").HasColumnName("CreateDate");
+        _ = builder.Property<DateTime?>("_paymentDateTo").HasColumnName("PaymentDateTo");
 
-        builder.OwnsMany<ExhibitionMember>("_members", y =>
+        _ = builder.OwnsMany<ExhibitionMember>("_members", y =>
         {
-            y.WithOwner().HasForeignKey("ExhibitionId");
-            y.ToTable("ExhibitionMembers", "events");
-            y.Property<MemberId>("MemberId").HasConversion(v => v.Value, c => new MemberId(c));
-            y.Property<ExhibitionId>("ExhibitionId").HasConversion(v => v.Value, c => new ExhibitionId(c));
-            y.Property<DateTime>("JoinedDate").HasColumnName("JoinedDate");
-            y.HasKey("MemberId", "ExhibitionId", "JoinedDate");
+            _ = y.WithOwner().HasForeignKey("ExhibitionId");
+            _ = y.ToTable("ExhibitionMembers", "events");
+            _ = y.Property<MemberId>("MemberId").HasConversion(v => v.Value, c => new MemberId(c));
+            _ = y.Property<ExhibitionId>("ExhibitionId").HasConversion(v => v.Value, c => new ExhibitionId(c));
+            _ = y.Property<DateTime>("JoinedDate").HasColumnName("JoinedDate");
+            _ = y.HasKey("MemberId", "ExhibitionId", "JoinedDate");
 
-            y.Property<DateTime?>("_leaveDate").HasColumnName("LeaveDate");
+            _ = y.Property<DateTime?>("_leaveDate").HasColumnName("LeaveDate");
 
-            y.Property<bool>("_isActive").HasColumnName("IsActive");
+            _ = y.Property<bool>("_isActive").HasColumnName("IsActive");
 
-            y.OwnsOne<ExhibitionMemberRole>("_role", b =>
+            _ = y.OwnsOne<ExhibitionMemberRole>("_role", b =>
             {
-                b.Property(x => x.Value).HasColumnName("RoleCode");
+                _ = b.Property(x => x.Value).HasColumnName("RoleCode");
             });
         });
     }
