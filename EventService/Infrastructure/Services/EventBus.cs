@@ -18,7 +18,7 @@ public class EventBus : IEventBus
     {
         ConnectionFactory factory = new()
         {
-            HostName = "localhost"
+            HostName = "rabbitmq"
         };
         //Create the RabbitMQ connection using connection factory details as i mentioned above
         IConnection connection = factory.CreateConnection();
