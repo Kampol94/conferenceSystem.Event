@@ -1,4 +1,7 @@
+using EventService.Application.Contracts;
 using EventService.Application.Contracts.Commands;
+using EventService.Application.IntegrationEvents.EventHandlings;
+using EventService.Application.IntegrationEvents.Events;
 using EventService.Application.Members;
 using EventService.Domain.Members;
 using FluentValidation;
@@ -16,6 +19,11 @@ public static class ServiceExtensions
         _ = services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
         _ = services.AddScoped(typeof(IPipelineBehavior<,>), typeof(CommitBehavior<,>));
         _ = services.AddTransient<IMemberContext, MemberContext>();
+        services.AddTransient<IIntegrationEventHandler<EventFeePaidIntegrationEvent>, EventFeePaidIntegrationEventHandler>();
+        services.AddTransient<IIntegrationEventHandler<ExhibitionProposalAcceptedIntegrationEvent>, ExhibitionProposalAcceptedIntegrationEventHandler>();
+        services.AddTransient<IIntegrationEventHandler<SubscriptionExpirationDateChangedIntegrationEvent>, SubscriptionExpirationDateChangedIntegrationEventHandler>();
+        services.AddTransient<IIntegrationEventHandler<NewUserRegisteredIntegrationEvent>, NewUserRegisteredIntegrationEventHandler>();
+
         return services;
     }
 }
