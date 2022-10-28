@@ -17,7 +17,7 @@ public static class ServiceExtensions
     {
         _ = services.AddMediatR(Assembly.GetExecutingAssembly());
         _ = services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
-        _ = services.AddScoped(typeof(IPipelineBehavior<,>), typeof(CommitBehavior<,>));
+        _ = services.AddScoped(typeof(IPipelineBehavior<,>), typeof(CommandHandlerDecorator<,>));
         _ = services.AddTransient<IMemberContext, MemberContext>();
         services.AddTransient<IIntegrationEventHandler<EventFeePaidIntegrationEvent>, EventFeePaidIntegrationEventHandler>();
         services.AddTransient<IIntegrationEventHandler<ExhibitionProposalAcceptedIntegrationEvent>, ExhibitionProposalAcceptedIntegrationEventHandler>();
