@@ -11,15 +11,16 @@ public static class ServiceExtensionTelemetry
         services.AddOpenTelemetryTracing(tracerProviderBuilder =>
         {
             tracerProviderBuilder
-            .AddSource("EventService1")
+            .AddSource("EventService")
             .AddJaegerExporter(c =>
             {
                 c.AgentHost = "simplest-agent";
                 c.AgentPort = 6831;
+                c.Endpoint = new Uri("http://simplest-collector:14268/api/traces");
             })
             .SetResourceBuilder(
                 ResourceBuilder.CreateDefault()
-                    .AddService(serviceName: "EventService", serviceVersion: "1.0.0"))
+                    .AddService(serviceName: "EventService1", serviceVersion: "1.0.0"))
             .AddHttpClientInstrumentation()
             .AddAspNetCoreInstrumentation()
             .AddSqlClientInstrumentation();
