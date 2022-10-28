@@ -16,7 +16,7 @@ public static class ServiceExtensionTelemetry
             {
                 c.AgentHost = "simplest-agent";
                 c.AgentPort = 6831;
-                c.Endpoint = new Uri("http://simplest-collector:14268/api/traces");
+                c.Endpoint = new Uri("http://10.244.0.18:14268/api/traces");
             })
             .SetResourceBuilder(
                 ResourceBuilder.CreateDefault()
