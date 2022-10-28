@@ -13,8 +13,7 @@ public static class ServiceExtensionTelemetry
             .AddSource("EventService")
             .AddJaegerExporter(c =>
             {
-                c.AgentHost = "10.0.203.67";
-                c.AgentPort = 14268;
+                c.Endpoint = new Uri("http://jaeger-collector.istio-system.svc:14268/api/traces");
             })
             .SetResourceBuilder(
                 ResourceBuilder.CreateDefault()
