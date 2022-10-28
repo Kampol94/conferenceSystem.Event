@@ -13,7 +13,7 @@ public static class ServiceExtensionTelemetry
             .AddSource("EventService")
             .AddJaegerExporter(c =>
             {
-                c.AgentHost = "jaeger-collector.istio-system.svc.cluster.local";
+                c.AgentHost = "10.0.203.67";
                 c.AgentPort = 14268;
             })
             .SetResourceBuilder(
