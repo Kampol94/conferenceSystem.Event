@@ -1,5 +1,6 @@
 ﻿using OpenTelemetry.Resources;
 using OpenTelemetry.Trace;
+using static System.Net.WebRequestMethods;
 
 namespace EventService.API;
 
@@ -15,6 +16,7 @@ public static class ServiceExtensionTelemetry
             {
                 c.AgentHost = "simplest-agent";
                 c.AgentPort = 6831;
+                c.Endpoint = new Uri("http://simplest-collector:14268/api/traces");
             })
             .SetResourceBuilder(
                 ResourceBuilder.CreateDefault()
